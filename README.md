@@ -1,7 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="http://scer.rpi.edu/sites/default/files/logo-with-tag.jpg" width="400"></a></p>
 
 # Developer Installation Guide
-The website is currently being hosted on Heroku with a Laravel backend implementation and MySQL as the database. As such, backend developers will need to install PHP7, MySQL, and Git. Frontend developers will need to install PHP7 and Git.
+The website is currently being hosted on Heroku with a Laravel backend implementation and MySQL as the database. As such, backend developers will need to install PHP7, Composer, MySQL, and Git. Frontend developers will need to install PHP7, Composer, and Git.
 
 ## Installing Git
 1. For easy installation, it is recommend to install the [GitHub Desktop](https://desktop.github.com/) Client for Mac and Windows Machines
@@ -39,8 +39,19 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 ### Windows
 1. TBD
 
+## Install Composer
+TBD
+
 ## Running a local Laravel server
-Laravel comes built-in with the ability to run a local webserver using just PHP. In order to run a local version of the website and see your changes, please clone the Git repository. Then open the root file directory of this project using your terminal (`cd location\of\your\folder`) and run `php artisan serve`. A local webserver should automatically open. 
+Laravel comes built-in with the ability to run a local webserver using just PHP. In order to run a local version of the website and see your changes, please clone the Git repository. 
+
+
+### Setting up the Laravel environment
+1. Open the root file directory of the project using your terminal (`cd location\of\your\folder`)
+2. Copy the file `.env.example` and rename it as `.env`, make sure this file is hidden!
+3. Run `composer install` to install required packages
+4. Run `php aritsan generate:key` to generate a valid `APP_KEY`
+5. Run `php artisan serve` to actually run the webserver. Use this command after setup.
 
 # Learning Laravel
 
