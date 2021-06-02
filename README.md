@@ -24,6 +24,21 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 1. Open terminal and run the following command `sudo apt install php libapache2-mod-php`
 2. Verify installation by running `php -v`
 
+## Install MySQL
+
+### Debian/Ubuntu
+1. Open the terminal and issue the following command: `sudo apt install mysql-server`
+2. This will install the MySQL server package (you can use `apt info mysql-server` to see package into)
+3. Verify the package is installed by running `mysql --version`
+
+### Mac
+1. Download the [brew](https://docs.brew.sh/Installation) package manager for Mac
+2. Run in Terminal `brew install mysql`
+2. Verify the package is installed by running `mysql --version`
+
+### Windows
+1. TBD
+
 ## Running a local Laravel server
 Laravel comes built-in with the ability to run a local webserver using just PHP. In order to run a local version of the website and see your changes, please clone the Git repository. Then open the root file directory of this project using your terminal (`cd location\of\your\folder`) and run `php artisan serve`. A local webserver should automatically open. 
 
