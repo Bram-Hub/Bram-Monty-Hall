@@ -54,7 +54,7 @@ TBD
 1. Download and run the [composer](https://getcomposer.org/doc/00-intro.md#installation-windows) install file
 2. When prompted, please check `Update this php.ini`
 3. Open command prompt and test installation by running `composer`
-4. Open the Monty-Hall Git Clone in command prompt (typically run `cd Documents\GitHub\Monty-Hall`) and run `composer update --ignore-platform-reqs` and then `composer install --ignore-platform-reqs`
+4. Open the Monty-Hall Git Clone in command prompt (typically run `cd Documents\GitHub\Monty-Hall`) and run `composer install --ignore-platform-reqs`
 
 ### Debian / Ubuntu
 1. Open the terminal and run the following: `sudo apt install composer`
