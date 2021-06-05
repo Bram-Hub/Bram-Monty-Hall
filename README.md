@@ -14,7 +14,7 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 2. Extract the folder on your desktop. Rename it to `php7`
 3. Rename the file `php.ini-development` to `php.ini`
 4. Open the `php.ini` file in NotePad and change `memory_limit` to `1G`
-5. Remove ther `;` for the following lines `extension_dir = "ext"`, `extension=curl`, `extension=gd2`, `extension=mbstring`, `extension=openssl`, `extension=pdo_mysql`, `extension=sockets` and `extension=pdo_sqlite`
+5. Remove `;` for the following lines `extension_dir = "ext"`, `extension=curl`, `extension=gd2`, `extension=mbstring`, `extension=openssl`, `extension=pdo_mysql`, `extension=sockets` and `extension=pdo_sqlite`
 6. Place the `php7` folder in `C:\Program Files`
 7. In the Windows Search, type in `system variables` and a Control Panel result should appear titled `Edit the system environment variables`
 8. Click `Environment Variables...`
