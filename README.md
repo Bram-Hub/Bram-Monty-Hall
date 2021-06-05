@@ -18,7 +18,7 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 6. Place the `php7` folder in `C:\Program Files`
 7. In the Windows Search, type in `system variables` and a Control Panel result should appear titled `Edit the system environment variables`
 8. Click `Environment Variables...`
-9. Under `System Variables` click on `Path` and the click `edit`.
+9. Under `System Variables` click on `Path` and then click `edit`.
 10. Click `new` and enter in the box `C:\Program Files\php7`
 11. Save your changes and exit the windows
 12. Open `command prompt` and verify installation by running `php --verison`
