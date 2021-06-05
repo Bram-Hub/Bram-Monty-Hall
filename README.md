@@ -40,7 +40,10 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 1. TBD
 
 ## Install Composer
-TBD
+
+### Debian / Ubuntu
+1. Open the terminal and run the following: `sudo apt install composer`
+2. Check to see that composer was installed successfully: `composer --version`
 
 ## Running a local Laravel server
 Laravel comes built-in with the ability to run a local webserver using just PHP. In order to run a local version of the website and see your changes, please clone the Git repository. 
