@@ -53,7 +53,7 @@ Laravel comes built-in with the ability to run a local webserver using just PHP.
 1. Open the root file directory of the project using your terminal (`cd location\of\your\folder`)
 2. Copy the file `.env.example` and rename it as `.env`, make sure this file is hidden!
 3. Run `composer install` to install required packages
-4. Run `php aritsan generate:key` to generate a valid `APP_KEY`
+4. Run `php aritsan key:generate` to generate a valid `APP_KEY`
 5. Run `php artisan serve` to actually run the webserver. Use this command after setup.
 
 # Learning Laravel
