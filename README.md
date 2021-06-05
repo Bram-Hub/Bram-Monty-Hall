@@ -10,10 +10,19 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 ## Install PHP
 
 ### Windows
-1. Head to the official [PHP](https://www.php.net/downloads.php) download page and down the current stable PHP7 version.
-2. Extract the folder on your desktop.
-3. Run `php.exe`
-4. Open `command prompt` and verify installation by running `php --verison`
+1. Head to the official [PHP](https://windows.php.net/download#php-7.4) download page and download the current stable PHP7 version. It is recommend to install the `VC15 x64 Thread Safe` version.
+2. Extract the folder on your desktop. Rename it to `php7`
+3. Rename the file `php.ini-development` to `php.ini`
+4. Open the `php.ini` file in NotePad and change `memory_limit` to `1G`
+5. Remove ther `;` for the following lines `extension_dir = "ext"`, `extension=curl`, `extension=gd2`, `extension=mbstring`, `extension=openssl`, `extension=pdo_mysql`, `extension=sockets` and `extension=pdo_sqlite`
+6. Place the `php7` folder in `C:\Program Files`
+7. In the Windows Search, type in `system variables` and a Control Panel result should appear titled `Edit the system environment variables`
+8. Click `Environment Variables...`
+9. Under `System Variables` click on `Path` and the click `edit`.
+10. Click `new` and enter in the box `C:\Program Files\php7`
+11. Save your changes and exit the windows
+12. Open `command prompt` and verify installation by running `php --verison`
+
 
 ### Mac
 1. Download the [brew](https://docs.brew.sh/Installation) package manager for Mac
@@ -26,6 +35,9 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 
 ## Install MySQL
 
+### Windows
+TBD
+
 ### Debian/Ubuntu
 1. Open the terminal and issue the following command: `sudo apt install mysql-server`
 2. This will install the MySQL server package (you can use `apt info mysql-server` to see package into)
@@ -36,25 +48,30 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 2. Run in Terminal `brew install mysql`
 2. Verify the package is installed by running `mysql --version`
 
-### Windows
-1. TBD
-
 ## Install Composer
+
+### Windows
+1. Download and run the [composer](https://getcomposer.org/doc/00-intro.md#installation-windows) install file
+2. When prompted, please check `Update this php.ini`
+3. Open command prompt and test installation by running `composer`
+4. Open the Monty-Hall Git Clone in command prompt (typically run `cd Documents\GitHub\Monty-Hall`) and run `composer update --ignore-platform-reqs` and then `composer install --ignore-platform-reqs`
 
 ### Debian / Ubuntu
 1. Open the terminal and run the following: `sudo apt install composer`
 2. Check to see that composer was installed successfully: `composer --version`
+3. CD to the Monty-Hall directory in terminal, and run `composer install`
+
+### Mac
+TBD
 
 ## Running a local Laravel server
 Laravel comes built-in with the ability to run a local webserver using just PHP. In order to run a local version of the website and see your changes, please clone the Git repository. 
-
-
-### Setting up the Laravel environment
-1. Open the root file directory of the project using your terminal (`cd location\of\your\folder`)
-2. Copy the file `.env.example` and rename it as `.env`, make sure this file is hidden!
-3. Run `composer install` to install required packages
-4. Run `php aritsan key:generate` to generate a valid `APP_KEY`
-5. Run `php artisan serve` to actually run the webserver. Use this command after setup.
+1. Open the Monty-Hall Git Clone in file manager (typically stored in `Documents\GitHub\Monty-Hall`)
+2. Duplicate the `.env.example` file and rename it to `.env`
+3. Open the `.env` you just renamed in a text editor (On Windows, use Notepad). Change `APP_NAME` to `Monty-Hall` and save/close.
+4. Open the Monty-Hall Git Clone in command prompt/terminal (typically run `cd Documents\GitHub\Monty-Hall`)
+5. Run `php artisan key:generate` to generate a valid `APP_KEY`
+6. Run `php artisan serve` and copy the server address in a web browser to view the website :) 
 
 # Learning Laravel
 
