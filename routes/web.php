@@ -20,5 +20,21 @@ Route::get('/', function () {
 */
 
 Route::get('/', function () {
-	return view('home');
+	return view('play');
+});
+
+Route::get('/play', function () {
+	return view('play');
+});
+
+Route::get('/research', function () {
+	return view('research');
+});
+
+Route::get('/database', function () {
+	return view('database');
+});
+
+Route::get('/education', function () {
+	return view('education');
 });
