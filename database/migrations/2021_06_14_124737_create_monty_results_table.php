@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMymontysTable extends Migration
+class CreateMontyResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateMymontysTable extends Migration
      */
     public function up()
     {
-        Schema::create('mymontys', function (Blueprint $table) {
+        Schema::create('monty_results', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cookie_id', 100);
             $table->string('monty', 100);
-            $table->string('outcome', 100);
+            $table->integer('total_wins');
+            $table->integer('total_loss');
             $table->string('softdeletes', 100);
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateMymontysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mymontys');
+        Schema::dropIfExists('monty_results');
     }
 }
