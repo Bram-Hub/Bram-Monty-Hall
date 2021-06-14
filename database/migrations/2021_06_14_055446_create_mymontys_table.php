@@ -15,10 +15,10 @@ class CreateMymontysTable extends Migration
     {
         Schema::create('mymontys', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cookie_id', 100);
-            $table->string('monty', 100);
-            $table->string('outcome', 100);
-            $table->string('softdeletes', 100);
+            $table->string('cookie_id');
+            $table->string('monty');
+            $table->string('outcome');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

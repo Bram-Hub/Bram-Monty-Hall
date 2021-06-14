@@ -15,10 +15,10 @@ class CreateMontyResultsTable extends Migration
     {
         Schema::create('monty_results', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('monty', 100);
+            $table->string('monty');
             $table->integer('total_wins');
             $table->integer('total_loss');
-            $table->string('softdeletes', 100);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

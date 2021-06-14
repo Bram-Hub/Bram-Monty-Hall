@@ -13,10 +13,9 @@ class mymonty extends Model
     protected $table = 'mymontys';
 
     // define the primary key
-    protected $primaryKey = 'id';
 
     // please do not change the time
-    public $timestamps = false;
+    //public $timestamps = false;
 
-    protected $fillable = ['id', 'cookie_id','monty', 'outcome', 'softdeletes'];
+    protected $fillable = ['monty', 'outcome'];
 }

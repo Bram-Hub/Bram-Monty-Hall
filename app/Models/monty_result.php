@@ -13,10 +13,9 @@ class monty_result extends Model
     protected $table = 'monty_results';
 
     // define the primary key
-    protected $primaryKey = 'id';
 
     // please do not change the time
-    public $timestamps = false;
+    //public $timestamps = false;
 
-    protected $fillable = ['id', 'monty', 'total_wins', 'total_loss' , 'softdeletes'];
+    protected $fillable = [ 'monty', 'total_wins', 'total_loss'];
 }
