@@ -32,6 +32,7 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 ### Debian/Ubuntu
 1. Open terminal and run the following command `sudo apt install php libapache2-mod-php`
 2. Verify installation by running `php -v`
+3. Install php-mysql package through apt as well: `sudo apt install php-mysql`
 
 ## Install MySQL
 
