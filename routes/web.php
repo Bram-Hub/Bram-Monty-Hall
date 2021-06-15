@@ -38,3 +38,8 @@ Route::get('/database', function () {
 Route::get('/education', function () {
 	return view('education');
 });
+
+
+Route::get('/dev', function () {
+	return view('dev');
+});
