@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Monty Hall - Research Page</title>
-	</head>
+    </head>
     <x-navigation/>
-	<h1>Monty Hall - Research Page</h1>
+    <h1>Monty Hall - Research Page</h1>
 </html>
