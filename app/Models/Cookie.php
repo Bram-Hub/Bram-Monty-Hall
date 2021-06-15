@@ -6,20 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Game extends Model
+class Cookie extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = ['outcome', 'details'];
-
-    public function monty()
+    
+    public function games()
     {
-        return $this->belongsTo(Monty::class);
-    }
-
-    public function cookie()
-    {
-        return $this->belongsTo(Cookie:class);
+        return $this->hasMany(Game::class);
     }
 }
