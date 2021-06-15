@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMymontysTable extends Migration
+class CreateGamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateMymontysTable extends Migration
      */
     public function up()
     {
-        Schema::create('mymontys', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cookie_id');
-            $table->string('monty');
-            $table->string('outcome');
-            $table->softDeletes();
+            $table->string('cookie_id')->nullable();
+            $table->unsignedInteger('monty_id');
+            $table->foreign('monty_id')->references('id')->on('montys');
+            $table->boolean('outcome');
+            $table->json('details')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +32,6 @@ class CreateMymontysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mymontys');
+        Schema::dropIfExists('games');
     }
 }
