@@ -3,5 +3,6 @@
     <head>
         <title>Monty Hall - Play Page</title>
     </head>
-	<h1>Monty Hall - Play Page</h1>
+    <x-navigation/>
+    <h1>Monty Hall - Play Page</h1>
 </html>
