@@ -41,7 +41,7 @@ li {
   grid-gap: 10px; /*grid gap matters especially if we have more than text and title, such as images or graphs*/
   margin-top: 20px;
   margin-bottom: 20px;
-  display: inline-grid;
+  display: grid;
   grid-template-areas:
   'title text'
   'image text'
@@ -69,7 +69,7 @@ li {
 .standard-monty {
   font-family: OpenSans-SemiBold;
   padding: 15px;
-  display: inline-grid;
+  display: grid;
   margin-top: 20px;
   margin-bottom: 20px;
   grid-template-areas:
@@ -82,7 +82,7 @@ li {
   background-color: rgb(237, 240, 244);
   font-family: OpenSans-SemiBold;
   padding: 15px;
-  display: inline-grid;
+  display: grid;
   margin-top: 20px;
   margin-bottom: 20px;
   grid-template-areas:
@@ -95,20 +95,21 @@ li {
 .variants {
   font-family: OpenSans-SemiBold;
   padding: 15px;
-  display: inline-grid;
+  display: grid;
   margin-top: 20px;
   margin-bottom: 20px;
   grid-template-areas:
-  'space text title'
+  'space tabs title'
   'space text title';
-  grid-template-columns: 10% 50% 40%
+  grid-template-columns: 10% 50% 40%;
+  grid-auto-flow: row;
 }
 
 .resources {
   background-color: rgb(237, 240, 244);
   font-family: OpenSans-SemiBold;
   padding: 15px;
-  display: inline-grid;
+  display: grid;
   margin-top: 20px;
   margin-bottom: 20px;
   grid-template-areas:
@@ -136,4 +137,38 @@ li {
   position: relative;
   text-align: center;
   align-items: center;
+}
+
+.tabs {
+  grid-area: tabs;
+  display: flex;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  justify-self: center;
+}
+
+.monty {
+  font-size: 18px;
+  display: none;
+  grid-area: text;
+  position: relative;
+  justify-self: center;
+  text-align: center;
+}
+
+.tabs button {
+  font-size: 30px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.tabs button:hover {
+  background-color: rgb(246,248,250);
+}
+
+.tabs button.active {
+  background-color: rgb(237, 240, 244);
 }
