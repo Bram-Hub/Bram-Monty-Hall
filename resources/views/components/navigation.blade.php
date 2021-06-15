@@ -1,7 +1,7 @@
-	<head>
+    <head>
         <link href="{{ URL::asset('css/navigation.css') }}" rel="stylesheet"/>
     </head>
-    <div class="header">
+    <div>
         <span>
             <img class="siteLogo" src="img/MontyHallProjectLogo.png" alt="logo">
         </span>
