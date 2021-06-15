@@ -15,7 +15,8 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cookie_id')->nullable();
+            $table->foreignId('cookie_id');
+            $table->foreign('cookie_id')->references('id')->on('cookies');
             $table->unsignedInteger('monty_id');
             $table->foreign('monty_id')->references('id')->on('montys');
             $table->boolean('outcome');
