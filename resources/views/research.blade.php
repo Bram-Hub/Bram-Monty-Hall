@@ -7,8 +7,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <!-- Header bar goes here -->
-    <h1>Monty Hall - Research Page</h1>
+    <x-navigation/>
     
     <section id="game" class="h0 float-right bg-green-300 m-10 text-3xl flex items-center justify-center"
         style="width: 48rem; height: 36rem">
