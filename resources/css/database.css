@@ -57,3 +57,8 @@ p {
 	font-size: 16px;
 	text-align: center;
 }
+
+.tablinks:hover {
+	background: indigo;
+	border: indigo;
+}
