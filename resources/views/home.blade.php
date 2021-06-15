@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-	@include('navigation')
+	<x-navigation/>
 	<h1> Monty Hall Website Example </h1>
 </html>

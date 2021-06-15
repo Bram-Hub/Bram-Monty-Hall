@@ -3,6 +3,6 @@
     <head>
         <title>Monty Hall - Database Page</title>
     </head>
-	@include('navigation')
+	<x-navigation/>
 	<h1>Monty Hall - Database Page</h1>
 </html>
