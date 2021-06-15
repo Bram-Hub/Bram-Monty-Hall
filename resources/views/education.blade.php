@@ -2,6 +2,10 @@
 <html>
 <div class="scrollPage">
 	<link rel="stylesheet" href="{{ asset('css/education.css') }}">
+
+	<script type="text/javascript">
+
+	</script>
 	<link rel="images" href="{{ asset('images/') }}">
 	<div class="header">
 		<ul>
@@ -33,9 +37,37 @@
 	</div>
 
 	<div class="variants">
+
 		<p class="space"></p>
 		<p class="title"> Variant Monty's </p>
-		<p class="text"> Integer non tempor dolor. In faucibus quam ut euismod commodo. Vestibulum tincidunt consequat dignissim. Suspendisse nec hendrerit ex. Quisque rhoncus nisl in ligula convallis, at tincidunt urna hendrerit. Cras eu enim arcu. Integer tincidunt augue id tortor laoreet, ac aliquet eros consectetur. Nullam consequat libero tincidunt, mollis lectus non, blandit ligula. Curabitur lacinia dictum augue, eu ultricies erat sodales eget. </p>
+		<div class="tabs">
+			<button class="variantsButton" onclick="openVariants(event, 'hell')">Hell</button>
+			<button class="variantsButton" onclick="openVariants(event, 'ignorant')">Ignorant</button>
+		</div>
+
+			<div id="hell" class="monty">
+				<p class="">Monty From Hell</p>
+				<p class="">Maecenas ullamcorper lectus eget mauris gravida interdum. Maecenas tincidunt neque eu iaculis ultricies. Sed elementum libero nec turpis dignissim elementum. Sed tempor dignissim pharetra. Nulla sit amet mi rutrum ante fringilla vehicula. Quisque euismod arcu in dictum vestibulum. Proin tincidunt enim non arcu tempus, non varius eros dignissim.</p>
+			</div>
+			<div id="ignorant" class="monty">
+				<p class="">Ignorant Monty</p>
+				<p class="">Duis fermentum nec leo ut aliquam. Integer elementum mattis est, ac sollicitudin ante semper vitae. Sed sit amet cursus nulla. Sed neque orci, aliquet ultrices ipsum in, consequat sodales neque. Suspendisse fringilla augue mauris, sed mattis leo facilisis sed. Phasellus tempor id turpis ac aliquet. Nullam pellentesque suscipit erat, vel tincidunt dolor varius et. Vivamus ornare maximus felis, ut hendrerit ipsum accumsan id. Cras dignissim metus id rutrum suscipit. Nulla facilisi.</p>
+			</div>
+		<script>
+			function openVariants(evt, cityName) {
+				var x = document.getElementsByClassName("monty");
+				for (var i = 0; i < x.length; i++) {
+					x[i].style.display = "none";
+				}
+				document.getElementById(cityName).style.display = "block";
+				var y = document.getElementsByClassName("variantsButton");
+				for (var i = 0; i < y.length; i++) {
+					y[i].className = y[i].className.replace(" active", "");
+				}
+				evt.currentTarget.className += " active";
+			}
+		</script>
+
 	</div>
 
 	<div class="resources">
