@@ -149,7 +149,7 @@ li {
 }
 
 .monty {
-  font-size: 18px;
+  font-family: OpenSans-SemiBold;
   display: none;
   grid-area: text;
   position: relative;
@@ -171,4 +171,12 @@ li {
 
 .tabs button.active {
   background-color: rgb(237, 240, 244);
+}
+
+.variantTitle {
+  font-size: 23px;
+}
+
+.variantText {
+  font-size: 18px;
 }

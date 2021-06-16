@@ -1,12 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <div class="scrollPage">
-	<link rel="stylesheet" href="{{ asset('css/education.css') }}">
-
-	<script type="text/javascript">
-
-	</script>
-	<link rel="images" href="{{ asset('images/') }}">
+	<link rel="stylesheet" href="{{ URL::asset('css/education.css') }}">
+	<link rel="images" href="{{ asset('images') }}">
 	<div class="header">
 		<ul>
 			<li> <a href="https://github.com/Bram-Hub/Monty-Hall"> <u>BramHub</u> </a> </li>
@@ -41,17 +37,17 @@
 		<p class="space"></p>
 		<p class="title"> Variant Monty's </p>
 		<div class="tabs">
-			<button class="variantsButton" onclick="openVariants(event, 'hell')">Hell</button>
+			<button id="defaultOpen" class="variantsButton" onclick="openVariants(event, 'hell')">Hell</button>
 			<button class="variantsButton" onclick="openVariants(event, 'ignorant')">Ignorant</button>
 		</div>
 
 			<div id="hell" class="monty">
-				<p class="">Monty From Hell</p>
-				<p class="">Maecenas ullamcorper lectus eget mauris gravida interdum. Maecenas tincidunt neque eu iaculis ultricies. Sed elementum libero nec turpis dignissim elementum. Sed tempor dignissim pharetra. Nulla sit amet mi rutrum ante fringilla vehicula. Quisque euismod arcu in dictum vestibulum. Proin tincidunt enim non arcu tempus, non varius eros dignissim.</p>
+				<p class="variantTitle">Monty From Hell</p>
+				<p class="variantText">Maecenas ullamcorper lectus eget mauris gravida interdum. Maecenas tincidunt neque eu iaculis ultricies. Sed elementum libero nec turpis dignissim elementum. Sed tempor dignissim pharetra. Nulla sit amet mi rutrum ante fringilla vehicula. Quisque euismod arcu in dictum vestibulum. Proin tincidunt enim non arcu tempus, non varius eros dignissim.</p>
 			</div>
 			<div id="ignorant" class="monty">
-				<p class="">Ignorant Monty</p>
-				<p class="">Duis fermentum nec leo ut aliquam. Integer elementum mattis est, ac sollicitudin ante semper vitae. Sed sit amet cursus nulla. Sed neque orci, aliquet ultrices ipsum in, consequat sodales neque. Suspendisse fringilla augue mauris, sed mattis leo facilisis sed. Phasellus tempor id turpis ac aliquet. Nullam pellentesque suscipit erat, vel tincidunt dolor varius et. Vivamus ornare maximus felis, ut hendrerit ipsum accumsan id. Cras dignissim metus id rutrum suscipit. Nulla facilisi.</p>
+				<p class="variantTitle">Ignorant Monty</p>
+				<p class="variantText">Duis fermentum nec leo ut aliquam. Integer elementum mattis est, ac sollicitudin ante semper vitae. Sed sit amet cursus nulla. Sed neque orci, aliquet ultrices ipsum in, consequat sodales neque. Suspendisse fringilla augue mauris, sed mattis leo facilisis sed. Phasellus tempor id turpis ac aliquet. Nullam pellentesque suscipit erat, vel tincidunt dolor varius et. Vivamus ornare maximus felis, ut hendrerit ipsum accumsan id. Cras dignissim metus id rutrum suscipit. Nulla facilisi.</p>
 			</div>
 		<script>
 			function openVariants(evt, cityName) {
@@ -66,6 +62,8 @@
 				}
 				evt.currentTarget.className += " active";
 			}
+
+			document.getElementById("defaultOpen").click();
 		</script>
 
 	</div>
