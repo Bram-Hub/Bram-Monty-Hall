@@ -23,12 +23,14 @@ class CheckCookie
         if ( $request->hasCookie('playID') ) {
             return $next($request);
         } else {
+            $min = 1;
+
             // generate a cookie using database
             $cookie = new Cookie();
             $cookie->played = False;
 
             // add cookie to user ( 1 min test for now )
-            $user_cookie = cookie('playID', $cookie->id, 1);
+            $user_cookie = cookie('playID', $cookie->id, $min);
             $response = response()->view('cookies');
             $response->withCookie($user_cookie);
             
