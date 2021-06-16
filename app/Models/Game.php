@@ -20,6 +20,6 @@ class Game extends Model
 
     public function cookie()
     {
-        return $this->belongsTo(Cookie:class);
+        return $this->belongsTo(Cookie::class);
     }
 }

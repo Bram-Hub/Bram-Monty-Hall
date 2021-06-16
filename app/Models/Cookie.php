@@ -11,7 +11,7 @@ class Cookie extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['outcome', 'details'];
+    protected $fillable = ['played'];
     
     public function games()
     {

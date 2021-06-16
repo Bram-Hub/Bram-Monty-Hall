@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\Cookie;
+
 
 class CheckCookie
 {
@@ -17,12 +19,25 @@ class CheckCookie
      */
     public function handle(Request $request, Closure $next)
     {
-        
         // check to see if the user has played a game
-        if ( !( $request->hasCookie('played') ) ) {
-            return response()->view('no_cookie');
-        }
+        if ( $request->hasCookie('playID') ) {
+            return $next($request);
+        } else {
+            // generate a cookie using database
+            $cookie = new Cookie();
+            $cookie->played = False;
 
-        return $next($request);
+            // add cookie to user ( 1 min test for now )
+            $user_cookie = cookie('playID', $cookie->id, 1);
+            $response = response()->view('cookies');
+            $response->withCookie($user_cookie);
+            
+            // push to database
+            $cookie->save();
+
+            // return user to cookie page
+            return $response;
+        }
+  
     }
 }
