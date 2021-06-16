@@ -1,0 +1,22 @@
+.footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    color: black;
+    background-color: white;
+    font-family: "Arial, sans-serif";
+    text-align: left;
+}
+
+.column {
+    float: left;
+    padding: 0px 100px 0px 30px;
+}
+
+.footerItems {
+    list-style-type: none; /* Remove bullets */
+    padding-left: 0;
+    color: blue;
+    text-decoration: none;
+    font: 15px Arial, sans-serif;
+}

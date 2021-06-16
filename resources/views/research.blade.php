@@ -8,7 +8,6 @@
 </head>
 <body>
     <x-navigation/>
-    
     <section id="game" class="h0 float-right bg-green-300 m-10 text-3xl flex items-center justify-center"
         style="width: 48rem; height: 36rem">
         <!-- Game content here -->
@@ -64,6 +63,6 @@
             <span class="flex-col">W/L: </span><span id="wl"></span>
         </div>
     </div>
-    
 </body>
+<x-footer/>
 </html>
