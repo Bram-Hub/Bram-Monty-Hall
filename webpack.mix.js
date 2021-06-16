@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+	.js('resources/js/database.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss')
     ])
@@ -19,5 +20,8 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss')
     ])
     .postCss('resources/css/database.css', 'public/css', [
+        require('tailwindcss')
+    ])
+    .postCss('resources/css/footer.css', 'public/css', [
         require('tailwindcss')
     ]);

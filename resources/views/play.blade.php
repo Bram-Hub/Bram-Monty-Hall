@@ -5,4 +5,5 @@
     </head>
     <x-navigation/>
     <h1>Monty Hall - Play Page</h1>
+    <x-footer/>
 </html>

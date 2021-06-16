@@ -4,24 +4,24 @@
         <title>Monty Hall - Database Page</title>
         <link href="{{ URL::asset('css/database.css') }}" rel="stylesheet"/>
     </head>
-    <body>
-        <x-navigation/>
-        <h1 class="pagetitle">Monty Hall - Database Page</h1>
+    <x-navigation/>
+    <div class="pageBody">
+        <h1 class="pageTitle">Results Database</h1>
         <p>Explore long term results of simulation data below:</p>
         <div>
-            <div class="tabtoggle">
+            <div class="tabToggle">
                 <span>
-                    <button class="tablinks" onclick="selectTable('play')">
+                    <button class="tabLinks" onclick="selectTable('play')">
                         Play Mode Data
                     </button>
                 </span>
                 <span>
-                    <button class="tablinks" onclick="selectTable('sim')">
+                    <button class="tabLinks" onclick="selectTable('sim')">
                         Simulation Data
                     </button>
                 </span>
                 <span>
-                    <button class="tablinks" onclick="selectTable('both')">
+                    <button class="tabLinks" onclick="selectTable('both')">
                         Both
                     </button>
                 </span>
@@ -39,15 +39,16 @@
                 <p>Display all data</p>
             </div>
         </div>
-    </body>
+    </div>
+    <x-footer/>
     <script>
-    function selectTable(dataCategory) {
-        var i;
-        var x = document.getElementsByClassName("dataCategory");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+        function selectTable(dataCategory) {
+            var i;
+            var x = document.getElementsByClassName("dataCategory");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(dataCategory).style.display = "block";
         }
-        document.getElementById(dataCategory).style.display = "block";
-    }
     </script>
 </html>
