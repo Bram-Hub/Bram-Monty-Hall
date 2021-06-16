@@ -43,3 +43,10 @@ Route::get('/education', function () {
 Route::get('/dev', function () {
 	return view('dev');
 });
+
+/* used as a quick check to get cookies up and running
+ * uses the CheckCookies middleware as of now
+ */
+Route::get('/cookies', function () {
+	return view('cookies');
+})->middleware('checkcookie');
