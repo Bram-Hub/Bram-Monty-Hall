@@ -20,7 +20,7 @@ Route::get('/', function () {
 */
 
 Route::get('/', function () {
-	return view('education'); //changed to education for easy testing, change this back to play
+	return view('play');
 });
 
 Route::get('/play', function () {
