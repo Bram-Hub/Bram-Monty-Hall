@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="variants">
-
+    <script src="{{ URL::asset('js/app.js') }}" type="text/javascript"></script>
 		<p class="space"></p>
 		<p class="title"> Variant Monty's </p>
 		<div class="tabs">
@@ -49,23 +49,6 @@
 				<p class="variantTitle">Ignorant Monty</p>
 				<p class="variantText">Duis fermentum nec leo ut aliquam. Integer elementum mattis est, ac sollicitudin ante semper vitae. Sed sit amet cursus nulla. Sed neque orci, aliquet ultrices ipsum in, consequat sodales neque. Suspendisse fringilla augue mauris, sed mattis leo facilisis sed. Phasellus tempor id turpis ac aliquet. Nullam pellentesque suscipit erat, vel tincidunt dolor varius et. Vivamus ornare maximus felis, ut hendrerit ipsum accumsan id. Cras dignissim metus id rutrum suscipit. Nulla facilisi.</p>
 			</div>
-		<script>
-			function openVariants(evt, cityName) {
-				var x = document.getElementsByClassName("monty");
-				for (var i = 0; i < x.length; i++) {
-					x[i].style.display = "none";
-				}
-				document.getElementById(cityName).style.display = "block";
-				var y = document.getElementsByClassName("variantsButton");
-				for (var i = 0; i < y.length; i++) {
-					y[i].className = y[i].className.replace(" active", "");
-				}
-				evt.currentTarget.className += " active";
-			}
-
-			document.getElementById("defaultOpen").click();
-		</script>
-
 	</div>
 
 	<div class="resources">
@@ -73,8 +56,5 @@
     <p class="text"> Vestibulum euismod lectus nunc, sit amet ornare augue suscipit sit amet. Integer pulvinar, quam vel ultricies blandit, mi enim luctus libero, vel porta augue augue id orci. Integer tellus nisl, luctus non vulputate eu, imperdiet et justo. Phasellus congue a nisl nec fringilla. Sed tempus leo nec nibh tincidunt, sed congue urna faucibus. Fusce scelerisque congue orci a vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed dignissim neque. Praesent eu hendrerit dui, et condimentum diam. Praesent gravida erat vitae mauris pharetra, at viverra tortor cursus. Mauris lobortis nisl ut nibh luctus luctus. Phasellus ultricies mauris enim, a eleifend mauris fermentum ac. Donec leo mauris, dapibus in rutrum eget, fringilla id eros. </p>
 	</div>
 
-	<div class="footer">
-
-	</div>
 </div>
 </html>
