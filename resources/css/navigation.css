@@ -1,0 +1,23 @@
+.header {
+    padding: 10px 30px 10px 30px;
+}
+
+.siteLogo{
+    max-width: 100px;
+    display: inline;
+}
+
+.navigationBar{
+    font: 15px Arial, sans-serif;
+    vertical-align: top;
+}
+
+.navItems{
+    background-color: white;
+    border: none;
+    color: blue;
+    padding: 15px 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
