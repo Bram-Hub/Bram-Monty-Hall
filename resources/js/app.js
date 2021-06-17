@@ -10,5 +10,7 @@ window.openVariants = function (evt, cityName) {
     }
     evt.currentTarget.className += " active";
 }
-//line below doesn't work :p
-document.getElementById("defaultOpen").click();
+
+window.addEventListener('load', () => {
+    document.getElementById("defaultOpen").click();
+})
