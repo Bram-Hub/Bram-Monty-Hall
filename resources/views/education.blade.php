@@ -2,7 +2,7 @@
 <html>
 <div class="scrollPage">
     <link rel="stylesheet" href="{{ URL::asset('css/education.css') }}">
-    <link rel="images" href="{{ asset('images') }}">
+    <link rel="img" href="{{ asset('img') }}">
     <div class="header">
         <ul>
             <li> <a href="https://github.com/Bram-Hub/Monty-Hall"> <u>BramHub</u> </a> </li>
@@ -16,8 +16,8 @@
 
     <div class="letsDeal">
         <p class="title"> Let's Make A Deal </p>
-        <img class="dealImage" src="images/851-300x200.jpg" alt="image">
-        <img class="dealImage2" src="images/946-200x300.jpg" alt="image">
+        <img class="dealImage" src="img/851-300x200.jpg" alt="image">
+        <img class="dealImage2" src="img/946-200x300.jpg" alt="image">
         <p class="text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec libero tortor. Praesent ut eros nisl. Sed pretium quis purus ac placerat. Fusce tincidunt placerat ex et commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut laoreet ante lorem, gravida rutrum risus facilisis vel. Morbi tortor massa, consequat ut eros sit amet, rutrum dapibus erat. Suspendisse finibus neque nec libero eleifend pretium. Nam id metus convallis, pretium augue at, aliquam orci. Etiam aliquet posuere nulla id sollicitudin. Praesent non dignissim justo. Phasellus tincidunt lobortis tellus eget porta. Nam auctor gravida mattis. </p>
     </div>
 
