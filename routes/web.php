@@ -43,3 +43,7 @@ Route::get('/education', function () {
 Route::get('/dev', function () {
 	return view('dev');
 });
+
+Route::resource('montys', 'App\Http\Controllers\MontyController');
+Route::resource('games', 'App\Http\Controllers\GameController');
+Route::resource('users', 'App\Http\Controllers\UserController');
