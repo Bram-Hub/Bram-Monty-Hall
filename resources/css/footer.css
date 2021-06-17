@@ -20,3 +20,9 @@
     text-decoration: none;
     font: 15px Arial, sans-serif;
 }
+
+.footerItems li a {
+    color: blue;
+    text-decoration: none;
+    font: 15px Arial, sans-serif;
+}
