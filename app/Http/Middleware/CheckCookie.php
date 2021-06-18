@@ -29,6 +29,12 @@ class CheckCookie
          * 
          * NOTE: as of now cookies only live for 1 min for testing
          *       should update to longer time (or forever) when done testing
+         * 
+         * NOTE: does not check if cookie exists in the database!
+         *       thus a user could assign any value and this would think they have played
+         *       not a big deal for now but could add in the future
+         *       only problem is that it would be a lot of queries to the database
+         *       since this is called on every major page request
          */
 
         if ( $request->hasCookie('playID') ) {
