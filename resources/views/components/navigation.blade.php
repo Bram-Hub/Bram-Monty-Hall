@@ -18,5 +18,8 @@
         <span class="navItems">
             <a class="navItems" href="/education">Education</a>
         </span>
+        <span class="navItems">
+            <a class="navItems" href="/about">About</a>
+        </span>
     </span>
 </div>

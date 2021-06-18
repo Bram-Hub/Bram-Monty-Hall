@@ -19,9 +19,9 @@
             Support
         </h2>
         <ul class="footerItems">
-            <li><a href="/play">How to Play</a></li>
-            <li><a href="/research">Contact Us</a></li>
-            <li><a href="/database">FAQ</a></li>
+            <li><a href="/about">How to Play</a></li>
+            <li><a href="/about#contact">Contact Us</a></li>
+            <li><a href="/about#faq">FAQ</a></li>
         </ul>
     </div>
 </div>

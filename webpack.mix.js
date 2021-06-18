@@ -26,4 +26,7 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .postCss('resources/css/footer.css', 'public/css', [
         require('tailwindcss')
+    ])
+    .postCss('resources/css/about.css', 'public/css', [
+        require('tailwindcss')
     ]);

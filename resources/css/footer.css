@@ -1,6 +1,6 @@
 .footer {
     position: absolute;
-    bottom: 10px;
+    margin-top: 200px;
     width: 100%;
     color: black;
     background-color: white;
@@ -16,6 +16,12 @@
 .footerItems {
     list-style-type: none; /* Remove bullets */
     padding-left: 0;
+    color: blue;
+    text-decoration: none;
+    font: 15px Arial, sans-serif;
+}
+
+.footerItems li a {
     color: blue;
     text-decoration: none;
     font: 15px Arial, sans-serif;
