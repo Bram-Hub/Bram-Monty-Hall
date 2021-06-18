@@ -20,8 +20,8 @@
         </h2>
         <ul class="footerItems">
             <li><a href="/about">How to Play</a></li>
-            <li><a href="/about">Contact Us</a></li>
-            <li><a href="/about">FAQ</a></li>
+            <li><a href="/about#contact">Contact Us</a></li>
+            <li><a href="/about#faq">FAQ</a></li>
         </ul>
     </div>
 </div>
