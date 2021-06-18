@@ -46,4 +46,3 @@ Route::get('/dev', function () {
 
 Route::resource('montys', 'App\Http\Controllers\MontyController');
 Route::resource('games', 'App\Http\Controllers\GameController');
-Route::resource('users', 'App\Http\Controllers\UserController');
