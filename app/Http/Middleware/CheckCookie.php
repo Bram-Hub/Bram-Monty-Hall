@@ -19,10 +19,22 @@ class CheckCookie
      */
     public function handle(Request $request, Closure $next)
     {
-        // check to see if the user has played a game
+        /** 
+         * checks to see if the user has played a game
+         * if user has played, passes them to wherever they were going
+         * otherwise creates a cookie for them and routes them to the play page
+         * 
+         * NOTE: as of now just routes to the default play page
+         *       should update when a first time play page exists
+         * 
+         * NOTE: as of now cookies only live for 1 min for testing
+         *       should update to longer time (or forever) when done testing
+         */
+
         if ( $request->hasCookie('playID') ) {
             return $next($request);
         } else {
+            // time for the cookie to live, 1 min for testing
             $min = 1;
 
             // generate a cookie using database

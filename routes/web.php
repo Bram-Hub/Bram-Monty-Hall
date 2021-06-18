@@ -14,12 +14,16 @@ use App\Http\Middleware\CheckCookie;
 |
 */
 
-/*
+/* unused...
 Route::get('/', function () {
     return view('welcome');
 });
 */
 
+/* Put anything that should be checked for cookies in here
+ * this should be most pages that the user could go to
+ * and if a page is not here, there should be a reason.
+ */
 Route::middleware('checkcookie')->group(function () {
 	Route::get('/', function () {
 		return view('play');
@@ -45,11 +49,3 @@ Route::middleware('checkcookie')->group(function () {
 		return view('dev');
 	});
 });
-
-/* used as a quick check to get cookies up and running
- * uses the CheckCookies middleware as of now
- *
-Route::get('/cookies', function () {
-	return view('database');
-})->middleware('checkcookie');
-*/

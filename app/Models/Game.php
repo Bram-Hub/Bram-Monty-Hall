@@ -18,6 +18,7 @@ class Game extends Model
         return $this->belongsTo(Monty::class);
     }
 
+    /* each game points to the cookie of the user who played it */
     public function cookie()
     {
         return $this->belongsTo(Cookie::class);
