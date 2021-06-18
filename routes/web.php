@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 */
 
-Route::middleware([CheckCookie::class])->group(function () {
+Route::middleware('checkcookie')->group(function () {
 	Route::get('/', function () {
 		return view('play');
 	});
