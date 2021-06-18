@@ -27,8 +27,7 @@ class CheckCookie
          * NOTE: as of now just routes to the default play page
          *       should update when a first time play page exists
          * 
-         * NOTE: as of now cookies only live for 1 min for testing
-         *       should update to longer time (or forever) when done testing
+         * NOTE: cookies live forever as of (now on the user end)
          * 
          * NOTE: does not check if cookie exists in the database!
          *       thus a user could assign any value and this would think they have played
@@ -40,15 +39,12 @@ class CheckCookie
         if ( $request->hasCookie('playID') ) {
             return $next($request);
         } else {
-            // time for the cookie to live, 1 min for testing
-            $min = 1;
-
             // generate a cookie using database
             $cookie = new Cookie();
             $cookie->played = False;
 
-            // add cookie to user ( 1 min test for now )
-            $user_cookie = cookie('playID', $cookie->id, $min);
+            // add cookie to user
+            $user_cookie = cookie()->forever('playID', $cookie->id);
             $response = response()->view('cookies');
             $response->withCookie($user_cookie);
             

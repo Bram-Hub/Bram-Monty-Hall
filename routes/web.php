@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\CheckCookie;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +13,7 @@ use App\Http\Middleware\CheckCookie;
 |
 */
 
-/* unused...
+/*
 Route::get('/', function () {
     return view('welcome');
 });
