@@ -20,25 +20,25 @@ Route::get('/', function () {
 */
 
 Route::get('/', function () {
-	return view('play');
+    return view('play');
 });
 
 Route::get('/play', function () {
-	return view('play');
+    return view('play');
 });
 
 Route::get('/research', function () {
-	return view('research');
+    return view('research');
 });
 
 Route::get('/database', function () {
-	return view('database');
+    return view('database');
 });
 
 Route::get('/education', function () {
-	return view('education');
+    return view('education');
 });
 
 Route::get('/about', function () {
-	return view('about');
+    return view('about');
 });
