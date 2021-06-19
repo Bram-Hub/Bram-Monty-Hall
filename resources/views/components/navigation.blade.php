@@ -1,16 +1,19 @@
 <head>
     <link href="{{ URL::asset('css/navigation.css') }}" rel="stylesheet"/>
 </head>
-<div class="header">
-    <span>
+<header class="header">
+    <div class="logo">
         <img class="siteLogo" src="img/MontyHallProjectLogo.png" alt="logo">
-    </span>
-    <span class="navigationBar">
+    </div>
+    <div class="navigationBar">
+        <!-- <span class="navItems">
+            <a href="https://github.com/Bram-Hub/Monty-Hall"> <u>BramHub</u> </a>
+        </span> -->
         <span class="navItems">
             <a class="navItems" href="/play">Play</a>
         </span>
         <span class="navItems">
-            <a class="navItems" href="/research">Research/Simulate</a>
+            <a class="navItems" href="/research">Research</a>
         </span>
         <span class="navItems">
             <a class="navItems" href="/database">Database</a>
@@ -21,5 +24,5 @@
         <span class="navItems">
             <a class="navItems" href="/about">About</a>
         </span>
-    </span>
-</div>
+    </div>
+</header>
