@@ -10,18 +10,17 @@
         <div class="page">
             <section class="right">
                 <section id="game">
-                <!-- Game content here -->
-                The actual Monty-Hall Simulation will go here.
+                    Monty Hall Simulator
                     <center>
-                        <a href="#">
+                        <button class="doorButton">
                             <img src="img/closedDoor.png" alt="Door #1" class="door">
-                        </a>
-                        <a href="#">
+                        </button>
+                        <button class="doorButton">
                             <img src="img/closedDoor.png" alt="Door #2" class="door">
-                        </a>
-                        <a href="#">
+                        </button>
+                        <button class="doorButton">
                             <img src="img/closedDoor.png" alt="Door #3" class="door">
-                        </a>
+                        </button>
                         <br/>
                     </center>
                 </section>
