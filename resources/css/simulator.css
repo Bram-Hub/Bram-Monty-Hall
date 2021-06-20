@@ -1,0 +1,14 @@
+#game {
+	text-align: center;
+	align-items: center;
+}
+
+.door {
+	 border:0;
+	 width:100%;
+}
+
+.doorButton {
+	 border:0;
+	 width:30%;
+}
