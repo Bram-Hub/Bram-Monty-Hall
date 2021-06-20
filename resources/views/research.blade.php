@@ -10,18 +10,17 @@
         <div class="page">
             <section class="right">
                 <section id="game">
-                <!-- Game content here -->
-                The actual Monty-Hall Simulation will go here.
+                    Monty Hall Simulator
                     <center>
-                        <a href="#">
-                            <img src="img/closedDoor.png" alt="Door #1" class="door">
-                        </a>
-                        <a href="#">
-                            <img src="img/closedDoor.png" alt="Door #2" class="door">
-                        </a>
-                        <a href="#">
-                            <img src="img/closedDoor.png" alt="Door #3" class="door">
-                        </a>
+                        <button onclick="clickDoor1()" class="doorButton">
+                            <img src="img/closedDoor.png" alt="Door #1" id="door1" class="door">
+                        </button>
+                        <button onclick="clickDoor2()" class="doorButton">
+                            <img src="img/closedDoor.png" alt="Door #2" id="door2" class="door">
+                        </button>
+                        <button onclick="clickDoor3()" class="doorButton">
+                            <img src="img/closedDoor.png" alt="Door #3" id="door3" class="door">
+                        </button>
                         <br/>
                     </center>
                 </section>
@@ -81,96 +80,5 @@
         </div>
     </body>
     <x-footer/>
-    <script>
-        var counter = 0;
-        var display_str = "";
-        var display_div = document.getElementById("display_div_id");
-        var simulationCount = document.getElementById("simCountBox");
-        var wins = 0;
-        var losses = 0;
-        var winCount = document.getElementById("wins");
-        var lossCount = document.getElementById("losses");
-        var wl = document.getElementById("wl");
-
-        function step(){
-        clearCount();
-        if(simulationCount.value == "#" || simulationCount.value == counter || simulationCount.value > simulationCount.max){
-        counter = 0;
-        errorMessage("Invalid input");
-        return;
-        }
-        //do something
-        //if(completes a run increment){
-        incrementCount(1);
-        //}
-        displayCount();
-        //just here temporarily to test
-        incrementWins();
-        }
-        function next(){
-        clearCount();
-        if(simulationCount.value == "#" || simulationCount.value == counter || simulationCount.value > simulationCount.max){
-        counter = 0;
-        errorMessage("Invalid input");
-        return;
-        }
-        incrementCount(1);
-        displayCount();
-        //just here temporarily to test
-        incrementLosses();
-        }
-        function runAll(){
-        clearCount();
-        if(simulationCount.value == "#" || simulationCount.value == counter || simulationCount.value > simulationCount.max){
-        counter = 0;
-        errorMessage("Invalid input");
-        return;
-        }
-        maxCount();
-        displayCount();
-        }
-        function incrementCount(amountIncrease){
-        counter+=amountIncrease;
-        }
-        function displayCount(){
-        display_str = counter.toString() + "/" + simulationCount.value;
-        for (var i = 0; i < display_str.length; i++) {
-        var new_span = document.createElement('span');
-        new_span.className = 'num_tiles';
-        new_span.innerText = display_str[i];
-        display_div.appendChild(new_span);
-        }
-        }
-        function clearCount(){
-        while (display_div.hasChildNodes()) {
-        display_div.removeChild(display_div.lastChild);
-        }
-        }
-        function maxCount(){
-        counter = simulationCount.value;
-        }
-
-        function errorMessage(errorText) {
-        var error = document.getElementById("error")
-        error.textContent = errorText;
-        }
-
-        function incrementWins(){
-        wins++;
-        winCount.innerHTML = wins.toString();
-        wl.innerHTML = (wins/losses).toString();
-        }
-        function incrementLosses(){
-        losses++;
-        lossCount.innerHTML = losses.toString();
-        wl.innerHTML = (wins/losses).toString();
-        }
-        function resetWL(){
-        wins = 0;
-        losses = 0;
-        winCount.innerHTML = "";
-        lossCOunt.innerHTML = "";
-        wl.innerHTML = "";
-        }
-    </script>
+    <script src="{{ URL::asset('js/research.js') }}"></script>
 </html>
