@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Monty Hall - Play Page</title>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/play.css') }}" rel="stylesheet">
     </head>
     <x-navigation/>
     <h1>Let's Make a Deal!!</h1>

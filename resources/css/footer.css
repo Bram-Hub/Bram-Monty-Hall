@@ -1,28 +1,90 @@
+.container {
+    flex: 1;    /* same as flex-grow: 1; */
+}
+
 .footer {
-    position: absolute;
     margin-top: 200px;
     width: 100%;
-    color: black;
-    background-color: white;
-    font-family: "Arial, sans-serif";
+    color: #798da3;
+    font-family: OpenSans-SemiBold;
     text-align: left;
+    font-size: 13px;
+}
+
+.mainFooter {
+    width: 100%;
+    font-family: OpenSans-SemiBold;
+    text-align: left;
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
 }
 
 .column {
+    color: #798da3;
     float: left;
     padding: 0px 100px 0px 30px;
+    line-height: 1.1;
+}
+
+.columnTitle {
+    width: 258px;
+    height: 16px;
+    font-family: "OpenSans-SemiBold";
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: left;
 }
 
 .footerItems {
-    list-style-type: none; /* Remove bullets */
+    list-style-type: none;
     padding-left: 0;
-    color: blue;
     text-decoration: none;
-    font: 15px Arial, sans-serif;
+    font-family: OpenSans-Regular;
+    line-height: 2.8;
+    width: 258px;
+    height: 144px;
+    font-weight: 400;
+    line-height: 2.8;
+    text-align: left;
 }
 
 .footerItems li a {
-    color: blue;
+    color: #798da3;
     text-decoration: none;
-    font: 15px Arial, sans-serif;
+}
+
+.secondaryFooter {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    padding: 0.9375rem 1.875rem;
+    font-family: "OpenSans-Light";
+}
+
+.github {
+    margin-left: auto;
+}
+
+.github a{
+    display: flex;
+    align-items: center;
+}
+
+.footer .siteLogo{
+    max-width: 50px;
+    opacity: 0.6;
+    padding: 2px;
+}
+
+.footer .githubLogo{
+    max-width: 50px;
+    opacity: 0.6;
+    padding: 5px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #798da3;
 }

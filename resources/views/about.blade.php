@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Monty Hall - About Page</title>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('css/about.css') }}" rel="stylesheet"/>
     </head>
     <body>
