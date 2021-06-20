@@ -12,6 +12,18 @@
                 <section id="game">
                 <!-- Game content here -->
                 The actual Monty-Hall Simulation will go here.
+                    <center>
+                        <a href="#">
+                            <img src="img/closedDoor.png" alt="Door #1" class="door">
+                        </a>
+                        <a href="#">
+                            <img src="img/closedDoor.png" alt="Door #2" class="door">
+                        </a>
+                        <a href="#">
+                            <img src="img/closedDoor.png" alt="Door #3" class="door">
+                        </a>
+                        <br/>
+                    </center>
                 </section>
             </section>
             <section class="left">

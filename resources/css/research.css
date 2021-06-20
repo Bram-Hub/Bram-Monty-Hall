@@ -15,9 +15,6 @@
   }
 
   #game {
-  	background: green;
-  	width: 600px;
-  	height: 400px;
   	text-align: center;
   	align-items: center;
   }
@@ -183,4 +180,9 @@
   }
   #wlNums span{
   	margin: 10px;
+  }
+
+  .door {
+  	 border:0;
+  	 width:30%;
   }

@@ -34,3 +34,7 @@
     font-family: OpenSans-SemiBoldItalic;
     src: url(fonts/OpenSans-SemiBoldItalic.ttf)
 }
+
+body {
+    overflow-x: hidden;
+}
