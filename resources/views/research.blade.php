@@ -1,69 +1,164 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    <title>Monty Hall - Research Page</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/research.css') }}" rel="stylesheet">
-</head>
-<body>
+    <head>
+        <title>Monty Hall - Research Page</title>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/research.css') }}" rel="stylesheet">
+    </head>
     <x-navigation/>
-    <section id="game" class="h0 float-right bg-green-300 m-10 text-3xl flex items-center justify-center"
-        style="width: 48rem; height: 36rem">
-        <!-- Game content here -->
-        The actual Monty-Hall Simulation will go here.
-    </section>
-    
-    <section id="settingsArea" class="w-72 relative m-4 p-3 relative z-10">
-        <select class="w-full h-10 mb-2 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none
-            focus:shadow-outline">
-            <option>Standard Monty</option>
-            <option>Ignorant Monty</option>
-            <option>Angelic Monty</option>
-            <option>Evil Monty</option>
-            <option>Monty from Hell</option>
-        </select>
-        
-        <div class="mb-2">
-            <span class="text-xl">Simulations:</span>
-            <input type="number" id="simCountBox" placeholder="#" min="0" max="10000"
-                class="appearance-none float-right h-8 w-20 bg-white-200 text-gray-700 border border-gray-500 rounded
-                    px-1 text-center">
+    <body>
+        <div class="page">
+            <section class="right">
+                <section id="game">
+                <!-- Game content here -->
+                The actual Monty-Hall Simulation will go here.
+                </section>
+            </section>
+            <section class="left">
+                <div id="error"></div>
+                <div id="settingsArea">
+                    <div class="montySelection">
+                        <label for="montySelect">Choose a variation of Monty to test: <br/> </label>
+                        <select  name="montySelect" id="montySelect">
+                            <option>Standard Monty</option>
+                            <option>Ignorant Monty</option>
+                            <option>Angelic Monty</option>
+                            <option>Evil Monty</option>
+                            <option>Monty from Hell</option>
+                        </select>
+                    </div>
+                    <div class="box">
+                        <label for="simCount"> Choose how many simulations to run: <br/> </label>
+                        <input type="number" id="simCountBox" placeholder="#" min="0" max="10000">
+                    </div>
+                    <div class="box">
+                        <span><button id="stepBtn" onclick="step()">Step</button></span>
+                        <span><button id="nextBtn" onclick="next()">Next</button> </span>
+                        <span><button id="runAllBtn" onclick="runAll()">Run All</button></span>
+                    </div>
+                    <div class="box">
+                        <label for="prizeCheck">Show prize:</label>
+                        <input type="checkbox" id="prizeCheck">
+                    </div>
+                    <div class="box">
+                        <label for="animSpeedBox">Animation speed: <br/></label>
+                        <input type="number" id="animSpeedBox" placeholder="#" min="0" max="10000">
+                    </div>
+                </div>
+                <div id="dataArea">
+                    <div class="box">
+                        <div id="currSimInfo">
+                            <label for="id_main_container">Current Simulation: </label>
+                            <div class="main_container" id="id_main_container">
+                                <div class="container_inner" id="display_div_id">
+                                </div>
+                            </div>
+                        </div>
+                        <button id="graphBtn">Display graphs</button>
+                        <div class="progBar">
+                            <span style="width: 25%"></span>
+                        </div>
+                        <div id="wlNums">
+                            <span>Wins: </span><span id="wins"></span>
+                            <span>Losses: </span><span id="losses"></span>
+                            <span>W/L: </span><span id="wl"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-        <div class="w-full mb-2">
-            <button id="stepBtn" class="w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Step</button>
-            <button id="nextBtn" class="w-32 float-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Next</button>
-            <button id="runAllBtn" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold mt-2 py-2 px-4 rounded">Run All</button>
-        </div>
-        
-        <div class="text-xl mb-2">
-            Show prize:
-            <input type="checkbox" id="prizeCheck">
-        </div>
-        
-        <div class="mb-2">
-            <span class="text-xl">Animation speed:</span>
-            <input type="number" id="animSpeedBox" placeholder="#" min="0" max="10000"
-                class="appearance-none float-right h-8 w-20 bg-white-200 text-gray-700 border border-gray-500 rounded px-1 text-center">
-        </div>
-    </section>
-    
-    <div id="dataArea" class="m-4 p-3">
-        <div id="currSimInfo" class="text-xl mb-4">
-            Current Simulation: <span id="currSimBox"></span> / <span id="totalSimsBox"></span>
-        </div>
-        <button id="graphBtn" class="w-48 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Display graphs</button>
-        <div id="progBar" class="overflow-hidden h-8 mt-4 text-xs flex rounded bg-gray-200 border border-gray-400">
-            <div style="width:30%" class="shadow-none flex flex-col border-right border-gray-400 text-center whitespace-nowrap
-                text-white justify-center bg-green-600"></div>
-        </div>
-        <div id="wlNums" class="text-xl mt-4 p-4 flex justify-evenly border border-gray-500">
-            <span class="flex-col">Wins: </span><span id="wins"></span>
-            <span class="flex-col">Losses: </span><span id="losses"></span>
-            <span class="flex-col">W/L: </span><span id="wl"></span>
-        </div>
-    </div>
-</body>
-<x-footer/>
+    </body>
+    <x-footer/>
+    <script>
+        var counter = 0;
+        var display_str = "";
+        var display_div = document.getElementById("display_div_id");
+        var simulationCount = document.getElementById("simCountBox");
+        var wins = 0;
+        var losses = 0;
+        var winCount = document.getElementById("wins");
+        var lossCount = document.getElementById("losses");
+        var wl = document.getElementById("wl");
+
+        function step(){
+        clearCount();
+        if(simulationCount.value == "#" || simulationCount.value == counter || simulationCount.value > simulationCount.max){
+        counter = 0;
+        errorMessage("Invalid input");
+        return;
+        }
+        //do something
+        //if(completes a run increment){
+        incrementCount(1);
+        //}
+        displayCount();
+        //just here temporarily to test
+        incrementWins();
+        }
+        function next(){
+        clearCount();
+        if(simulationCount.value == "#" || simulationCount.value == counter || simulationCount.value > simulationCount.max){
+        counter = 0;
+        errorMessage("Invalid input");
+        return;
+        }
+        incrementCount(1);
+        displayCount();
+        //just here temporarily to test
+        incrementLosses();
+        }
+        function runAll(){
+        clearCount();
+        if(simulationCount.value == "#" || simulationCount.value == counter || simulationCount.value > simulationCount.max){
+        counter = 0;
+        errorMessage("Invalid input");
+        return;
+        }
+        maxCount();
+        displayCount();
+        }
+        function incrementCount(amountIncrease){
+        counter+=amountIncrease;
+        }
+        function displayCount(){
+        display_str = counter.toString() + "/" + simulationCount.value;
+        for (var i = 0; i < display_str.length; i++) {
+        var new_span = document.createElement('span');
+        new_span.className = 'num_tiles';
+        new_span.innerText = display_str[i];
+        display_div.appendChild(new_span);
+        }
+        }
+        function clearCount(){
+        while (display_div.hasChildNodes()) {
+        display_div.removeChild(display_div.lastChild);
+        }
+        }
+        function maxCount(){
+        counter = simulationCount.value;
+        }
+
+        function errorMessage(errorText) {
+        var error = document.getElementById("error")
+        error.textContent = errorText;
+        }
+
+        function incrementWins(){
+        wins++;
+        winCount.innerHTML = wins.toString();
+        wl.innerHTML = (wins/losses).toString();
+        }
+        function incrementLosses(){
+        losses++;
+        lossCount.innerHTML = losses.toString();
+        wl.innerHTML = (wins/losses).toString();
+        }
+        function resetWL(){
+        wins = 0;
+        losses = 0;
+        winCount.innerHTML = "";
+        lossCOunt.innerHTML = "";
+        wl.innerHTML = "";
+        }
+    </script>
 </html>
