@@ -1,5 +1,5 @@
 .container {
-    flex: 1;    /* same as flex-grow: 1; */
+    flex: 1; /* same as flex-grow: 1; */
 }
 
 .footer {
@@ -67,18 +67,18 @@
     margin-left: auto;
 }
 
-.github a{
+.github a {
     display: flex;
     align-items: center;
 }
 
-.footer .siteLogo{
+.footer .siteLogo {
     max-width: 50px;
     opacity: 0.6;
     padding: 2px;
 }
 
-.footer .githubLogo{
+.footer .githubLogo {
     max-width: 50px;
     opacity: 0.6;
     padding: 5px;
