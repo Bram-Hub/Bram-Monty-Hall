@@ -28,7 +28,8 @@
   }
 
   .montySelection select {
-    background-color: #0563af;
+    /*background-color: #0563af;*/
+    background-color: #1180f1;
     color: white;
     padding: 12px;
     width: 250px;
@@ -72,7 +73,8 @@
 
   .box input {
     background-color: white;
-    border-color: #0563af;
+    /*border-color: #0563af;*/
+    border-color: #1180f1;
     color: #0563af;
     padding: 12px;
     width: 250px;
@@ -83,7 +85,8 @@
   }
 
   .box button {
-    background-color: #0563af;
+    /*background-color: #0563af;*/
+    background-color: #1180f1;
     border: none;
     color: white;
     padding: 12px 25px;
@@ -104,14 +107,16 @@
     padding: 3px;
     margin: 2px;
     max-width: 240px;
-    background-color: #0563af;
+    /*background-color: #0563af;*/
+    background-color: #1180f1;
     align-content: center;
     border-radius: 5px;
   }
   .container_inner {
     height: auto;
     border: none;
-    background-color: #0563af;
+    /*background-color: #0563af;*/
+    background-color: #1180f1;
     max-width: 290px;
     vertical-align: center;
     padding-top: 12px;
@@ -183,6 +188,11 @@
   }
 
   .door {
+  	 border:0;
+  	 width:100%;
+  }
+
+  .doorButton {
   	 border:0;
   	 width:30%;
   }
