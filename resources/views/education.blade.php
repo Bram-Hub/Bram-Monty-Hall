@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-
     <head>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ URL::asset('css/education.css') }}">

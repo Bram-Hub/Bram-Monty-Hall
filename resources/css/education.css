@@ -11,7 +11,6 @@
     font-family: OpenSans-SemiBold;
     padding: 15px;
     grid-gap: 10px; /*grid gap matters especially if we have more than text and title, such as images or graphs*/
-    margin-top: 20px;
     margin-bottom: 20px;
     display: grid;
     grid-template-areas:
@@ -158,6 +157,16 @@
 
 .variantText {
     font-size: 18px;
+}
+
+.tabNav {
+    list-style-type: none;
+}
+
+.tabItem {
+    display: inline-block;
+    margin-left: 17px;
+    margin-right: 17px;
 }
 
 .slider {
