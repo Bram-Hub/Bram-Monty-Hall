@@ -5,11 +5,6 @@ window.openVariants = function (evt, cityName) {
         x[i].classList.remove("active");
     }
     document.getElementById(cityName).classList.add("active");
-    /*var y = document.getElementsByClassName("variantsButton");
-    for (var i = 0; i < y.length; i++) {
-        y[i].className = y[i].className.replace(" active", "");
-    }
-    evt.currentTarget.className += " active";*/
     var width = window.getComputedStyle(evt.currentTarget).getPropertyValue("width");
     var pos = 17;
     var z = document.getElementsByClassName("variantsButton");

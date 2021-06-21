@@ -126,7 +126,7 @@
     grid-area: text;
     position: relative;
     text-align: center;
-    transition: all .5s ease-out;
+    transition: all .2s ease-out;
 }
 
 .monty.active {
@@ -140,15 +140,6 @@
     border: none;
     cursor: pointer;
     padding: 10px;
-    /*border-radius: 7px;*/
-}
-
-.tabs button:hover {
-    /*background-color: rgb(246,248,250);*/
-}
-
-.tabs button.active {
-    /*background-color: rgb(237, 240, 244);*/
 }
 
 .variantTitle {
@@ -177,7 +168,7 @@
     background-color: rgb(0,0,0);
     bottom: 0px;
     border-radius: 5px;
-    transition: all .3s linear;
+    transition: all .2s linear;
 }
 
 .tabNav {
