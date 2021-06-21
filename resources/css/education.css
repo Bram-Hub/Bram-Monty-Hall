@@ -150,11 +150,17 @@ li {
 
 .monty {
     font-family: OpenSans-SemiBold;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     grid-area: text;
     position: relative;
-    justify-self: center;
     text-align: center;
+    transition: all .5s ease-out;
+}
+
+.monty.active {
+    visibility: visible;
+    opacity: 1;
 }
 
 .tabs button {
@@ -163,14 +169,15 @@ li {
     border: none;
     cursor: pointer;
     padding: 10px;
+    /*border-radius: 7px;*/
 }
 
 .tabs button:hover {
-    background-color: rgb(246,248,250);
+    /*background-color: rgb(246,248,250);*/
 }
 
 .tabs button.active {
-    background-color: rgb(237, 240, 244);
+    /*background-color: rgb(237, 240, 244);*/
 }
 
 .variantTitle {
@@ -179,4 +186,21 @@ li {
 
 .variantText {
     font-size: 18px;
+}
+
+.slider {
+    display: inline-block;
+    position: absolute;
+    width:30px;
+    height:4px;
+    background-color: rgb(0,0,0);
+    bottom: 0px;
+    border-radius: 5px;
+    transition: all .3s linear;
+}
+
+.tabNav {
+    position: relative;
+    padding: 0px;
+    background-color:#fff;
 }

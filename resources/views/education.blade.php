@@ -37,8 +37,21 @@
         <p class="space"></p>
         <p class="title"> Variant Monty's </p>
         <div class="tabs">
-            <button id="defaultOpen" class="variantsButton" onclick="openVariants(event, 'hell')">Hell</button>
-            <button class="variantsButton" onclick="openVariants(event, 'ignorant')">Ignorant</button>
+            <ul class="tabNav">
+                <div class="slider" id="slider"></div>
+                <li class="tabItem">
+                    <button id="defaultOpen" class="variantsButton" onclick="openVariants(event, 'hell')">Hell</button>
+                </li>
+                <li class="tabItem">
+                    <button class="variantsButton" onclick="openVariants(event, 'ignorant')">Ignorant</button>
+                </li>
+                <li class="tabItem">
+                    <button class="variantsButton" onclick="openVariants(event, 'angelic')">Angelic</button>
+                </li>
+                <li class="tabItem">
+                    <button class="variantsButton" onclick="openVariants(event, 'crawl')">Crawl</button>
+                </li>
+            </ul>
         </div>
         <div id="hell" class="monty">
             <p class="variantTitle">Monty From Hell</p>
@@ -47,6 +60,14 @@
         <div id="ignorant" class="monty">
             <p class="variantTitle">Ignorant Monty</p>
             <p class="variantText">Duis fermentum nec leo ut aliquam. Integer elementum mattis est, ac sollicitudin ante semper vitae. Sed sit amet cursus nulla. Sed neque orci, aliquet ultrices ipsum in, consequat sodales neque. Suspendisse fringilla augue mauris, sed mattis leo facilisis sed. Phasellus tempor id turpis ac aliquet. Nullam pellentesque suscipit erat, vel tincidunt dolor varius et. Vivamus ornare maximus felis, ut hendrerit ipsum accumsan id. Cras dignissim metus id rutrum suscipit. Nulla facilisi.</p>
+        </div>
+        <div id="angelic" class="monty">
+            <p class="variantTitle">Angelic Monty</p>
+            <p class="variantText">Vestibulum a nunc lacus. Maecenas pulvinar sollicitudin urna in elementum. Ut laoreet mauris nec molestie aliquet. Cras turpis augue, finibus et cursus vel, fringilla a justo. Donec ante arcu, aliquet eu volutpat sit amet, consequat ac nibh. Vivamus luctus, est vel pulvinar scelerisque, arcu ex dignissim metus, ut porta nunc est id purus. Ut sollicitudin ipsum erat, sit amet scelerisque sapien laoreet a.</p>
+        </div>
+        <div id="crawl" class="monty">
+            <p class="variantTitle">Monty Crawl</p>
+            <p class="variantText">Integer pharetra luctus felis at aliquam. Ut ac diam vel sapien dictum sagittis. Proin mi urna, elementum vehicula pellentesque id, luctus ut eros. Maecenas at vestibulum purus, cursus molestie lectus. Nam luctus, dolor sit amet tincidunt vestibulum, arcu sapien rhoncus diam, eget consectetur massa tortor eget lacus. Phasellus tincidunt fermentum mollis. Duis elementum nisl leo, eget eleifend lorem laoreet nec. Phasellus at cursus ipsum. Sed rutrum suscipit nisl ac elementum.</p>
         </div>
     </div>
 
