@@ -1,23 +1,38 @@
 .header {
     padding: 10px 30px 10px 30px;
+    width: 100%;
+    position: relative;
+    margin: 30px 0;
 }
 
-.siteLogo{
+.logo {
+    display: flex;
+}
+
+.siteLogo {
     max-width: 100px;
     display: inline;
 }
 
-.navigationBar{
-    font: 15px Arial, sans-serif;
-    vertical-align: top;
+.navigationBar {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.navItems{
-    background-color: white;
+.navItems {
     border: none;
-    color: blue;
+    color: black;
     padding: 15px 15px;
-    text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+}
+
+.navItems a, .navItems a:visited {
+    color: black;
+    text-decoration: none;
+    font-family: OpenSans-SemiBold;
+    font-size: 22px;
+    padding: 20px;
 }

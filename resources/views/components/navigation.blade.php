@@ -1,16 +1,17 @@
 <head>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/navigation.css') }}" rel="stylesheet"/>
 </head>
-<div class="header">
-    <span>
-        <img class="siteLogo" src="img/MontyHallProjectLogo.png" alt="logo">
-    </span>
-    <span class="navigationBar">
+<header class="header">
+    <div class="logo">
+        <a href="/play"><img class="siteLogo" src="img/MontyHallProjectLogo.png" alt="logo"></a>
+    </div>
+    <div class="navigationBar">
         <span class="navItems">
             <a class="navItems" href="/play">Play</a>
         </span>
         <span class="navItems">
-            <a class="navItems" href="/research">Research/Simulate</a>
+            <a class="navItems" href="/research">Research</a>
         </span>
         <span class="navItems">
             <a class="navItems" href="/database">Database</a>
@@ -21,5 +22,5 @@
         <span class="navItems">
             <a class="navItems" href="/about">About</a>
         </span>
-    </span>
-</div>
+    </div>
+</header>
