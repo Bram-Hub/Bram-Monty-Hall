@@ -11,7 +11,6 @@
     font-family: OpenSans-SemiBold;
     padding: 15px;
     grid-gap: 10px; /*grid gap matters especially if we have more than text and title, such as images or graphs*/
-    margin-top: 20px;
     margin-bottom: 20px;
     display: grid;
     grid-template-areas:
@@ -122,11 +121,17 @@
 
 .monty {
     font-family: OpenSans-SemiBold;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     grid-area: text;
     position: relative;
-    justify-self: center;
     text-align: center;
+    transition: all .2s ease-out;
+}
+
+.monty.active {
+    visibility: visible;
+    opacity: 1;
 }
 
 .tabs button {
@@ -137,18 +142,37 @@
     padding: 10px;
 }
 
-.tabs button:hover {
-    background-color: rgb(246,248,250);
-}
-
-.tabs button.active {
-    background-color: rgb(237, 240, 244);
-}
-
 .variantTitle {
     font-size: 23px;
 }
 
 .variantText {
     font-size: 18px;
+}
+
+.tabNav {
+    list-style-type: none;
+}
+
+.tabItem {
+    display: inline-block;
+    margin-left: 17px;
+    margin-right: 17px;
+}
+
+.slider {
+    display: inline-block;
+    position: absolute;
+    width:30px;
+    height:4px;
+    background-color: rgb(0,0,0);
+    bottom: 0px;
+    border-radius: 5px;
+    transition: all .2s linear;
+}
+
+.tabNav {
+    position: relative;
+    padding: 0px;
+    background-color:#fff;
 }
