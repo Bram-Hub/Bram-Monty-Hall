@@ -47,4 +47,8 @@ Route::middleware('checkcookie')->group(function () {
 	Route::get('/dev', function () {
 		return view('dev');
 	});
+
+	Route::get('/about', function () {
+		return view('about');
+	});
 });

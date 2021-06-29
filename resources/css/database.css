@@ -1,0 +1,47 @@
+.pageBody {
+    padding: 10px 30px 10px 30px;
+}
+
+.pageTitle {
+    color: #3b4754;
+    font-family: "Arial, sans-serif";
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+p {
+    color: #798da3;
+    font-family: "Arial";
+    font-weight: 400;
+    font-size: 18px;
+    text-align: left;
+}
+
+.tabToggle{
+    font: 15px Arial, sans-serif;
+    vertical-align: top;
+    padding: 0px 0px 20px 0px;
+}
+
+.tabLinks {
+    width: 247px;
+    height: 56px;
+    padding: 0px 10px 0px 10px;
+    background: #1180f1;
+    color: #ffffff;
+    border-color: #1180f1;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+}
+
+.tabLinks:hover {
+    background: indigo;
+    border: indigo;
+}
