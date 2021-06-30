@@ -18,6 +18,9 @@ class CreateMontysTable extends Migration
             $table->string('type');
             $table->integer('total_wins');
             $table->integer('total_losses');
+            $table->json('monty_matrix') -> nullable();
+            $table->integer('switched_times');
+            $table->integer('game_nums');
             $table->timestamps();
             $table->softDeletes();
         });
