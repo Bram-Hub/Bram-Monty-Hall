@@ -45,7 +45,7 @@ class CheckCookie
 
             // add cookie to user
             $user_cookie = cookie()->forever('playID', $cookie->id);
-            $response = response()->view('cookies');
+            $response = response()->view('play');
             $response->withCookie($user_cookie);
             
             // push to database
