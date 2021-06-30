@@ -18,4 +18,9 @@ class Monty extends Model
     {
         return $this->hasMany(Game::class);
     }
+
+    public function simulations()
+    {
+        return $this->hasMany(Simulation::class);
+    }
 }
