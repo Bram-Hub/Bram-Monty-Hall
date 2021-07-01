@@ -23,7 +23,7 @@ class CreateGamesTable extends Migration
             $table->integer('picked_door');
             $table->integer('opened_door');
             $table->integer('car_door');
-            $table->integer('swithced_door');
+            $table->integer('switched_door');
             $table->json('details')->nullable();
             $table->timestamps();
             $table->softDeletes();
