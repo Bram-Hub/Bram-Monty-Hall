@@ -10,7 +10,7 @@ var secondDoor = -1;
 var prizeDoor = -1;
 var totalWins = 0;
 var totalLosses = 0;
-var playerSwitch = true;
+var playerSwitch = document.getElementById("switchCheck").checked;
 var showPrize = document.getElementById("prizeCheck").checked;
 
 window.setGameText = function (text) {
@@ -32,12 +32,6 @@ window.gameSetPrizeDoor = function () {
 }
 
 gameSetPrizeDoor();
-
-window.gameFirstMove = function () {
-    firstDoor = Math.floor(Math.random() * 3);
-    selectDoor(firstDoor, "yellow");
-    setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
-}
 
 window.setShowPrize = function (value) {
     showPrize = value;
@@ -84,23 +78,6 @@ window.deselectDoors = function () {
     document.getElementById("door3btn").style.backgroundColor = "white";
 }
 
-window.gameMontyMove = function () {
-    do {
-        montyOpenDoor = Math.floor(Math.random() * 3);
-    } while (montyOpenDoor == firstDoor);
-    console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
-    openDoor(montyOpenDoor);
-    selectDoor(montyOpenDoor, "cyan");
-    if(montyOpenDoor == prizeDoor) {
-        console.log("You lost -mmmmmmmmmmmmmmm");
-        setGameText(`Monty opened door ${montyOpenDoor + 1}.`);
-        gameTriggerEnd(false);
-        return true;
-    }
-    setGameText(`Monty opened door ${montyOpenDoor + 1}. Will you switch?`);
-    return false;
-}
-
 window.switchDoors = function() {
     if(firstDoor == 0) {
         if(montyOpenDoor == 1) {
@@ -126,6 +103,75 @@ window.switchDoors = function() {
             secondDoor = 1;
         }
     }
+}
+
+window.gameFirstMove = function () {
+    firstDoor = Math.floor(Math.random() * 3);
+    selectDoor(firstDoor, "yellow");
+    setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
+}
+
+window.gameStandardMonty = function () {
+    do {
+        montyOpenDoor = Math.floor(Math.random() * 3);
+    } while (montyOpenDoor == firstDoor);
+}
+
+window.gameIgnorantMonty = function () {
+    do {
+        montyOpenDoor = Math.floor(Math.random() * 3);
+    } while (montyOpenDoor == firstDoor);
+}
+
+window.gameAngelicMonty = function () {
+    do {
+        montyOpenDoor = Math.floor(Math.random() * 3);
+    } while (montyOpenDoor == firstDoor);
+}
+
+window.gameEvilMonty = function () {
+    do {
+        montyOpenDoor = Math.floor(Math.random() * 3);
+    } while (montyOpenDoor == firstDoor);
+}
+
+window.gameMontyFromHell = function () {
+    do {
+        montyOpenDoor = Math.floor(Math.random() * 3);
+    } while (montyOpenDoor == firstDoor);
+}
+
+window.gameDetermineMontyMove = function () {
+    if(montyVariant == "Standard Monty") {
+        gameStandardMonty();
+    }
+    else if(montyVariant == "Ignorant Monty") {
+        gameIgnorantMonty();
+    }
+    else if(montyVariant == "Angelic Monty") {
+        gameAngelicMonty();
+    }
+    else if(montyVariant == "Evil Monty") {
+        gameEvilMonty();
+    }
+    else {
+        gameMontyFromHell();
+    }
+}
+
+window.gameMontyMove = function () {
+    gameDetermineMontyMove();
+    console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
+    openDoor(montyOpenDoor);
+    selectDoor(montyOpenDoor, "cyan");
+    if(montyOpenDoor == prizeDoor) {
+        console.log("You lost -mmmmmmmmmmmmmmm");
+        setGameText(`Monty opened door ${montyOpenDoor + 1}.`);
+        gameTriggerEnd(false);
+        return true;
+    }
+    setGameText(`Monty opened door ${montyOpenDoor + 1}. Will you switch?`);
+    return false;
 }
 
 window.gameSecondMove = function () {
