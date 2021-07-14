@@ -116,6 +116,7 @@ window.gameFirstMove = function () {
     setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
 }
 
+// NOT DONE
 window.gameStandardMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
@@ -123,6 +124,7 @@ window.gameStandardMonty = function () {
     return true;
 }
 
+// NOT DONE
 window.gameIgnorantMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
@@ -130,13 +132,18 @@ window.gameIgnorantMonty = function () {
     return true;
 }
 
+// DONE
 window.gameAngelicMonty = function () {
+    if(firstDoor == prizeDoor) {
+        return false;
+    }
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
-    } while (montyOpenDoor == firstDoor);
+    } while (montyOpenDoor == firstDoor || montyOpenDoor == prizeDoor);
     return true;
 }
 
+// NOT DONE
 window.gameEvilMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
@@ -144,6 +151,7 @@ window.gameEvilMonty = function () {
     return true;
 }
 
+// NOT DONE
 window.gameMontyFromHell = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
@@ -188,6 +196,7 @@ window.gameMontyMove = function () {
     else {
         setGameText(`Monty didn't give you the option to switch.`);
         gameTriggerEnd(firstDoor == prizeDoor);
+        return true;
     }
     return false;
 }
