@@ -17,6 +17,11 @@ window.setGameText = function (text) {
     document.getElementById("gameText").innerHTML = text;
 }
 
+window.updateMontyVariant = function (variant) {
+    montyVariant = variant;
+    console.log('montyVariant', montyVariant);
+}
+
 window.updatePrizeBorder = function () {
     for(var i = 0; i < 3; i++) {
         document.getElementById("door" + (i + 1) + "btn").style.border = "solid 10px white";

@@ -33,7 +33,7 @@
                 <div id="settingsArea">
                     <div class="montySelection">
                         <label for="montySelect">Choose a variation of Monty to test: <br/> </label>
-                        <select name="montySelect" id="montySelect" onchange="console.log('montyVariant', this.value)">
+                        <select name="montySelect" id="montySelect" onchange="updateMontyVariant(this.value)">
                             <option>Standard Monty</option>
                             <option>Ignorant Monty</option>
                             <option>Angelic Monty</option>
