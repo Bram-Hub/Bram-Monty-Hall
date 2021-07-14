@@ -115,62 +115,75 @@ window.gameStandardMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
     } while (montyOpenDoor == firstDoor);
+    return true;
 }
 
 window.gameIgnorantMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
     } while (montyOpenDoor == firstDoor);
+    return true;
 }
 
 window.gameAngelicMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
     } while (montyOpenDoor == firstDoor);
+    return true;
 }
 
 window.gameEvilMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
     } while (montyOpenDoor == firstDoor);
+    return true;
 }
 
 window.gameMontyFromHell = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
     } while (montyOpenDoor == firstDoor);
+    return true;
 }
 
 window.gameDetermineMontyMove = function () {
     if(montyVariant == "Standard Monty") {
-        gameStandardMonty();
+        return gameStandardMonty();
     }
     else if(montyVariant == "Ignorant Monty") {
-        gameIgnorantMonty();
+        return gameIgnorantMonty();
     }
     else if(montyVariant == "Angelic Monty") {
-        gameAngelicMonty();
+        return gameAngelicMonty();
     }
     else if(montyVariant == "Evil Monty") {
-        gameEvilMonty();
+        return gameEvilMonty();
     }
     else {
-        gameMontyFromHell();
+        return gameMontyFromHell();
     }
 }
 
 window.gameMontyMove = function () {
-    gameDetermineMontyMove();
-    console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
-    openDoor(montyOpenDoor);
-    selectDoor(montyOpenDoor, "cyan");
-    if(montyOpenDoor == prizeDoor) {
-        console.log("You lost -mmmmmmmmmmmmmmm");
-        setGameText(`Monty opened door ${montyOpenDoor + 1}.`);
-        gameTriggerEnd(false);
-        return true;
+    // if Monty opened a door and is allowing a switch
+    if(gameDetermineMontyMove() == true) {
+        console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
+        openDoor(montyOpenDoor);
+        selectDoor(montyOpenDoor, "cyan");
+        if(montyOpenDoor == prizeDoor) {
+            console.log("You lost -mmmmmmmmmmmmmmm");
+            setGameText(`Monty opened door ${montyOpenDoor + 1}.`);
+            gameTriggerEnd(false);
+            return true;
+        }
+        
+        setGameText(`Monty opened door ${montyOpenDoor + 1}. Will you switch?`);
     }
-    setGameText(`Monty opened door ${montyOpenDoor + 1}. Will you switch?`);
+    // if Monty didn't open a door and won't allow a switch
+    else {
+        setGameText(`Monty didn't give you the option to switch.`);
+        gameTriggerEnd(firstDoor == prizeDoor);
+    }
     return false;
 }
 
