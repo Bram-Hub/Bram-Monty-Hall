@@ -36,7 +36,7 @@ gameSetPrizeDoor();
 window.gameFirstMove = function () {
     firstDoor = Math.floor(Math.random() * 3);
     selectDoor(firstDoor, "yellow");
-    setGameText(`You chose door ${firstDoor + 1}.`);
+    setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
 }
 
 window.setShowPrize = function (value) {
@@ -89,14 +89,15 @@ window.gameMontyMove = function () {
         montyOpenDoor = Math.floor(Math.random() * 3);
     } while (montyOpenDoor == firstDoor);
     console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
-    setGameText(`Monty opened door ${montyOpenDoor + 1}.`);
     openDoor(montyOpenDoor);
     selectDoor(montyOpenDoor, "cyan");
     if(montyOpenDoor == prizeDoor) {
         console.log("You lost -mmmmmmmmmmmmmmm");
+        setGameText(`Monty opened door ${montyOpenDoor + 1}.`);
         gameTriggerEnd(false);
         return true;
     }
+    setGameText(`Monty opened door ${montyOpenDoor + 1}. Will you switch?`);
     return false;
 }
 
@@ -131,9 +132,11 @@ window.gameSecondMove = function () {
     secondDoor = Math.floor(Math.random() * 3);
     if(playerSwitch == true) {
         switchDoors();
+        setGameText(`You switched from door ${firstDoor} to door ${secondDoor}.`);
     }
     else {
         secondDoor = firstDoor;
+        setGameText(`You chose to stick with door ${firstDoor}.`);
     }
     selectDoor(firstDoor, "white");
     selectDoor(secondDoor, "yellow");
