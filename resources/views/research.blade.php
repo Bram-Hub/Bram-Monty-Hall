@@ -11,7 +11,7 @@
         <div class="page">
             <section class="right">
                 <section id="game">
-                    Monty Hall Simulator
+                    <h2 id="gameText">Pick a door.</h2>
                     <div class="center">
                         <button class="doorButton" id="door1btn">
                             <img src="img/closedDoor.png" alt="Door #1" class="door" id="door1img">
@@ -22,6 +22,7 @@
                         <button class="doorButton" id="door3btn">
                             <img src="img/closedDoor.png" alt="Door #3" class="door" id="door3img">
                         </button>
+                        <br/>
                         <br/>
                         <br/>
                     </div>
@@ -39,6 +40,10 @@
                             <option>Evil Monty</option>
                             <option>Monty from Hell</option>
                         </select>
+                    </div>
+                    <div class="box">
+                        <label for="switchCheck">Player should switch:</label>
+                        <input type="checkbox" id="switchCheck" onchange="setPlayerSwitch(this.checked)">
                     </div>
                     <div class="box">
                         <label for="simCount"> Choose how many simulations to run: <br/> </label>
