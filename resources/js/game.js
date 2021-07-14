@@ -19,7 +19,7 @@ window.setGameText = function (text) {
 
 window.updateMontyVariant = function (variant) {
     montyVariant = variant;
-    console.log('montyVariant', montyVariant);
+    // console.log('montyVariant', montyVariant);
 }
 
 window.updatePrizeBorder = function () {
@@ -124,11 +124,11 @@ window.gameStandardMonty = function () {
     return true;
 }
 
-// NOT DONE
+// DONE
 window.gameIgnorantMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
-    } while (montyOpenDoor == firstDoor);
+    } while ((montyOpenDoor == firstDoor) || (montyOpenDoor == prizeDoor));
     return true;
 }
 
@@ -187,11 +187,11 @@ window.gameDetermineMontyMove = function () {
 window.gameMontyMove = function () {
     // if Monty opened a door and is allowing a switch
     if(gameDetermineMontyMove() == true) {
-        console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
+        // console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
         openDoor(montyOpenDoor);
         selectDoor(montyOpenDoor, "cyan");
         if(montyOpenDoor == prizeDoor) {
-            console.log("You lost -mmmmmmmmmmmmmmm");
+            // console.log("You lost -mmmmmmmmmmmmmmm");
             setGameText(`Monty opened door ${montyOpenDoor + 1}.`);
             gameTriggerEnd(false);
             return true;
@@ -209,7 +209,6 @@ window.gameMontyMove = function () {
 }
 
 window.gameSecondMove = function () {
-    secondDoor = Math.floor(Math.random() * 3);
     if(playerSwitch == true) {
         switchDoors();
         setGameText(`You switched from door ${firstDoor} to door ${secondDoor}.`);
@@ -223,17 +222,17 @@ window.gameSecondMove = function () {
 }
 
 window.gameTriggerEnd = function (win) {
-    console.log("The prize door was", prizeDoor);
+    // console.log("The prize door was", prizeDoor);
     openAllDoors();
     simsRuns++;
     if(win) {
-        console.log("You won");
+        // console.log("You won");
         setGameText(document.getElementById("gameText").innerHTML + " You won.");
         totalWins++;
         document.getElementById("wins").innerHTML = totalWins;
     }
     else {
-        console.log("You lost");
+        // console.log("You lost");
         setGameText(document.getElementById("gameText").innerHTML + " You lost.");
         totalLosses++;
         document.getElementById("losses").innerHTML = totalLosses;
@@ -246,7 +245,7 @@ window.gameTriggerEnd = function (win) {
 }
 
 window.gameReset = function () {
-    console.log("game resetting");
+    // console.log("game resetting");
     gameState = 0;
     gameSetPrizeDoor();
     deselectDoors();
@@ -267,7 +266,7 @@ window.updateTotalSims = function (newTotal) {
     totalSims = newTotal;
     updateCurrentSim();
     updateProgBar();
-    console.log("new total sims =", totalSims);
+    // console.log("new total sims =", totalSims);
 }
 
 window.updateProgBar = function (newTotal) {
@@ -284,7 +283,7 @@ window.updateProgBar = function (newTotal) {
 
 window.gameStep = function () {
     if(simsRuns >= totalSims) {
-        console.log("Cannot step: finished simulations");
+        // console.log("Cannot step: finished simulations");
         return;
     }
     if(gameState == 0) {
@@ -305,13 +304,13 @@ window.gameStep = function () {
     if(gameState == states.length) {
         gameReset();
     }
-    console.log(`gameState: ${states[gameState]} (${gameState})`);
+    // console.log(`gameState: ${states[gameState]} (${gameState})`);
 }
 
 window.gameNext = function () {
-    console.log("just clicked next:")
+    // console.log("just clicked next:")
     if(simsRuns >= totalSims) {
-        console.log("Cannot step: finished simulations");
+        // console.log("Cannot step: finished simulations");
         return;
     }
     do {
@@ -320,14 +319,14 @@ window.gameNext = function () {
 }
 
 window.gameRunAll = function () {
-    console.log("just clicked run all:")
+    // console.log("just clicked run all:")
     if(simsRuns >= totalSims) {
-        console.log("Cannot step: finished simulations");
+        // console.log("Cannot step: finished simulations");
         return;
     }
     while(simsRuns < totalSims) {
-        console.log("current sims run:", simsRuns);
+        // console.log("current sims run:", simsRuns);
         window.gameNext();
     }
-    console.log("just finished run all:")
+    // console.log("just finished run all:")
 }
