@@ -17,6 +17,7 @@
 #game {
     text-align: center;
     align-items: center;
+    background-color: green;
 }
 
 #settingsArea {
@@ -163,6 +164,9 @@
     border-radius: 5px;
     padding: 20px;
     width: 200 px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 #wlNums span {
@@ -181,4 +185,9 @@
 
 .center {
     text-align: center;
+}
+
+#display_div_id {
+    color: white;
+    font-size: 20px;
 }
