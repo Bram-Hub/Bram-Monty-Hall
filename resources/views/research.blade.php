@@ -13,15 +13,16 @@
                 <section id="game">
                     Monty Hall Simulator
                     <div class="center">
-                        <button class="doorButton">
-                            <img src="img/closedDoor.png" alt="Door #1" class="door">
+                        <button class="doorButton" id="door1btn">
+                            <img src="img/closedDoor.png" alt="Door #1" class="door" id="door1img">
                         </button>
-                        <button class="doorButton">
-                            <img src="img/closedDoor.png" alt="Door #2" class="door">
+                        <button class="doorButton" id="door2btn">
+                            <img src="img/closedDoor.png" alt="Door #2" class="door" id="door2img">
                         </button>
-                        <button class="doorButton">
-                            <img src="img/closedDoor.png" alt="Door #3" class="door">
+                        <button class="doorButton" id="door3btn">
+                            <img src="img/closedDoor.png" alt="Door #3" class="door" id="door3img">
                         </button>
+                        <br/>
                         <br/>
                     </div>
                 </section>
@@ -51,7 +52,7 @@
                     </div>
                     <div class="box">
                         <label for="prizeCheck">Show prize:</label>
-                        <input type="checkbox" id="prizeCheck">
+                        <input type="checkbox" id="prizeCheck" onchange="setShowPrize(this.checked)">
                     </div>
                     <div class="box">
                         <label for="animSpeedBox">Animation speed: <br/></label>

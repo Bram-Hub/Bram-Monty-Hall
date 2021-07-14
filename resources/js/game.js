@@ -10,37 +10,128 @@ var secondDoor = -1;
 var prizeDoor = -1;
 var totalWins = 0;
 var totalLosses = 0;
+var playerSwitch = true;
+var showPrize = document.getElementById("prizeCheck").checked;
+
+window.updatePrizeBorder = function () {
+    for(var i = 0; i < 3; i++) {
+        document.getElementById("door" + (i + 1) + "btn").style.border = "solid 10px white";
+    }
+    if(showPrize == true) {
+        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px red";
+    }
+}
 
 window.gameSetPrizeDoor = function () {
     prizeDoor = Math.floor(Math.random() * 3);
+    updatePrizeBorder();
 }
 
 gameSetPrizeDoor();
 
 window.gameFirstMove = function () {
     firstDoor = Math.floor(Math.random() * 3);
+    selectDoor(firstDoor, "yellow");
+}
+
+window.setShowPrize = function (value) {
+    showPrize = value;
+    updatePrizeBorder();
+}
+
+window.openDoor = function (door) {
+    if(prizeDoor == door) {
+        document.getElementById("door" + (door + 1) + "img").src = "img/carDoor.png";
+    }
+    else {
+        document.getElementById("door" + (door + 1) + "img").src = "img/goatDoor.png";
+    }
+}
+
+window.openAllDoors = function () {
+    for(var i = 0; i < 3; i++) {
+        if(prizeDoor == i) {
+            document.getElementById("door" + (i + 1) + "img").src = "img/carDoor.png";
+        }
+        else {
+            document.getElementById("door" + (i + 1) + "img").src = "img/goatDoor.png";
+        }
+    }
+}
+
+window.selectDoor = function (door, color) {
+    document.getElementById("door" + (door + 1) + "btn").style.backgroundColor = color;
+}
+
+window.closeAllDoors = function () {
+    document.getElementById("door1img").src = "img/closedDoor.png";
+    document.getElementById("door2img").src = "img/closedDoor.png";
+    document.getElementById("door3img").src = "img/closedDoor.png";
+}
+
+window.deselectDoors = function () {
+    document.getElementById("door1btn").style.backgroundColor = "white";
+    document.getElementById("door2btn").style.backgroundColor = "white";
+    document.getElementById("door3btn").style.backgroundColor = "white";
 }
 
 window.gameMontyMove = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
-    } while (montyOpenDoor !== firstDoor);
+    } while (montyOpenDoor == firstDoor);
+    console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
+    openDoor(montyOpenDoor);
+    selectDoor(montyOpenDoor, "cyan");
     if(montyOpenDoor == prizeDoor) {
         console.log("You lost -mmmmmmmmmmmmmmm");
         gameTriggerEnd(false);
+        return true;
+    }
+    return false;
+}
+
+window.switchDoors = function() {
+    if(firstDoor == 0) {
+        if(montyOpenDoor == 1) {
+            secondDoor = 2;
+        }
+        else {
+            secondDoor = 1;
+        }
+    }
+    else if(firstDoor == 1) {
+        if(montyOpenDoor == 0) {
+            secondDoor = 2;
+        }
+        else {
+            secondDoor = 0;
+        }
+    }
+    else {
+        if(montyOpenDoor == 1) {
+            secondDoor = 0;
+        }
+        else {
+            secondDoor = 1;
+        }
     }
 }
 
 window.gameSecondMove = function () {
     secondDoor = Math.floor(Math.random() * 3);
+    if(playerSwitch == true) {
+        switchDoors();
+    }
+    else {
+        secondDoor = firstDoor;
+    }
+    selectDoor(firstDoor, "white");
+    selectDoor(secondDoor, "yellow");
 }
 
 window.gameTriggerEnd = function (win) {
-    
     console.log("The prize door was", prizeDoor);
-    
-    gameState = 0;
-    gameSetPrizeDoor();
+    openAllDoors();
     simsRuns++;
     if(win) {
         console.log("You won");
@@ -57,6 +148,14 @@ window.gameTriggerEnd = function (win) {
         document.getElementById("wl").innerHTML = totalWins / totalLosses;
     }
     updateProgBar();
+}
+
+window.gameReset = function () {
+    console.log("game resetting");
+    gameState = 0;
+    gameSetPrizeDoor();
+    deselectDoors();
+    closeAllDoors();
 }
 
 window.updateCurrentSim = function () {
@@ -77,6 +176,14 @@ window.updateTotalSims = function (newTotal) {
 
 window.updateProgBar = function (newTotal) {
     document.getElementById("progBarSpan").style.width = (100 * simsRuns / totalSims) + "%";
+    if(simsRuns == totalSims) {
+        document.getElementById("progBarSpan").style.borderTopRightRadius = "20px";
+        document.getElementById("progBarSpan").style.borderBottomRightRadius = "20px";
+    }
+    else {
+        document.getElementById("progBarSpan").style.borderTopRightRadius = "8px";
+        document.getElementById("progBarSpan").style.borderBottomRightRadius = "8px";
+    }
 }
 
 window.gameStep = function () {
@@ -88,18 +195,19 @@ window.gameStep = function () {
         gameFirstMove(Math.random);
     }
     else if(gameState == 1) {
-        gameMontyMove();
-        if(gameState == 0) {
+        if(gameMontyMove() == true) {
+            gameState = 3;
             return;
         }
     }
     else if(gameState == 2) {
         gameSecondMove();
+        gameTriggerEnd(prizeDoor == secondDoor);
     }
     
     gameState++;
     if(gameState == states.length) {
-        gameTriggerEnd(true);
+        gameReset();
     }
     console.log(`gameState: ${states[gameState]} (${gameState})`);
 }
@@ -112,7 +220,7 @@ window.gameNext = function () {
     }
     do {
         window.gameStep();
-    } while(gameState !== 0);
+    } while(gameState !== states.length - 1);
 }
 
 window.gameRunAll = function () {
