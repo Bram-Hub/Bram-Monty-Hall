@@ -116,7 +116,7 @@ window.gameFirstMove = function () {
     setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
 }
 
-// NOT DONE
+// DONE
 window.gameStandardMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
@@ -253,6 +253,25 @@ window.gameReset = function () {
     setGameText("Pick a door.");
 }
 
+window.simReset = function () {
+    console.log("totalSims =", totalSims);
+    gameState = 0;
+    deselectDoors();
+    closeAllDoors();
+    setGameText("Pick a door.");
+    simsRuns = 0;
+    document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
+    firstDoor = -1;
+    montyOpenDoor = -1;
+    secondDoor = -1;
+    prizeDoor = -1;
+    totalWins = 0;
+    totalLosses = 0;
+    document.getElementById("wins").innerHTML = "0";
+    document.getElementById("losses").innerHTML = "0";
+    updateTotalSims(totalSims);
+}
+
 window.updateCurrentSim = function () {
     if(simsRuns < totalSims) {
         document.getElementById("display_div_id").innerHTML = simsRuns + 1 + " / " + totalSims;
@@ -264,14 +283,16 @@ window.updateCurrentSim = function () {
 
 window.updateTotalSims = function (newTotal) {
     totalSims = newTotal;
+    document.getElementById("wins").innerHTML = totalWins;
+    document.getElementById("losses").innerHTML = totalLosses;
+    document.getElementById("wl").innerHTML = isNaN(totalWins / totalLosses) ? "-" : totalWins / totalLosses;
     updateCurrentSim();
     updateProgBar();
-    // console.log("new total sims =", totalSims);
 }
 
 window.updateProgBar = function (newTotal) {
-    document.getElementById("progBarSpan").style.width = (100 * simsRuns / totalSims) + "%";
-    if(simsRuns == totalSims) {
+    document.getElementById("progBarSpan").style.width = Math.min((100 * simsRuns / totalSims), 100) + "%";
+    if(simsRuns >= totalSims) {
         document.getElementById("progBarSpan").style.borderTopRightRadius = "20px";
         document.getElementById("progBarSpan").style.borderBottomRightRadius = "20px";
     }

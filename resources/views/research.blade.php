@@ -81,6 +81,8 @@
                             <span>Losses: <span id="losses">0</span></span>
                             <span>W/L: <span id="wl">-</span></span>
                         </div>
+                        <br/>
+                        <button id="resetBtn" onclick="simReset()">Reset</button>
                     </div>
                 </div>
             </section>
