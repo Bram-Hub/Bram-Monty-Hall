@@ -143,8 +143,12 @@ window.gameAngelicMonty = function () {
     return true;
 }
 
-// NOT DONE
+// DONE
 window.gameEvilMonty = function () {
+    if(firstDoor != prizeDoor) {
+        montyOpenDoor = prizeDoor;
+        return true;
+    }
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
     } while (montyOpenDoor == firstDoor);
