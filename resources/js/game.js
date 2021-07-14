@@ -151,8 +151,11 @@ window.gameEvilMonty = function () {
     return true;
 }
 
-// NOT DONE
+// DONE
 window.gameMontyFromHell = function () {
+    if(firstDoor != prizeDoor) {
+        return false;
+    }
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
     } while (montyOpenDoor == firstDoor);
