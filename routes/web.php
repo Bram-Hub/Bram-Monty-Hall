@@ -52,3 +52,12 @@ Route::middleware('checkcookie')->group(function () {
 		return view('about');
 	});
 });
+
+/**
+ * - this route is used for Bram's admin page
+ * - since it requires its own login,
+ *   there is no need for cookie middleware
+ */
+Route::get("/admin", function () {
+	return view('adminpage');
+});
