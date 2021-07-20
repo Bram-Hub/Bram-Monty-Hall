@@ -1,0 +1,20 @@
+.admin-wrapper {
+    text-align: center;
+}
+
+.bad {
+    color: red;
+}
+
+.good {
+    color: green;
+}
+
+.easter-egg {
+    display: block;
+    padding: 5px 5px 5px 5px;
+}
+
+.easter-egg:hover {
+    color: green;
+}

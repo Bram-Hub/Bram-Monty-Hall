@@ -1,6 +1,6 @@
-<div style="text-align: center">
+<div>
     
-    Congrats you are loggin in!!
+    <p class="good"> Congrats you are in!! </p>
     
 </div>
  
