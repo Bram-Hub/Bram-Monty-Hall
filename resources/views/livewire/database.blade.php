@@ -11,26 +11,63 @@
     <table class="styledTable mt-4 w-full">
         <thead>
             <tr>
-                <th>Title1</th>
-                <th>Title1</th>
-                <th>Title1</th>
-                <th>Title1</th>
-                <th>Title1</th>
-                <th>Title1</th>
-                <th>Title1</th>
-                <th></th>
+                @if ($tab == 'play')
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Total Wins</th>
+                    <th>Total Losses</th>
+                @elseif ($tab == 'sim')
+                    <th>ID</th>
+                    <th>Monty</th>
+                    <th>Wins Switched</th>
+                    <th>Total Switches</th>
+                    <th>Total Losses</th>
+                    <th>Total Wins</th>
+                    <th>Total Simulations</th>
+                @else
+                    <th>Title1</th>
+                    <th>Title1</th>
+                    <th>Title1</th>
+                    <th>Title1</th>
+                    <th>Title1</th>
+                    <th>Title1</th>
+                    <th>Title1</th>
+                @endif
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Data1</td>
-                <td>Data1</td>
-                <td>Data1</td>
-                <td>Data1</td>
-                <td>Data1</td>
-                <td>Data1</td>
-                <td>Data1</td>
-            </tr>
+            @if ($tab == 'play')
+                @foreach ($montys as $monty)
+                    <tr>
+                        <td>{{ $monty->id }}</td>
+                        <td>{{ $monty->type }}</td>
+                        <td>{{ $monty->total_wins }}</td>
+                        <td>{{ $monty->total_losses }}</td>
+                    </tr>
+                @endforeach
+            @elseif ($tab == 'sim')
+                @foreach ($simulations as $simulation)
+                    <tr>
+                        <td>{{ $simulation->id }}</td>
+                        <td>{{ $simulation->monty->type }}</td>
+                        <td>{{ $simulation->wins_switches }}</td>
+                        <td>{{ $simulation->total_switches }}</td>
+                        <td>{{ $simulation->total_losses }}</td>
+                        <td>{{ $simulation->total_wins }}</td>
+                        <td>{{ $simulation->total_simulations }}</td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td>Data1</td>
+                    <td>Data1</td>
+                    <td>Data1</td>
+                    <td>Data1</td>
+                    <td>Data1</td>
+                    <td>Data1</td>
+                    <td>Data1</td>
+                </tr>
+            @endif
         </tbody>
     </table> 
 </div>
