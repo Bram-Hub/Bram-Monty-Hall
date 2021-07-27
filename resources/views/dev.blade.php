@@ -24,6 +24,11 @@ $monty->save();
 // echo($monty -> oneMonty('id', 1));
 
 
+$data = ['cookie_id' => 1, 'monty_id' => 1, 'door_picked' => 1, 'door_opened' => 2, 'door_car' => 3];
+Game::createGame($data);
+//Game::deleteGame(7);
+
+/*
 $monty = new Monty();
 $monty -> addMonty(array('type' => 'xx', 'total_wins' => 0, 'total_losses' => 0, 'switched_times' => 0, 'total_games' => 0));
 
@@ -38,3 +43,4 @@ $simulation -> addSimulation(array('monty_id' => 1, 'behavior_matrix' => '{"Pete
 'total_switches' => 2, 'total_losses' => 2, 'total_wins' => 2, 'total_simulations' => 2));
 $simulation -> addSimulation(array('monty_id' => 1, 'behavior_matrix' => '{"Peter":35,"Ben":37,"Joe":43}', 'wins_switches' => 2, 
 'total_switches' => 2, 'total_losses' => 2, 'total_wins' => 2, 'total_simulations' => 2));
+*/
