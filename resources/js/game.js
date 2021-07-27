@@ -10,6 +10,9 @@ var secondDoor = -1;
 var prizeDoor = -1;
 var totalWins = 0;
 var totalLosses = 0;
+var montyOpenedPrize = 0;
+var totalWinsSwitch = 0;
+var totalLossesSwitch = 0;
 var playerSwitch = document.getElementById("switchCheck").checked;
 var showPrize = document.getElementById("prizeCheck").checked;
 
@@ -120,16 +123,16 @@ window.gameFirstMove = function () {
 window.gameStandardMonty = function () {
     do {
         montyOpenDoor = Math.floor(Math.random() * 3);
-    } while (montyOpenDoor == firstDoor);
+    } while ((montyOpenDoor == firstDoor) || (montyOpenDoor == prizeDoor));
     return true;
 }
 
 // DONE
 window.gameIgnorantMonty = function () {
-    do {
-        montyOpenDoor = Math.floor(Math.random() * 3);
-    } while ((montyOpenDoor == firstDoor) || (montyOpenDoor == prizeDoor));
-    return true;
+  do {
+      montyOpenDoor = Math.floor(Math.random() * 3);
+  } while (montyOpenDoor == firstDoor);
+  return true;
 }
 
 // DONE
@@ -192,11 +195,12 @@ window.gameMontyMove = function () {
         selectDoor(montyOpenDoor, "cyan");
         if(montyOpenDoor == prizeDoor) {
             // console.log("You lost -mmmmmmmmmmmmmmm");
+            montyOpenedPrize++;
             setGameText(`Monty opened door ${montyOpenDoor + 1}.`);
             gameTriggerEnd(false);
             return true;
         }
-        
+
         setGameText(`Monty opened door ${montyOpenDoor + 1}. Will you switch?`);
     }
     // if Monty didn't open a door and won't allow a switch
@@ -215,7 +219,7 @@ window.gameSecondMove = function () {
     }
     else {
         secondDoor = firstDoor;
-        setGameText(`You chose to stick with door ${firstDoor}.`);
+        setGameText(`You chose to stick with door ${firstDoor + 1}.`);
     }
     selectDoor(firstDoor, "white");
     selectDoor(secondDoor, "yellow");
@@ -242,6 +246,12 @@ window.gameTriggerEnd = function (win) {
         document.getElementById("wl").innerHTML = totalWins / totalLosses;
     }
     updateProgBar();
+    document.getElementById("winPercent").innerHTML = String((totalWins / (totalWins + totalLosses)) * 100) + "%";
+    document.getElementById("montyOpenedPrize").innerHTML = montyOpenedPrize;
+    document.getElementById("winsWithSwitch").innerHTML = totalWinsSwitch;
+    document.getElementById("lossesWithSwitch").innerHTML = totalLossesSwitch;
+    document.getElementById("totalWithSwitch").innerHTML = totalWinsSwitch + totalLossesSwitch;
+    document.getElementById("winPercentWithSwitch").innerHTML = String((totalWinsSwitch / (totalWinsSwitch + totalLossesSwitch)) * 100) + "%";
 }
 
 window.gameReset = function () {
@@ -264,11 +274,20 @@ window.simReset = function () {
     firstDoor = -1;
     montyOpenDoor = -1;
     secondDoor = -1;
-    prizeDoor = -1;
+    gameSetPrizeDoor();
     totalWins = 0;
     totalLosses = 0;
+    montyOpenedPrize = 0;
+    totalWinsSwitch = 0;
+    totalLossesSwitch = 0;
     document.getElementById("wins").innerHTML = "0";
     document.getElementById("losses").innerHTML = "0";
+    document.getElementById("winPercent").innerHTML = "-";
+    document.getElementById("montyOpenedPrize").innerHTML = "0";
+    document.getElementById("winsWithSwitch").innerHTML = "0";
+    document.getElementById("lossesWithSwitch").innerHTML = "0";
+    document.getElementById("totalWithSwitch").innerHTML = "0";
+    document.getElementById("winPercentWithSwitch").innerHTML = "-";
     updateTotalSims(totalSims);
 }
 
@@ -312,15 +331,23 @@ window.gameStep = function () {
     }
     else if(gameState == 1) {
         if(gameMontyMove() == true) {
+            // player did NOT get a chance to switch
             gameState = 3;
             return;
         }
     }
     else if(gameState == 2) {
+        // player DID get a chance to switch
         gameSecondMove();
+        if (prizeDoor == secondDoor) {
+            totalWinsSwitch++;
+        }
+        else {
+            totalLossesSwitch++;
+        }
         gameTriggerEnd(prizeDoor == secondDoor);
     }
-    
+
     gameState++;
     if(gameState == states.length) {
         gameReset();

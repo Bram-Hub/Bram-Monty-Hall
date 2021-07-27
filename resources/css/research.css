@@ -89,7 +89,7 @@
 }
 
 .box button:hover {
-	background-color: indigo;
+    background-color: indigo;
     border: indigo;
 }
 
@@ -166,7 +166,7 @@
     overflow: hidden;
 }
 
-#wlNums {
+#wlNums, #wlNumsSwitch {
     border: solid;
     border-color: grey;
     border-radius: 5px;
@@ -177,8 +177,15 @@
     justify-content: space-around;
 }
 
-#wlNums span {
+#wlNums span,
+#wlNumsSwitch span {
     margin: 10px;
+}
+
+#switchTitleText {
+  font-size: 17px;
+  font-family: OpenSans;
+  margin: 12px 0px 12px 5px;
 }
 
 .door {
