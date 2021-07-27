@@ -25,23 +25,66 @@ p {
     padding: 0px 0px 20px 0px;
 }
 
-.tabLinks {
-    width: 247px;
-    height: 56px;
-    padding: 0px 10px 0px 10px;
-    background: #1180f1;
-    color: #ffffff;
-    border-color: #1180f1;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 10px;
-    font-family: "Open Sans";
-    font-weight: 700;
-    font-size: 16px;
-    text-align: center;
+
+/*************/
+/*** Tabs ***/
+/*************/
+
+.tabWrapper > button {
+    background-color: transparent;
+    color: #1180f1;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;  
+    border: thin solid #1180f1;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    margin-right: 10px;
+    margin-top: 40px;
+}
+.tabWrapper > button:hover,
+.tabWrapperActive {
+    background-color: #1180f1 !important;
+    color: white !important;
 }
 
-.tabLinks:hover {
-    background: indigo;
-    border: indigo;
+/*************/
+/*** Table ***/
+/*************/
+
+.styledTable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-weight: 600;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	table-layout: fixed;
+	max-width: 100%;
+	white-space: nowrap;
+}
+
+.styledTable thead tr {
+    background-color: #1180f1;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styledTable th,
+.styledTable td {
+    padding: 12px 15px;
+}
+
+.styledTable tbody tr {
+    border-bottom: thin solid #dddddd;
+    font-weight: 300;
+}
+
+.styledTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styledTable tbody tr:last-of-type {
+    border-bottom: 2px solid #1180f1;
 }
