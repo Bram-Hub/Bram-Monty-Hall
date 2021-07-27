@@ -50,8 +50,8 @@ class Game extends Model
      * 
      * data contains all columns we should add it on the table for a single Game object.
      * 
-     * example code:
-     * $game -> createGame(array('cookie_id' => 1, 'monty_id' => 1, 'outcome' => True, 'door_picked' => 1, 'door_opened' => 3, 'door_car' => 1));
+     * Example:
+     * $Game::createGame(['cookie_id' => 1, 'monty_id' => 1, 'door_picked' => 1, 'door_opened' => 2, 'door_car' => 3]);
      */
     public static function createGame($data)
     {
