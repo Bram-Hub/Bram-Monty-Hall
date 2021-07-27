@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use DB;
 
 class Monty extends Model
 {
@@ -39,12 +38,28 @@ class Monty extends Model
         return $monty -> delete();
     }
 
-    public function updMonty($data, $list, $arr){// update certain monty
+    
+    public function updMonty($data, $list, $arr){
         $monty = $this -> where($data, $list);
         return $monty -> update($arr);
     }
 
-    public function addMonty($data){// add a monty to this table
-        return DB::table('montys') -> insert($data);
+    /**
+     * add a monty to this table
+     * 
+     * data contains all columns we should add it on the table for a single Monty object.
+     * 
+     * example code:
+     * $monty -> addMonty(array('type' => 'xx', 'total_wins' => 0, 'total_losses' => 0, 'switched_times' => 0, 'total_games' => 0));
+     */
+    public function addMonty($data){
+        $monty = new Monty();
+        $monty->type = $data['type'];
+        $monty->total_wins = $data['total_wins'];
+        $monty->total_losses = $data['total_losses'];
+        if (isset($data['matrix'])) $monty->matrix = $data['matrix'];
+        $monty->switched_times = $data['switched_times'];
+        $monty->total_games = $data['total_games'];
+        $monty->save();
     }
 }

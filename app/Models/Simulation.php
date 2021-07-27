@@ -34,7 +34,36 @@ class Simulation extends Model
         return $simulation -> update($arr);
     }
 
-    public function addSimulation($data){// add a new simulation to the table
-        return DB::table('simulations') -> insert($data);
+    /**
+     * add a new simulation to the table
+     * 
+     * data contains all columns we should add it on the table for a single Simulation object.
+     * 
+     * example code:
+     * $simulation -> addSimulation(array('monty_id' => 1, 'behavior_matrix' => '{"Peter":35,"Ben":37,"Joe":43}', 'wins_switches' => 2, 
+     * 'total_switches' => 2, 'total_losses' => 2, 'total_wins' => 2, 'total_simulations' => 2));
+     */
+    public function addSimulation($data){
+        $simulation = new Simulation();
+        $simulation -> monty_id = $data['monty_id'];
+        $simulation -> behavior_matrix = $data['behavior_matrix'];
+        $simulation -> wins_switches = $data['wins_switches'];
+        $simulation -> total_switches = $data['total_switches'];
+        $simulation -> total_losses = $data['total_losses'];
+        $simulation -> total_wins = $data['total_wins'];
+        $simulation -> total_simulations = $data['total_simulations'];
+
+        $subsimulation = $this -> where('monty_id', $simulation -> monty_id)
+        -> where( 'behavior_matrix', $simulation -> behavior_matrix) -> first();
+        if ($subsimulation != null){
+            $subsimulation -> wins_switches += $simulation -> wins_switches;
+            $subsimulation -> total_switches += $simulation -> total_switches;
+            $subsimulation -> total_losses += $simulation -> total_losses;
+            $subsimulation -> total_wins += $simulation -> total_wins;
+            $subsimulation -> total_simulations += $simulation -> total_simulations;
+            $subsimulation -> save();
+        }else{
+            $simulation -> save();
+        }
     }
 }

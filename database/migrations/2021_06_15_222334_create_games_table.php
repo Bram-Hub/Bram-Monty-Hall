@@ -20,10 +20,10 @@ class CreateGamesTable extends Migration
             $table->unsignedInteger('monty_id');
             $table->foreign('monty_id')->references('id')->on('montys');
             $table->boolean('outcome');
-            $table->integer('picked_door');
-            $table->integer('opened_door');
-            $table->integer('car_door');
-            $table->integer('switched_door');
+            $table->integer('door_picked');
+            $table->integer('door_opened');
+            $table->integer('door_car');
+            $table->integer('door_switched')->nullable();
             $table->json('details')->nullable();
             $table->timestamps();
             $table->softDeletes();
