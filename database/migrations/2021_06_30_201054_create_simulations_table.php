@@ -18,7 +18,7 @@ class CreateSimulationsTable extends Migration
             $table->unsignedInteger('monty_id');
             $table->foreign('monty_id')->references('id')->on('montys');
             $table->json('behavior_matrix');
-            $table->integer('wins_switches');
+            $table->integer('wins_switched');
             $table->integer('total_switches');
             $table->integer('total_losses');
             $table->integer('total_wins');
