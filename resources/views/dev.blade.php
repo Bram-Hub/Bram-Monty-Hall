@@ -23,11 +23,6 @@ $monty->save();
 //$monty -> updMonty('id', 1, array('type' => 'yy'));
 // echo($monty -> oneMonty('id', 1));
 
-
-$data = ['cookie_id' => 1, 'monty_id' => 1, 'door_picked' => 1, 'door_opened' => 2, 'door_car' => 3];
-Game::createGame($data);
-//Game::deleteGame(7);
-
 /*
 $monty = new Monty();
 $monty -> addMonty(array('type' => 'xx', 'total_wins' => 0, 'total_losses' => 0, 'switched_times' => 0, 'total_games' => 0));
@@ -44,3 +39,12 @@ $simulation -> addSimulation(array('monty_id' => 1, 'behavior_matrix' => '{"Pete
 $simulation -> addSimulation(array('monty_id' => 1, 'behavior_matrix' => '{"Peter":35,"Ben":37,"Joe":43}', 'wins_switches' => 2, 
 'total_switches' => 2, 'total_losses' => 2, 'total_wins' => 2, 'total_simulations' => 2));
 */
+
+
+//$dataGame = ['cookie_id' => 1, 'monty_id' => 1, 'door_picked' => 1, 'door_opened' => 2, 'door_car' => 3];
+//Game::createGame($dataGame);
+//Game::deleteGame(7);
+
+$dataSim = ['monty_id' => 1, 'behavior_matrix' => '{"Always Switch": false}', 'wins_switched' => 40, 
+            'total_switches' => 50, 'total_losses' => 40, 'total_wins' => 60, 'total_simulations' => 100];
+Simulation::createSimulation($dataSim);
