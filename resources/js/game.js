@@ -211,11 +211,11 @@ window.gameMontyMove = function () {
 window.gameSecondMove = function () {
     if(playerSwitch == true) {
         switchDoors();
-        setGameText(`You switched from door ${firstDoor} to door ${secondDoor}.`);
+        setGameText(`You switched from door ${firstDoor + 1} to door ${secondDoor + 1}.`);
     }
     else {
         secondDoor = firstDoor;
-        setGameText(`You chose to stick with door ${firstDoor}.`);
+        setGameText(`You chose to stick with door ${firstDoor + 1}.`);
     }
     selectDoor(firstDoor, "white");
     selectDoor(secondDoor, "yellow");
@@ -232,7 +232,7 @@ window.gameTriggerEnd = function (win) {
         document.getElementById("wins").innerHTML = totalWins;
     }
     else {
-        // console.log("You lost");
+        console.log("You lost at", totalSims);
         setGameText(document.getElementById("gameText").innerHTML + " You lost.");
         totalLosses++;
         document.getElementById("losses").innerHTML = totalLosses;
