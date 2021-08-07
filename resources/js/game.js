@@ -1,9 +1,9 @@
 var gameState = 0;
 var states = ["firstMove", "montyMove", "secondMove", "end"];
-var montyVariant = document.getElementById("montySelect").value;
+var montyVariant;// = document.getElementById("montySelect").value;
 var simsRuns = 0;
-var totalSims = document.getElementById("simCountBox").value;
-document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
+var totalSims;// = document.getElementById("simCountBox").value;
+//document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
 var firstDoor = -1;
 var montyOpenDoor = -1;
 var secondDoor = -1;
@@ -13,8 +13,74 @@ var totalLosses = 0;
 var montyOpenedPrize = 0;
 var totalWinsSwitch = 0;
 var totalLossesSwitch = 0;
-var playerSwitch = document.getElementById("switchCheck").checked;
-var showPrize = document.getElementById("prizeCheck").checked;
+var playerSwitch;// = document.getElementById("switchCheck").checked;
+var showPrize;// = document.getElementById("prizeCheck").checked;
+var page; //true for research, false for play
+var clicked;
+
+//determine whether on play page or research page
+window.addEventListener('load', () => {
+    if (window.document.documentURI.includes("research")) {
+        console.log("Research Page")
+        page = true;
+        montyVariant = document.getElementById("montySelect").value;
+        totalSims = document.getElementById("simCountBox").value;
+        document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
+        playerSwitch = document.getElementById("switchCheck").checked;
+        showPrize = document.getElementById("prizeCheck").checked;
+        gameSetPrizeDoor();
+    }
+    else {
+        console.log("Play Page")
+        page = false;
+        //randomize the monty type
+        var randomMonty = Math.floor(Math.random() * 5);
+        //var randomMonty = 0;
+        var montyDict = {
+          0: "Standard Monty",
+          1: "Ignorant Monty",
+          2: "Angelic Monty",
+          3: "Evil Monty",
+          4: "Monty from Hell"
+        }
+        montyVariant = montyDict[randomMonty];
+        prizeDoor = Math.floor(Math.random() * 3);
+        console.log(montyDict[randomMonty] + " Prize Door: " + String(prizeDoor + 1));
+        clicked = false;
+    }
+})
+
+//play Page
+  window.playDoor = function(doorClicked) {
+    if (!clicked && gameState == 0) {
+        clicked = true;
+        firstDoor = doorClicked;
+        selectDoor(firstDoor, "yellow");
+        setTimeout(function() {
+            gameMontyMove();
+            clicked = false;
+            gameState = 2;
+        }, 700);
+    }
+    else if (!clicked && doorClicked != montyOpenDoor) { //implies secondMove
+        clicked = true;
+        if (doorClicked == firstDoor) {
+            //did not switch
+            playerSwitch = false;
+        }
+        else {
+            playerSwitch = true;
+        }
+        gameSecondMove();
+        setTimeout(function() {
+            gameTriggerEnd(doorClicked == prizeDoor);
+        }, 700)
+    }
+    //and then they have the chance to switch or not
+
+}
+
+//research Page
 
 window.setGameText = function (text) {
     document.getElementById("gameText").innerHTML = text;
@@ -39,7 +105,7 @@ window.gameSetPrizeDoor = function () {
     updatePrizeBorder();
 }
 
-gameSetPrizeDoor();
+//gameSetPrizeDoor();
 
 window.setShowPrize = function (value) {
     showPrize = value;
@@ -200,7 +266,6 @@ window.gameMontyMove = function () {
             gameTriggerEnd(false);
             return true;
         }
-
         setGameText(`Monty opened door ${montyOpenDoor + 1}. Will you switch?`);
     }
     // if Monty didn't open a door and won't allow a switch
@@ -215,7 +280,7 @@ window.gameMontyMove = function () {
 window.gameSecondMove = function () {
     if(playerSwitch == true) {
         switchDoors();
-        setGameText(`You switched from door ${firstDoor} to door ${secondDoor}.`);
+        setGameText(`You switched from door ${firstDoor + 1} to door ${secondDoor + 1}.`);
     }
     else {
         secondDoor = firstDoor;
@@ -232,26 +297,33 @@ window.gameTriggerEnd = function (win) {
     if(win) {
         // console.log("You won");
         setGameText(document.getElementById("gameText").innerHTML + " You won.");
-        totalWins++;
-        document.getElementById("wins").innerHTML = totalWins;
+        if (page) {
+            totalWins++;
+            document.getElementById("wins").innerHTML = totalWins;
+        }
+
     }
     else {
         // console.log("You lost");
         setGameText(document.getElementById("gameText").innerHTML + " You lost.");
-        totalLosses++;
-        document.getElementById("losses").innerHTML = totalLosses;
+        if (page) {
+            totalLosses++;
+            document.getElementById("losses").innerHTML = totalLosses;
+        }
     }
-    updateCurrentSim();
-    if(totalLosses !== 0) {
-        document.getElementById("wl").innerHTML = totalWins / totalLosses;
+    if (page) {
+        updateCurrentSim();
+        if(totalLosses !== 0) {
+            document.getElementById("wl").innerHTML = totalWins / totalLosses;
+        }
+        updateProgBar();
+        document.getElementById("winPercent").innerHTML = String((totalWins / (totalWins + totalLosses)) * 100) + "%";
+        document.getElementById("montyOpenedPrize").innerHTML = montyOpenedPrize;
+        document.getElementById("winsWithSwitch").innerHTML = totalWinsSwitch;
+        document.getElementById("lossesWithSwitch").innerHTML = totalLossesSwitch;
+        document.getElementById("totalWithSwitch").innerHTML = totalWinsSwitch + totalLossesSwitch;
+        document.getElementById("winPercentWithSwitch").innerHTML = String((totalWinsSwitch / (totalWinsSwitch + totalLossesSwitch)) * 100) + "%";
     }
-    updateProgBar();
-    document.getElementById("winPercent").innerHTML = String((totalWins / (totalWins + totalLosses)) * 100) + "%";
-    document.getElementById("montyOpenedPrize").innerHTML = montyOpenedPrize;
-    document.getElementById("winsWithSwitch").innerHTML = totalWinsSwitch;
-    document.getElementById("lossesWithSwitch").innerHTML = totalLossesSwitch;
-    document.getElementById("totalWithSwitch").innerHTML = totalWinsSwitch + totalLossesSwitch;
-    document.getElementById("winPercentWithSwitch").innerHTML = String((totalWinsSwitch / (totalWinsSwitch + totalLossesSwitch)) * 100) + "%";
 }
 
 window.gameReset = function () {
