@@ -33,15 +33,14 @@ window.addEventListener('load', () => {
     else {
         console.log("Play Page")
         page = false;
-        //randomize the monty type
+        //randomize the monty type and prize door
         var randomMonty = Math.floor(Math.random() * 5);
-        //var randomMonty = 0;
         var montyDict = {
-          0: "Standard Monty",
-          1: "Ignorant Monty",
-          2: "Angelic Monty",
-          3: "Evil Monty",
-          4: "Monty from Hell"
+            0: "Standard Monty",
+            1: "Ignorant Monty",
+            2: "Angelic Monty",
+            3: "Evil Monty",
+            4: "Monty from Hell"
         }
         montyVariant = montyDict[randomMonty];
         prizeDoor = Math.floor(Math.random() * 3);
@@ -50,7 +49,6 @@ window.addEventListener('load', () => {
     }
 })
 
-//play Page
   window.playDoor = function(doorClicked) {
     if (!clicked && gameState == 0) {
         clicked = true;
@@ -76,11 +74,7 @@ window.addEventListener('load', () => {
             gameTriggerEnd(doorClicked == prizeDoor);
         }, 700)
     }
-    //and then they have the chance to switch or not
-
 }
-
-//research Page
 
 window.setGameText = function (text) {
     document.getElementById("gameText").innerHTML = text;
