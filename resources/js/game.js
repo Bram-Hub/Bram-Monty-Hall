@@ -50,12 +50,6 @@ window.addEventListener('load', () => {
 })
 
   window.playDoor = function(doorClicked) {
-    console.log("play door " + doorClicked)
-    console.log("gameState " + gameState);
-    console.log("clicked " + clicked);
-    console.log("firstDoor " + firstDoor);
-    console.log("montyOpenDoor " + montyOpenDoor);
-    console.log("secondDoor " + secondDoor);
     if (!clicked && gameState == 0) {
         clicked = true;
         firstDoor = doorClicked;
@@ -80,7 +74,6 @@ window.addEventListener('load', () => {
             gameTriggerEnd(doorClicked == prizeDoor);
         }, 700)
     }
-    console.log("play door " + doorClicked + "   gameState " + gameState);
 }
 
 window.setGameText = function (text) {
@@ -312,20 +305,20 @@ window.gameTriggerEnd = function (win) {
     if (page) {
         updateCurrentSim();
         if(totalLosses !== 0) {
-            document.getElementById("wl").innerHTML = totalWins / totalLosses;
+            document.getElementById("wl").innerHTML = (totalWins / totalLosses).toFixed(6);
         }
         updateProgBar();
-        document.getElementById("winPercent").innerHTML = String((totalWins / (totalWins + totalLosses)) * 100) + "%";
+        document.getElementById("winPercent").innerHTML = String(((totalWins / (totalWins + totalLosses)) * 100).toFixed(2)) + "%";
         document.getElementById("montyOpenedPrize").innerHTML = montyOpenedPrize;
         document.getElementById("winsWithSwitch").innerHTML = totalWinsSwitch;
         document.getElementById("lossesWithSwitch").innerHTML = totalLossesSwitch;
         document.getElementById("totalWithSwitch").innerHTML = totalWinsSwitch + totalLossesSwitch;
-        document.getElementById("winPercentWithSwitch").innerHTML = String((totalWinsSwitch / (totalWinsSwitch + totalLossesSwitch)) * 100) + "%";
+        document.getElementById("winPercentWithSwitch").innerHTML = (totalWinsSwitch + totalLossesSwitch !== 0) ?
+        String(((totalWinsSwitch / (totalWinsSwitch + totalLossesSwitch)) * 100).toFixed(2)) + "%" : "-";
     }
     else {
         document.getElementById("resetButton").style.visibility = "visible";
     }
-    console.log("end of gameState " + gameState);
 }
 
 window.gameReset = function () {
@@ -385,12 +378,12 @@ window.updateTotalSims = function (newTotal) {
     totalSims = newTotal;
     document.getElementById("wins").innerHTML = totalWins;
     document.getElementById("losses").innerHTML = totalLosses;
-    document.getElementById("wl").innerHTML = isNaN(totalWins / totalLosses) ? "-" : totalWins / totalLosses;
+    document.getElementById("wl").innerHTML = isNaN(totalWins / totalLosses) ? "-" : (totalWins / totalLosses).toFixed(6);
     updateCurrentSim();
     updateProgBar();
 }
 
-window.updateProgBar = function (newTotal) {
+window.updateProgBar = function () {
     document.getElementById("progBarSpan").style.width = Math.min((100 * simsRuns / totalSims), 100) + "%";
     if(simsRuns >= totalSims) {
         document.getElementById("progBarSpan").style.borderTopRightRadius = "20px";

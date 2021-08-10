@@ -80,15 +80,15 @@
                             <span>Wins: <span id="wins">0</span></span>
                             <span>Losses: <span id="losses">0</span></span>
                             <span>W/L: <span id="wl">-</span></span>
-                            <span>Win%: <span id="winPercent">-</span> </span>
-                            <span>MontyOpenedPrize: <span id="montyOpenedPrize">0</span> </span>
+                            <span>Win %: <span id="winPercent">-</span> </span>
+                            <span>Monty Opened Prize: <span id="montyOpenedPrize">0</span> </span>
                         </div>
                         <p id="switchTitleText">Stats when player DID get a chance to switch:</p>
                         <div id="wlNumsSwitch">
                             <span>Wins: <span id="winsWithSwitch">0</span> </span>
                             <span>Losses: <span id="lossesWithSwitch">0</span> </span>
                             <span>Total: <span id="totalWithSwitch">10</span> </span>
-                            <span>Win%: <span id="winPercentWithSwitch">-</span> </span>
+                            <span>Win %: <span id="winPercentWithSwitch">-</span> </span>
                         </div>
                         <br/>
                         <button id="resetBtn" onclick="simReset()">Reset</button>
