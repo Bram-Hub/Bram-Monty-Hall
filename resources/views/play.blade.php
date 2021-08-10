@@ -19,6 +19,7 @@
             <!-- <img src='img/monty.jpeg' width=200 height=150>
             <p>Open a door by clicking on it</p> -->
         </div>
+        <button id="resetButton" onclick="gameReset()">Reset</button>
         <x-footer/>
     </body>
 </html>

@@ -50,6 +50,12 @@ window.addEventListener('load', () => {
 })
 
   window.playDoor = function(doorClicked) {
+    console.log("play door " + doorClicked)
+    console.log("gameState " + gameState);
+    console.log("clicked " + clicked);
+    console.log("firstDoor " + firstDoor);
+    console.log("montyOpenDoor " + montyOpenDoor);
+    console.log("secondDoor " + secondDoor);
     if (!clicked && gameState == 0) {
         clicked = true;
         firstDoor = doorClicked;
@@ -74,6 +80,7 @@ window.addEventListener('load', () => {
             gameTriggerEnd(doorClicked == prizeDoor);
         }, 700)
     }
+    console.log("play door " + doorClicked + "   gameState " + gameState);
 }
 
 window.setGameText = function (text) {
@@ -289,16 +296,13 @@ window.gameTriggerEnd = function (win) {
     openAllDoors();
     simsRuns++;
     if(win) {
-        // console.log("You won");
         setGameText(document.getElementById("gameText").innerHTML + " You won.");
         if (page) {
             totalWins++;
             document.getElementById("wins").innerHTML = totalWins;
         }
-
     }
     else {
-        // console.log("You lost");
         setGameText(document.getElementById("gameText").innerHTML + " You lost.");
         if (page) {
             totalLosses++;
@@ -318,6 +322,10 @@ window.gameTriggerEnd = function (win) {
         document.getElementById("totalWithSwitch").innerHTML = totalWinsSwitch + totalLossesSwitch;
         document.getElementById("winPercentWithSwitch").innerHTML = String((totalWinsSwitch / (totalWinsSwitch + totalLossesSwitch)) * 100) + "%";
     }
+    else {
+        document.getElementById("resetButton").style.visibility = "visible";
+    }
+    console.log("end of gameState " + gameState);
 }
 
 window.gameReset = function () {
@@ -327,6 +335,13 @@ window.gameReset = function () {
     deselectDoors();
     closeAllDoors();
     setGameText("Pick a door.");
+    if(!page) {
+        document.getElementById("resetButton").style.visibility = "hidden";
+        clicked = false;
+        firstDoor = -1;
+        montyOpenDoor = -1;
+        secondDoor = -1;
+    }
 }
 
 window.simReset = function () {
