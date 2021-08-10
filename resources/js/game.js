@@ -91,7 +91,7 @@ window.updatePrizeBorder = function () {
         document.getElementById("door" + (i + 1) + "btn").style.border = "solid 10px white";
     }
     if(showPrize == true) {
-        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px green";
+        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px #9fff9c";
     }
 }
 
