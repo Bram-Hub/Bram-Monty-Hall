@@ -192,10 +192,10 @@ window.gameStandardMonty = function () {
 
 // DONE
 window.gameIgnorantMonty = function () {
-  do {
-      montyOpenDoor = Math.floor(Math.random() * 3);
-  } while (montyOpenDoor == firstDoor);
-  return true;
+    do {
+        montyOpenDoor = Math.floor(Math.random() * 3);
+    } while (montyOpenDoor == firstDoor);
+    return true;
 }
 
 // DONE
