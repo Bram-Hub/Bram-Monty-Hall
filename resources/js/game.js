@@ -1,9 +1,9 @@
 var gameState = 0;
 var states = ["firstMove", "montyMove", "secondMove", "end"];
-var montyVariant = document.getElementById("montySelect").value;
+var montyVariant;// = document.getElementById("montySelect").value;
 var simsRuns = 0;
-var totalSims = document.getElementById("simCountBox").value;
-document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
+var totalSims;// = document.getElementById("simCountBox").value;
+//document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
 var firstDoor = -1;
 var montyOpenDoor = -1;
 var secondDoor = -1;
@@ -13,8 +13,69 @@ var totalLosses = 0;
 var montyOpenedPrize = 0;
 var totalWinsSwitch = 0;
 var totalLossesSwitch = 0;
-var playerSwitch = document.getElementById("switchCheck").checked;
-var showPrize = document.getElementById("prizeCheck").checked;
+var playerSwitch;// = document.getElementById("switchCheck").checked;
+var showPrize;// = document.getElementById("prizeCheck").checked;
+var page; //true for research, false for play
+var clicked;
+var animSpeed = 0;
+
+//determine whether on play page or research page
+window.addEventListener('load', () => {
+    if (window.document.documentURI.includes("research")) {
+        console.log("Research Page")
+        page = true;
+        montyVariant = document.getElementById("montySelect").value;
+        totalSims = document.getElementById("simCountBox").value;
+        document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
+        playerSwitch = document.getElementById("switchCheck").checked;
+        showPrize = document.getElementById("prizeCheck").checked;
+        gameSetPrizeDoor();
+    }
+    else {
+        console.log("Play Page")
+        page = false;
+        //randomize the monty type and prize door
+        var randomMonty = Math.floor(Math.random() * 5);
+        var montyDict = {
+            0: "Standard Monty",
+            1: "Ignorant Monty",
+            2: "Angelic Monty",
+            3: "Evil Monty",
+            4: "Monty from Hell"
+        }
+        montyVariant = montyDict[randomMonty];
+        prizeDoor = Math.floor(Math.random() * 3);
+        console.log(montyDict[randomMonty] + " Prize Door: " + String(prizeDoor + 1));
+        clicked = false;
+    }
+})
+
+  window.playDoor = function(doorClicked) {
+    if (!clicked && gameState == 0) {
+        clicked = true;
+        firstDoor = doorClicked;
+        selectDoor(firstDoor, "#fffd6b");
+        setTimeout(function() {
+            gameMontyMove();
+            clicked = false;
+            gameState = 2;
+        }, 700);
+    }
+    else if (!clicked && doorClicked != montyOpenDoor) { //implies secondMove
+        clicked = true;
+        if (doorClicked == firstDoor) {
+            //did not switch
+            playerSwitch = false;
+        }
+        else {
+            playerSwitch = true;
+        }
+        gameSecondMove();
+        setTimeout(function() {
+            gameTriggerEnd(doorClicked == prizeDoor);
+        }, 700)
+    }
+}
 
 window.setGameText = function (text) {
     document.getElementById("gameText").innerHTML = text;
@@ -30,16 +91,18 @@ window.updatePrizeBorder = function () {
         document.getElementById("door" + (i + 1) + "btn").style.border = "solid 10px white";
     }
     if(showPrize == true) {
-        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px red";
+        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px #9fff9c";
     }
 }
 
 window.gameSetPrizeDoor = function () {
     prizeDoor = Math.floor(Math.random() * 3);
-    updatePrizeBorder();
+    if(page) {
+        updatePrizeBorder();
+    }
 }
 
-gameSetPrizeDoor();
+//gameSetPrizeDoor();
 
 window.setShowPrize = function (value) {
     showPrize = value;
@@ -115,7 +178,7 @@ window.switchDoors = function() {
 
 window.gameFirstMove = function () {
     firstDoor = Math.floor(Math.random() * 3);
-    selectDoor(firstDoor, "yellow");
+    selectDoor(firstDoor, "#fffd6b");
     setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
 }
 
@@ -192,7 +255,7 @@ window.gameMontyMove = function () {
     if(gameDetermineMontyMove() == true) {
         // console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
         openDoor(montyOpenDoor);
-        selectDoor(montyOpenDoor, "cyan");
+        selectDoor(montyOpenDoor, "#bffaff");
         if(montyOpenDoor == prizeDoor) {
             // console.log("You lost -mmmmmmmmmmmmmmm");
             montyOpenedPrize++;
@@ -200,7 +263,6 @@ window.gameMontyMove = function () {
             gameTriggerEnd(false);
             return true;
         }
-
         setGameText(`Monty opened door ${montyOpenDoor + 1}. Will you switch?`);
     }
     // if Monty didn't open a door and won't allow a switch
@@ -222,7 +284,7 @@ window.gameSecondMove = function () {
         setGameText(`You chose to stick with door ${firstDoor + 1}.`);
     }
     selectDoor(firstDoor, "white");
-    selectDoor(secondDoor, "yellow");
+    selectDoor(secondDoor, "#fffd6b");
 }
 
 window.gameTriggerEnd = function (win) {
@@ -230,28 +292,39 @@ window.gameTriggerEnd = function (win) {
     openAllDoors();
     simsRuns++;
     if(win) {
-        // console.log("You won");
         setGameText(document.getElementById("gameText").innerHTML + " You won.");
-        totalWins++;
-        document.getElementById("wins").innerHTML = totalWins;
+        if (page) {
+            totalWins++;
+            document.getElementById("wins").innerHTML = totalWins;
+        }
     }
     else {
-        console.log("You lost at", totalSims);
         setGameText(document.getElementById("gameText").innerHTML + " You lost.");
-        totalLosses++;
-        document.getElementById("losses").innerHTML = totalLosses;
+        if (page) {
+            totalLosses++;
+            document.getElementById("losses").innerHTML = totalLosses;
+        }
     }
-    updateCurrentSim();
-    if(totalLosses !== 0) {
-        document.getElementById("wl").innerHTML = totalWins / totalLosses;
+    if(page) {
+        updateCurrentSim();
+        if(totalLosses !== 0) {
+            document.getElementById("wl").innerHTML = (totalWins / totalLosses).toFixed(6);
+        }
+        updateProgBar();
+        document.getElementById("winPercent").innerHTML = String(((totalWins / (totalWins + totalLosses)) * 100).toFixed(2)) + "%";
+        document.getElementById("montyOpenedPrize").innerHTML = montyOpenedPrize;
+        document.getElementById("winsWithSwitch").innerHTML = totalWinsSwitch;
+        document.getElementById("lossesWithSwitch").innerHTML = totalLossesSwitch;
+        document.getElementById("totalWithSwitch").innerHTML = totalWinsSwitch + totalLossesSwitch;
+        document.getElementById("winPercentWithSwitch").innerHTML = (totalWinsSwitch + totalLossesSwitch !== 0) ?
+        String(((totalWinsSwitch / (totalWinsSwitch + totalLossesSwitch)) * 100).toFixed(2)) + "%" : "-";
     }
-    updateProgBar();
-    document.getElementById("winPercent").innerHTML = String((totalWins / (totalWins + totalLosses)) * 100) + "%";
-    document.getElementById("montyOpenedPrize").innerHTML = montyOpenedPrize;
-    document.getElementById("winsWithSwitch").innerHTML = totalWinsSwitch;
-    document.getElementById("lossesWithSwitch").innerHTML = totalLossesSwitch;
-    document.getElementById("totalWithSwitch").innerHTML = totalWinsSwitch + totalLossesSwitch;
-    document.getElementById("winPercentWithSwitch").innerHTML = String((totalWinsSwitch / (totalWinsSwitch + totalLossesSwitch)) * 100) + "%";
+    else {
+        document.getElementById("resetButton").style.visibility = "visible";
+        for(var i = 0; i < 3; i++) {
+            document.getElementById("door" + (i + 1)).disabled = true;
+        }
+    }
 }
 
 window.gameReset = function () {
@@ -261,6 +334,16 @@ window.gameReset = function () {
     deselectDoors();
     closeAllDoors();
     setGameText("Pick a door.");
+    if(!page) {
+        document.getElementById("resetButton").style.visibility = "hidden";
+        clicked = false;
+        firstDoor = -1;
+        montyOpenDoor = -1;
+        secondDoor = -1;
+        for(var i = 0; i < 3; i++) {
+            document.getElementById("door" + (i + 1)).disabled = false;
+        }
+    }
 }
 
 window.simReset = function () {
@@ -304,12 +387,16 @@ window.updateTotalSims = function (newTotal) {
     totalSims = newTotal;
     document.getElementById("wins").innerHTML = totalWins;
     document.getElementById("losses").innerHTML = totalLosses;
-    document.getElementById("wl").innerHTML = isNaN(totalWins / totalLosses) ? "-" : totalWins / totalLosses;
+    document.getElementById("wl").innerHTML = isNaN(totalWins / totalLosses) ? "-" : (totalWins / totalLosses).toFixed(6);
     updateCurrentSim();
     updateProgBar();
 }
 
-window.updateProgBar = function (newTotal) {
+window.updateAnimSpeed = function (newSpeed) {
+    animSpeed = newSpeed;
+}
+
+window.updateProgBar = function () {
     document.getElementById("progBarSpan").style.width = Math.min((100 * simsRuns / totalSims), 100) + "%";
     if(simsRuns >= totalSims) {
         document.getElementById("progBarSpan").style.borderTopRightRadius = "20px";
@@ -366,8 +453,11 @@ window.gameNext = function () {
     } while(gameState !== states.length - 1);
 }
 
-window.gameRunAll = function () {
-    // console.log("just clicked run all:")
+window.sleep = function(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+window.gameRunAll = async function () {
     if(simsRuns >= totalSims) {
         // console.log("Cannot step: finished simulations");
         return;
@@ -375,6 +465,6 @@ window.gameRunAll = function () {
     while(simsRuns < totalSims) {
         // console.log("current sims run:", simsRuns);
         window.gameNext();
+        await sleep(animSpeed !== 0 ? 200 / animSpeed : animSpeed);
     }
-    // console.log("just finished run all:")
 }
