@@ -17,6 +17,7 @@ var playerSwitch;// = document.getElementById("switchCheck").checked;
 var showPrize;// = document.getElementById("prizeCheck").checked;
 var page; //true for research, false for play
 var clicked;
+var animSpeed = 0;
 
 //determine whether on play page or research page
 window.addEventListener('load', () => {
@@ -53,7 +54,7 @@ window.addEventListener('load', () => {
     if (!clicked && gameState == 0) {
         clicked = true;
         firstDoor = doorClicked;
-        selectDoor(firstDoor, "yellow");
+        selectDoor(firstDoor, "#fffd6b");
         setTimeout(function() {
             gameMontyMove();
             clicked = false;
@@ -90,13 +91,15 @@ window.updatePrizeBorder = function () {
         document.getElementById("door" + (i + 1) + "btn").style.border = "solid 10px white";
     }
     if(showPrize == true) {
-        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px red";
+        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px green";
     }
 }
 
 window.gameSetPrizeDoor = function () {
     prizeDoor = Math.floor(Math.random() * 3);
-    updatePrizeBorder();
+    if(page) {
+        updatePrizeBorder();
+    }
 }
 
 //gameSetPrizeDoor();
@@ -175,7 +178,7 @@ window.switchDoors = function() {
 
 window.gameFirstMove = function () {
     firstDoor = Math.floor(Math.random() * 3);
-    selectDoor(firstDoor, "yellow");
+    selectDoor(firstDoor, "#fffd6b");
     setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
 }
 
@@ -252,7 +255,7 @@ window.gameMontyMove = function () {
     if(gameDetermineMontyMove() == true) {
         // console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
         openDoor(montyOpenDoor);
-        selectDoor(montyOpenDoor, "cyan");
+        selectDoor(montyOpenDoor, "#bffaff");
         if(montyOpenDoor == prizeDoor) {
             // console.log("You lost -mmmmmmmmmmmmmmm");
             montyOpenedPrize++;
@@ -281,7 +284,7 @@ window.gameSecondMove = function () {
         setGameText(`You chose to stick with door ${firstDoor + 1}.`);
     }
     selectDoor(firstDoor, "white");
-    selectDoor(secondDoor, "yellow");
+    selectDoor(secondDoor, "#fffd6b");
 }
 
 window.gameTriggerEnd = function (win) {
@@ -302,7 +305,7 @@ window.gameTriggerEnd = function (win) {
             document.getElementById("losses").innerHTML = totalLosses;
         }
     }
-    if (page) {
+    if(page) {
         updateCurrentSim();
         if(totalLosses !== 0) {
             document.getElementById("wl").innerHTML = (totalWins / totalLosses).toFixed(6);
@@ -318,6 +321,9 @@ window.gameTriggerEnd = function (win) {
     }
     else {
         document.getElementById("resetButton").style.visibility = "visible";
+        for(var i = 0; i < 3; i++) {
+            document.getElementById("door" + (i + 1)).disabled = true;
+        }
     }
 }
 
@@ -334,6 +340,9 @@ window.gameReset = function () {
         firstDoor = -1;
         montyOpenDoor = -1;
         secondDoor = -1;
+        for(var i = 0; i < 3; i++) {
+            document.getElementById("door" + (i + 1)).disabled = false;
+        }
     }
 }
 
@@ -381,6 +390,10 @@ window.updateTotalSims = function (newTotal) {
     document.getElementById("wl").innerHTML = isNaN(totalWins / totalLosses) ? "-" : (totalWins / totalLosses).toFixed(6);
     updateCurrentSim();
     updateProgBar();
+}
+
+window.updateAnimSpeed = function (newSpeed) {
+    animSpeed = newSpeed;
 }
 
 window.updateProgBar = function () {
@@ -440,8 +453,11 @@ window.gameNext = function () {
     } while(gameState !== states.length - 1);
 }
 
-window.gameRunAll = function () {
-    // console.log("just clicked run all:")
+window.sleep = function(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+window.gameRunAll = async function () {
     if(simsRuns >= totalSims) {
         // console.log("Cannot step: finished simulations");
         return;
@@ -449,6 +465,6 @@ window.gameRunAll = function () {
     while(simsRuns < totalSims) {
         // console.log("current sims run:", simsRuns);
         window.gameNext();
+        await sleep(animSpeed !== 0 ? 200 / animSpeed : animSpeed);
     }
-    // console.log("just finished run all:")
 }

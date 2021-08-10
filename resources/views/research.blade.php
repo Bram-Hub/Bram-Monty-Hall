@@ -61,7 +61,8 @@
                     </div>
                     <div class="box">
                         <label for="animSpeedBox">Animation speed: <br/></label>
-                        <input type="number" id="animSpeedBox" placeholder="#" min="0" max="10000">
+                        <input type="number" id="animSpeedBox" value="1" placeholder="#" min="0" max="5"
+                            onchange="updateAnimSpeed(this.value)">
                     </div>
                 </div>
                 <div id="dataArea">
