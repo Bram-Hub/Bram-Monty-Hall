@@ -397,9 +397,7 @@ window.updateAnimSpeed = function (newSpeed) {
 }
 
 window.updateProgBar = function () {
-    console.log("progbar", Math.min((100 * simsRuns / totalSims), 100) + "%");
     document.getElementById("progBarSpan").style.width = Math.min((100 * simsRuns / totalSims), 100) + "%";
-    console.log(document.getElementById("progBarSpan").style.width);
     if(simsRuns >= totalSims) {
         document.getElementById("progBarSpan").style.borderTopRightRadius = "20px";
         document.getElementById("progBarSpan").style.borderBottomRightRadius = "20px";
