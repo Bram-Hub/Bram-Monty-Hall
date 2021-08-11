@@ -17,6 +17,11 @@
 #game {
     text-align: center;
     align-items: center;
+    background-color: #bbb;
+}
+
+#gameText {
+    padding-top: 25px;
 }
 
 #settingsArea {
@@ -67,6 +72,10 @@
     border-radius: 5px;
 }
 
+#switchCheck {
+    width: 95px;
+}
+
 .box button {
     background-color: #1180f1;
     border: none;
@@ -80,7 +89,7 @@
 }
 
 .box button:hover {
-	background-color: indigo;
+    background-color: indigo;
     border: indigo;
 }
 
@@ -137,8 +146,7 @@
     height: 20px;
     position: relative;
     background: #555;
-    border-radius: 25px;
-    padding: 10px;
+    border-radius: 20px;
     margin: 20px 0px;
     box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
 }
@@ -157,16 +165,26 @@
     overflow: hidden;
 }
 
-#wlNums {
+#wlNums, #wlNumsSwitch {
     border: solid;
     border-color: grey;
     border-radius: 5px;
     padding: 20px;
     width: 200 px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-#wlNums span {
+#wlNums span,
+#wlNumsSwitch span {
     margin: 10px;
+}
+
+#switchTitleText {
+    font-size: 17px;
+    font-family: OpenSans;
+    margin: 12px 0px 12px 5px;
 }
 
 .door {
@@ -181,4 +199,9 @@
 
 .center {
     text-align: center;
+}
+
+#display_div_id {
+    color: white;
+    font-size: 20px;
 }

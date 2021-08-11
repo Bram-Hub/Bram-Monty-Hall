@@ -1,0 +1,27 @@
+button {
+    background-color: inherit;
+}
+
+#container {
+    text-align: center;
+}
+
+#resetButton {
+    background-color: #1180f1;
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    margin: auto;
+    margin-top: 10px;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    outline: none;
+    border-radius: 10px;
+    display: block;
+    visibility: hidden;
+}
+
+#resetButton:hover {
+    background-color: indigo;
+    border: indigo;
+}
