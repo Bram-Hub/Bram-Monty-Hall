@@ -5,7 +5,6 @@
     <div class="tabWrapper flex items-center">
         <button wire:click="switchTab('play')" class="{{ $tab == 'play' ? 'tabWrapperActive' : '' }}">Play Mode Data</button>
         <button wire:click="switchTab('sim')" class="{{ $tab == 'sim' ? 'tabWrapperActive' : '' }}">Simulation Data</button>
-        <button wire:click="switchTab('both')" class="{{ $tab == 'both' ? 'tabWrapperActive' : '' }}">Both</button>
     </div>
 
     <table class="styledTable mt-4 w-full">
@@ -24,14 +23,6 @@
                     <th>Total Losses</th>
                     <th>Total Wins</th>
                     <th>Total Simulations</th>
-                @else
-                    <th>Title1</th>
-                    <th>Title1</th>
-                    <th>Title1</th>
-                    <th>Title1</th>
-                    <th>Title1</th>
-                    <th>Title1</th>
-                    <th>Title1</th>
                 @endif
             </tr>
         </thead>
@@ -50,23 +41,13 @@
                     <tr>
                         <td>{{ $simulation->id }}</td>
                         <td>{{ $simulation->monty->type }}</td>
-                        <td>{{ $simulation->wins_switches }}</td>
+                        <td>{{ $simulation->wins_switched }}</td>
                         <td>{{ $simulation->total_switches }}</td>
                         <td>{{ $simulation->total_losses }}</td>
                         <td>{{ $simulation->total_wins }}</td>
                         <td>{{ $simulation->total_simulations }}</td>
                     </tr>
                 @endforeach
-            @else
-                <tr>
-                    <td>Data1</td>
-                    <td>Data1</td>
-                    <td>Data1</td>
-                    <td>Data1</td>
-                    <td>Data1</td>
-                    <td>Data1</td>
-                    <td>Data1</td>
-                </tr>
             @endif
         </tbody>
     </table> 
