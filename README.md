@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="http://scer.rpi.edu/sites/default/files/logo-with-tag.jpg" width="400"></a></p>
+<p align="center"><a href="https://www.rpi.edu/" target="_blank"><img src="http://scer.rpi.edu/sites/default/files/logo-with-tag.jpg" width="400"></a></p>
 
 # Developer Installation Guide
 The website is currently being hosted on Heroku with a Laravel backend implementation and MySQL as the database. As such, backend developers will need to install PHP7, Composer, MySQL, and Git. Frontend developers will need to install PHP7, Composer, Node.js, NPM, and Git.
@@ -10,10 +10,19 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 ## Install PHP
 
 ### Windows
-1. Head to the official [PHP](https://www.php.net/downloads.php) download page and down the current stable PHP7 version.
-2. Extract the folder on your desktop.
-3. Run `php.exe`
-4. Open `command prompt` and verify installation by running `php --verison`
+1. Head to the official [PHP](https://windows.php.net/download#php-7.4) download page and download the current stable PHP7 version. It is recommend to install the `VC15 x64 Thread Safe` version.
+2. Extract the folder on your desktop. Rename it to `php7`
+3. Rename the file `php.ini-development` to `php.ini`
+4. Open the `php.ini` file in NotePad and change `memory_limit` to `1G`
+5. Remove `;` for the following lines `extension_dir = "ext"`, `extension=curl`, `extension=gd2`, `extension=mbstring`, `extension=openssl`, `extension=pdo_mysql`, `extension=sockets` and `extension=pdo_sqlite`
+6. Place the `php7` folder in `C:\Program Files`
+7. In the Windows Search, type in `system variables` and a Control Panel result should appear titled `Edit the system environment variables`
+8. Click `Environment Variables...`
+9. Under `System Variables` click on `Path` and then click `edit`.
+10. Click `new` and enter in the box `C:\Program Files\php7`
+11. Save your changes and exit the windows
+12. Open `command prompt` and verify installation by running `php --verison`
+
 
 ### Mac
 1. Download the [brew](https://docs.brew.sh/Installation) package manager for Mac
@@ -23,8 +32,12 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 ### Debian/Ubuntu
 1. Open terminal and run the following command `sudo apt install php libapache2-mod-php`
 2. Verify installation by running `php -v`
+3. Install php-mysql package through apt as well: `sudo apt install php-mysql`
 
 ## Install MySQL
+
+### Windows
+TBD
 
 ### Debian/Ubuntu
 1. Open the terminal and issue the following command: `sudo apt install mysql-server`
@@ -36,10 +49,20 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 2. Run in Terminal `brew install mysql`
 2. Verify the package is installed by running `mysql --version`
 
-### Windows
-1. TBD
-
 ## Install Composer
+
+### Windows
+1. Download and run the [composer](https://getcomposer.org/doc/00-intro.md#installation-windows) install file
+2. When prompted, please check `Update this php.ini`
+3. Open command prompt and test installation by running `composer`
+4. Open the Monty-Hall Git Clone in command prompt (typically run `cd Documents\GitHub\Monty-Hall`) and run `composer install --ignore-platform-reqs`
+
+### Debian / Ubuntu
+1. Open the terminal and run the following: `sudo apt install composer`
+2. Check to see that composer was installed successfully: `composer --version`
+3. CD to the Monty-Hall directory in terminal, and run `composer install`
+
+### Mac
 TBD
 
 ## Install Node.js and NPM
