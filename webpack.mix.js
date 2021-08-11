@@ -13,7 +13,9 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/game.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css')
+    .postCss("resources/css/app.css", 'public/css', [
+        require("tailwindcss"),
+    ])
     .postCss('resources/css/education.css', 'public/css')
     .postCss('resources/css/navigation.css', 'public/css')
     .postCss('resources/css/database.css', 'public/css')
