@@ -1,7 +1,7 @@
 <p align="center"><a href="https://www.rpi.edu/" target="_blank"><img src="http://scer.rpi.edu/sites/default/files/logo-with-tag.jpg" width="400"></a></p>
 
 # Developer Installation Guide
-The website is currently being hosted on Heroku with a Laravel backend implementation and MySQL as the database. As such, backend developers will need to install PHP7, Composer, MySQL, and Git. Frontend developers will need to install PHP7, Composer, and Git.
+The website is currently being hosted on Heroku with a Laravel backend implementation and MySQL as the database. As such, backend developers will need to install PHP7, Composer, MySQL, and Git. Frontend developers will need to install PHP7, Composer, Node.js, NPM, and Git.
 
 ## Installing Git
 1. For easy installation, it is recommend to install the [GitHub Desktop](https://desktop.github.com/) Client for Mac and Windows Machines
@@ -65,14 +65,37 @@ TBD
 ### Mac
 TBD
 
+## Install Node.js and NPM
+Make sure that the versions are Node.js 14.X.X and NPM 6.X.X. These can be installed with installers, by compiling from source, or with package managers.
+
+### Installer / Source
+Use either an installer (Windows or Mac) or the binaries or source code (Linux) from [here](https://nodejs.org/en/download/) to set up Node.js and NPM:
+
+### Package Manager
+For instructions to download with a package manager instead, see [here](https://nodejs.org/en/download/package-manager/). Node.js and NPM should come together.
+
+### Verification
+To verify that both have installed correctly, run the following commands;
+
+`node -v`
+
+This should print a variation of `v14.X.X`
+
+`npm -v`
+
+This should print a variation of `6.X.X`
+
 ## Running a local Laravel server
 Laravel comes built-in with the ability to run a local webserver using just PHP. In order to run a local version of the website and see your changes, please clone the Git repository. 
-1. Open the Monty-Hall Git Clone in file manager (typically stored in `Documents\GitHub\Monty-Hall`)
-2. Duplicate the `.env.example` file and rename it to `.env`
-3. Open the `.env` you just renamed in a text editor (On Windows, use Notepad). Change `APP_NAME` to `Monty-Hall` and save/close.
-4. Open the Monty-Hall Git Clone in command prompt/terminal (typically run `cd Documents\GitHub\Monty-Hall`)
-5. Run `php artisan key:generate` to generate a valid `APP_KEY`
-6. Run `php artisan serve` and copy the server address in a web browser to view the website :) 
+
+### Setting up the Laravel environment
+1. Open the root file directory of the project using your terminal (`cd location\of\your\folder`)
+2. Copy the file `.env.example` and rename it as `.env`, make sure this file is hidden!
+3. Run `composer install` to install required packages
+4. Run `php aritsan generate:key` to generate a valid `APP_KEY`
+5. Run `npm install` to install NPM-related dependencies (for Laravel Mix)
+6. Run `npm run dev` to compile front-end assets
+7. Run `php artisan serve` to actually run the webserver. Use this command after setup.
 
 # Learning Laravel
 
