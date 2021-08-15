@@ -5,7 +5,6 @@
     <div class="tabWrapper flex items-center">
         <button wire:click="switchTab('play')" class="{{ $tab == 'play' ? 'tabWrapperActive' : '' }}">Play Mode Data</button>
         <button wire:click="switchTab('sim')" class="{{ $tab == 'sim' ? 'tabWrapperActive' : '' }}">Simulation Data</button>
-        <!-- <button wire:click="add()">CLICK ME</button> -->
     </div>
 
     <table class="styledTable mt-4 w-full">

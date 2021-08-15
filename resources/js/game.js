@@ -16,7 +16,6 @@ var totalLossesSwitch = 0;
 var playerSwitch;// = document.getElementById("switchCheck").checked;
 var showPrize;// = document.getElementById("prizeCheck").checked;
 var page; //true for research, false for play
-var clicked;
 var animSpeed = 0;
 
 //determine whether on play page or research page
@@ -35,8 +34,7 @@ window.addEventListener('load', () => {
         console.log("Play Page")
         page = false;
         //randomize the monty type and prize door
-        //var randomMonty = Math.floor(Math.random() * 5);
-        var randomMonty = 4;
+        var randomMonty = Math.floor(Math.random() * 5);
         var montyDict = {
             0: "Standard Monty",
             1: "Ignorant Monty",
@@ -47,24 +45,23 @@ window.addEventListener('load', () => {
         montyVariant = montyDict[randomMonty];
         prizeDoor = Math.floor(Math.random() * 3);
         console.log(montyVariant + " Prize Door: " + String(prizeDoor + 1));
-        clicked = false;
     }
 })
 
   window.playDoor = function(doorClicked) {
-    if (!clicked && gameState == 0) {
-        clicked = true;
+    if (gameState == 0) {
+        window.livewire.emit('disable-switch', "disabled");
         firstDoor = doorClicked;
-        //selectDoor(firstDoor, "#fffd6b");
-        selectDoor(firstDoor, "yellow");
+        selectDoor(firstDoor, "yellow"); //#fffd6b
         setTimeout(function() {
-            gameMontyMove();
-            clicked = false;
+            if (!gameMontyMove()) {
+                window.livewire.emit('disable-switch', "");
+            }
             gameState = 2;
         }, 700);
     }
-    else if (!clicked && doorClicked != montyOpenDoor) { //implies secondMove
-        clicked = true;
+    else if (doorClicked != montyOpenDoor) { //implies secondMove
+        window.livewire.emit('disable-switch', "disabled");
         if (doorClicked == firstDoor) {
             //did not switch
             playerSwitch = false;
@@ -192,8 +189,7 @@ window.switchDoors = function() {
 
 window.gameFirstMove = function () {
     firstDoor = Math.floor(Math.random() * 3);
-    //selectDoor(firstDoor, "#fffd6b");
-    selectDoor(firstDoor, "yellow");
+    selectDoor(firstDoor, "yellow"); //#fffd6b
     setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
 }
 
@@ -270,8 +266,7 @@ window.gameMontyMove = function () {
     if(gameDetermineMontyMove() == true) {
         // console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
         openDoor(montyOpenDoor);
-        //selectDoor(montyOpenDoor, "#bffaff");
-        selectDoor(montyOpenDoor, "blue");
+        selectDoor(montyOpenDoor, "blue"); //#bffaff
         if(montyOpenDoor == prizeDoor) {
             // console.log("You lost -mmmmmmmmmmmmmmm");
             montyOpenedPrize++;
@@ -300,8 +295,7 @@ window.gameSecondMove = function () {
         setGameText(`You chose to stick with door ${firstDoor + 1}.`);
     }
     selectDoor(firstDoor, "white");
-    //selectDoor(secondDoor, "#fffd6b");
-    selectDoor(secondDoor, "yellow");
+    selectDoor(secondDoor, "yellow"); //#fffd6b
 }
 
 window.gameTriggerEnd = function (win) {
@@ -340,9 +334,10 @@ window.gameTriggerEnd = function (win) {
     }
     else {
         document.getElementById("resetButton").style.visibility = "visible";
-        for(var i = 0; i < 3; i++) {
+        /*for(var i = 0; i < 3; i++) {
             document.getElementById("door" + (i + 1) + "btn").disabled = true;
-        }
+        }*/
+        window.livewire.emit('disable-switch', "disabled");
     }
     var montyDict = {
         "Standard Monty": 1,
@@ -367,13 +362,13 @@ window.gameReset = function () {
     setGameText("Pick a door.");
     if(!page) {
         document.getElementById("resetButton").style.visibility = "hidden";
-        clicked = false;
         firstDoor = -1;
         montyOpenDoor = -1;
         secondDoor = -1;
-        for(var i = 0; i < 3; i++) {
+        /*for(var i = 0; i < 3; i++) {
             document.getElementById("door" + (i + 1) + "btn").disabled = false;
-        }
+        }*/
+        window.livewire.emit('disable-switch', "");
         console.log(montyVariant + " Prize Door: " + String(prizeDoor + 1));
     }
 }

@@ -8,7 +8,7 @@ use App\Models\Game;
 class Play extends Component
 {
     protected $cookie = 1;
-    protected $listeners = ['add-to-database' => 'addToDatabase', 'set-game-text' => 'setGameText', 'set-img-src' => 'setImgSrc', 'set-background-color' => 'setBtnBackgroundColor'];
+    protected $listeners = ['add-to-database' => 'addToDatabase', 'set-game-text' => 'setGameText', 'set-img-src' => 'setImgSrc', 'set-background-color' => 'setBtnBackgroundColor', 'disable-switch' => 'disableSwitch'];
     public $gameText = "Pick a door";
     public $door1imgsrc = "img/closedDoor.png";
     public $door2imgsrc = "img/closedDoor.png";
@@ -16,6 +16,7 @@ class Play extends Component
     public $door1backgroundcolor = "white";
     public $door2backgroundcolor = "white";
     public $door3backgroundcolor = "white";
+    public $disabled = "";
 
     public function render()
     {
@@ -53,6 +54,11 @@ class Play extends Component
         } elseif ($door == 3) {
             $this->door3backgroundcolor = $color;
         }
+    }
+
+    public function disableSwitch($text)
+    {
+        $this->disabled = $text;
     }
 
     public function addToDatabase($d)
