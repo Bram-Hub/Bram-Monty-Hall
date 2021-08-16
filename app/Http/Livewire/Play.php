@@ -63,13 +63,26 @@ class Play extends Component
 
     public function addToDatabase($d)
     {
-        $data = [
-            'cookie_id' => $this->cookie,
-            'monty_id' => $d['monty_id'],
-            'door_picked' => $d['door_picked'],
-            'door_opened' => $d['door_opened'],
-            'door_car' => $d['door_car']
-        ];
+        if(array_key_exists('door_switched', $d)) {
+            $data = [
+                'cookie_id' => $this->cookie,
+                'monty_id' => $d['monty_id'],
+                'door_picked' => $d['door_picked'],
+                'door_opened' => $d['door_opened'],
+                'door_car' => $d['door_car'],
+                'door_switched' => $d['door_switched']
+            ];
+        }
+        else {
+            $data = [
+                'cookie_id' => $this->cookie,
+                'monty_id' => $d['monty_id'],
+                'door_picked' => $d['door_picked'],
+                'door_opened' => $d['door_opened'],
+                'door_car' => $d['door_car']
+            ];
+        }
+        
         $this->cookie += 1;
         Game::createGame($data);
     }

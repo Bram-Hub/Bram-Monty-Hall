@@ -347,9 +347,14 @@ window.gameTriggerEnd = function (win) {
         "Monty from Hell": 5
     }
     if (!page) {
-        var picked = (secondDoor == -1) ? (firstDoor + 1) : (secondDoor + 1);
-        window.livewire.emit('add-to-database', { monty_id: montyDict[montyVariant], door_picked: picked, door_opened: montyOpenDoor + 1, door_car: prizeDoor + 1 });
-        console.log("door_picked: " + (picked) + " door_opened: " + (montyOpenDoor + 1) + " door_car: " + (prizeDoor + 1));
+        // if a second door was picked
+        if(secondDoor != -1 && firstDoor != secondDoor) {
+            window.livewire.emit('add-to-database', { monty_id: montyDict[montyVariant], door_picked: firstDoor + 1, door_opened: montyOpenDoor + 1, door_car: prizeDoor + 1, door_switched: secondDoor + 1 });
+        }
+        // if a second door wasn't picked
+        else {
+            window.livewire.emit('add-to-database', { monty_id: montyDict[montyVariant], door_picked: firstDoor + 1, door_opened: montyOpenDoor + 1, door_car: prizeDoor + 1 });
+        }
     }
 }
 
