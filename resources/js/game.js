@@ -16,7 +16,6 @@ var totalLossesSwitch = 0;
 var playerSwitch;// = document.getElementById("switchCheck").checked;
 var showPrize;// = document.getElementById("prizeCheck").checked;
 var page; //true for research, false for play
-var clicked;
 var animSpeed = 0;
 
 //determine whether on play page or research page
@@ -45,24 +44,24 @@ window.addEventListener('load', () => {
         }
         montyVariant = montyDict[randomMonty];
         prizeDoor = Math.floor(Math.random() * 3);
-        console.log(montyDict[randomMonty] + " Prize Door: " + String(prizeDoor + 1));
-        clicked = false;
+        console.log(montyVariant + " Prize Door: " + String(prizeDoor + 1));
     }
 })
 
   window.playDoor = function(doorClicked) {
-    if (!clicked && gameState == 0) {
-        clicked = true;
+    if (gameState == 0) {
+        window.livewire.emit('disable-switch', "disabled");
         firstDoor = doorClicked;
-        selectDoor(firstDoor, "#fffd6b");
+        selectDoor(firstDoor, "yellow"); //#fffd6b
         setTimeout(function() {
-            gameMontyMove();
-            clicked = false;
+            if (!gameMontyMove()) {
+                window.livewire.emit('disable-switch', "");
+            }
             gameState = 2;
         }, 700);
     }
-    else if (!clicked && doorClicked != montyOpenDoor) { //implies secondMove
-        clicked = true;
+    else if (doorClicked != montyOpenDoor) { //implies secondMove
+        window.livewire.emit('disable-switch', "disabled");
         if (doorClicked == firstDoor) {
             //did not switch
             playerSwitch = false;
@@ -78,7 +77,7 @@ window.addEventListener('load', () => {
 }
 
 window.setGameText = function (text) {
-    document.getElementById("gameText").innerHTML = text;
+    window.livewire.emit('set-game-text', text);
 }
 
 window.updateMontyVariant = function (variant) {
@@ -88,10 +87,10 @@ window.updateMontyVariant = function (variant) {
 
 window.updatePrizeBorder = function () {
     for(var i = 0; i < 3; i++) {
-        document.getElementById("door" + (i + 1) + "btn").style.border = "solid 10px white";
+        window.livewire.emit('set-border-color', i + 1, "white");
     }
     if(showPrize == true) {
-        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px #9fff9c";
+        window.livewire.emit('set-border-color', prizeDoor + 1, "green"); //#9fff9c
     }
 }
 
@@ -115,38 +114,38 @@ window.setPlayerSwitch = function (value) {
 
 window.openDoor = function (door) {
     if(prizeDoor == door) {
-        document.getElementById("door" + (door + 1) + "img").src = "img/carDoor.png";
+        window.livewire.emit('set-img-src', door + 1, "img/carDoor.png");
     }
     else {
-        document.getElementById("door" + (door + 1) + "img").src = "img/goatDoor.png";
+        window.livewire.emit('set-img-src', door + 1, "img/goatDoor.png");
     }
 }
 
 window.openAllDoors = function () {
     for(var i = 0; i < 3; i++) {
         if(prizeDoor == i) {
-            document.getElementById("door" + (i + 1) + "img").src = "img/carDoor.png";
+            window.livewire.emit('set-img-src', i + 1, "img/carDoor.png");
         }
         else {
-            document.getElementById("door" + (i + 1) + "img").src = "img/goatDoor.png";
+            window.livewire.emit('set-img-src', i + 1, "img/goatDoor.png");
         }
     }
 }
 
 window.selectDoor = function (door, color) {
-    document.getElementById("door" + (door + 1) + "btn").style.backgroundColor = color;
+    window.livewire.emit('set-background-color', door + 1, color);
 }
 
 window.closeAllDoors = function () {
-    document.getElementById("door1img").src = "img/closedDoor.png";
-    document.getElementById("door2img").src = "img/closedDoor.png";
-    document.getElementById("door3img").src = "img/closedDoor.png";
+    window.livewire.emit('set-img-src', 1, "img/closedDoor.png");
+    window.livewire.emit('set-img-src', 2, "img/closedDoor.png");
+    window.livewire.emit('set-img-src', 3, "img/closedDoor.png");
 }
 
 window.deselectDoors = function () {
-    document.getElementById("door1btn").style.backgroundColor = "white";
-    document.getElementById("door2btn").style.backgroundColor = "white";
-    document.getElementById("door3btn").style.backgroundColor = "white";
+    window.livewire.emit('set-background-color', 1, "white");
+    window.livewire.emit('set-background-color', 2, "white");
+    window.livewire.emit('set-background-color', 3, "white");
 }
 
 window.switchDoors = function() {
@@ -178,7 +177,7 @@ window.switchDoors = function() {
 
 window.gameFirstMove = function () {
     firstDoor = Math.floor(Math.random() * 3);
-    selectDoor(firstDoor, "#fffd6b");
+    selectDoor(firstDoor, "yellow"); //#fffd6b
     setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
 }
 
@@ -255,7 +254,7 @@ window.gameMontyMove = function () {
     if(gameDetermineMontyMove() == true) {
         // console.log(`monty picked ${montyOpenDoor} - you picked ${firstDoor}`);
         openDoor(montyOpenDoor);
-        selectDoor(montyOpenDoor, "#bffaff");
+        selectDoor(montyOpenDoor, "blue"); //#bffaff
         if(montyOpenDoor == prizeDoor) {
             // console.log("You lost -mmmmmmmmmmmmmmm");
             montyOpenedPrize++;
@@ -284,7 +283,7 @@ window.gameSecondMove = function () {
         setGameText(`You chose to stick with door ${firstDoor + 1}.`);
     }
     selectDoor(firstDoor, "white");
-    selectDoor(secondDoor, "#fffd6b");
+    selectDoor(secondDoor, "yellow"); //#fffd6b
 }
 
 window.gameTriggerEnd = function (win) {
@@ -292,14 +291,14 @@ window.gameTriggerEnd = function (win) {
     openAllDoors();
     simsRuns++;
     if(win) {
-        setGameText(document.getElementById("gameText").innerHTML + " You won.");
+        setGameText("+won");
         if (page) {
             totalWins++;
             document.getElementById("wins").innerHTML = totalWins;
         }
     }
     else {
-        setGameText(document.getElementById("gameText").innerHTML + " You lost.");
+        setGameText("+lost");
         if (page) {
             totalLosses++;
             document.getElementById("losses").innerHTML = totalLosses;
@@ -321,9 +320,22 @@ window.gameTriggerEnd = function (win) {
     }
     else {
         document.getElementById("resetButton").style.visibility = "visible";
-        for(var i = 0; i < 3; i++) {
-            document.getElementById("door" + (i + 1)).disabled = true;
-        }
+        /*for(var i = 0; i < 3; i++) {
+            document.getElementById("door" + (i + 1) + "btn").disabled = true;
+        }*/
+        //window.livewire.emit('disable-switch', "disabled");
+    }
+    var montyDict = {
+        "Standard Monty": 1,
+        "Ignorant Monty": 2,
+        "Angelic Monty": 3,
+        "Evil Monty": 4,
+        "Monty from Hell": 5
+    }
+    if (!page) {
+        var picked = (secondDoor == -1) ? (firstDoor + 1) : (secondDoor + 1);
+        window.livewire.emit('add-to-database', { monty_id: montyDict[montyVariant], door_picked: picked, door_opened: montyOpenDoor + 1, door_car: prizeDoor + 1 });
+        console.log("door_picked: " + (picked) + " door_opened: " + (montyOpenDoor + 1) + " door_car: " + (prizeDoor + 1));
     }
 }
 
@@ -336,13 +348,14 @@ window.gameReset = function () {
     setGameText("Pick a door.");
     if(!page) {
         document.getElementById("resetButton").style.visibility = "hidden";
-        clicked = false;
         firstDoor = -1;
         montyOpenDoor = -1;
         secondDoor = -1;
-        for(var i = 0; i < 3; i++) {
-            document.getElementById("door" + (i + 1)).disabled = false;
-        }
+        /*for(var i = 0; i < 3; i++) {
+            document.getElementById("door" + (i + 1) + "btn").disabled = false;
+        }*/
+        window.livewire.emit('disable-switch', "");
+        console.log(montyVariant + " Prize Door: " + String(prizeDoor + 1));
     }
 }
 
@@ -380,6 +393,21 @@ window.updateCurrentSim = function () {
     }
     else {
         document.getElementById("display_div_id").innerHTML ="Finished simulations";
+        var montyDict = {
+            "Standard Monty": 1,
+            "Ignorant Monty": 2,
+            "Angelic Monty": 3,
+            "Evil Monty": 4,
+            "Monty from Hell": 5
+        }
+        window.livewire.emit('add-to-database', {monty_id: montyDict[montyVariant],
+        behavior: playerSwitch,
+        wins_switched: playerSwitch ? totalWinsSwitch : 0,
+        total_switches: playerSwitch ? (totalWinsSwitch + totalLossesSwitch) : 0,
+        total_losses: totalLosses,
+        total_wins: totalWins,
+        total_simulations: totalSims});
+        console.log(totalLosses + " " + totalWins + " " + totalSims);
     }
 }
 
