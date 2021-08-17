@@ -197,6 +197,26 @@
     width: 30%;
 }
 
+.white {
+    background-color: #bbb;
+}
+
+.yellow {
+    background-color: #fffd6b;
+}
+
+.blue {
+    background-color: #bffaff;
+}
+
+.border-white {
+    border: 10px solid white;
+}
+
+.border-green {
+    border: 10px solid #9fff9c;
+}
+
 .center {
     text-align: center;
 }

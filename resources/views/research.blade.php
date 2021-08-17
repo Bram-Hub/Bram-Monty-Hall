@@ -5,28 +5,14 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/research.css') }}" rel="stylesheet">
         <script src="{{ URL::asset('js/game.js') }}" type="text/javascript" defer></script>
+        @livewireStyles
+        @livewireScripts
     </head>
     <body>
         <x-navigation/>
         <div class="page">
             <section class="right">
-                <section id="game">
-                    <h2 id="gameText">Pick a door.</h2>
-                    <div class="center">
-                        <button class="doorButton" id="door1btn">
-                            <img src="img/closedDoor.png" alt="Door #1" class="door" id="door1img">
-                        </button>
-                        <button class="doorButton" id="door2btn">
-                            <img src="img/closedDoor.png" alt="Door #2" class="door" id="door2img">
-                        </button>
-                        <button class="doorButton" id="door3btn">
-                            <img src="img/closedDoor.png" alt="Door #3" class="door" id="door3img">
-                        </button>
-                        <br/>
-                        <br/>
-                        <br/>
-                    </div>
-                </section>
+                @livewire('research')
             </section>
             <section class="left">
                 <div id="error"></div>

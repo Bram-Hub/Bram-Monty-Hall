@@ -17,6 +17,13 @@ var playerSwitch;// = document.getElementById("switchCheck").checked;
 var showPrize;// = document.getElementById("prizeCheck").checked;
 var page; //true for research, false for play
 var animSpeed = 0;
+var changed = false;
+var started = false;
+var lastWinsSwitched = 0;
+var lastTotalSwitches = 0;
+var lastTotalLosses = 0;
+var lastTotalWins = 0;
+var lastTotalSimulations = 0;
 
 //determine whether on play page or research page
 window.addEventListener('load', () => {
@@ -48,7 +55,7 @@ window.addEventListener('load', () => {
     }
 })
 
-  window.playDoor = function(doorClicked) {
+window.playDoor = function(doorClicked) {
     if (gameState == 0) {
         window.livewire.emit('disable-switch', "disabled");
         firstDoor = doorClicked;
@@ -77,21 +84,22 @@ window.addEventListener('load', () => {
 }
 
 window.setGameText = function (text) {
-    //document.getElementById("gameText").innerHTML = text;
     window.livewire.emit('set-game-text', text);
 }
 
 window.updateMontyVariant = function (variant) {
     montyVariant = variant;
-    // console.log('montyVariant', montyVariant);
+    if(started) {
+        changed = true;
+    }
 }
 
 window.updatePrizeBorder = function () {
     for(var i = 0; i < 3; i++) {
-        document.getElementById("door" + (i + 1) + "btn").style.border = "solid 10px white";
+        window.livewire.emit('set-border-color', i + 1, "white");
     }
     if(showPrize == true) {
-        document.getElementById("door" + (prizeDoor + 1) + "btn").style.border = "solid 10px #9fff9c";
+        window.livewire.emit('set-border-color', prizeDoor + 1, "green"); //#9fff9c
     }
 }
 
@@ -102,8 +110,6 @@ window.gameSetPrizeDoor = function () {
     }
 }
 
-//gameSetPrizeDoor();
-
 window.setShowPrize = function (value) {
     showPrize = value;
     updatePrizeBorder();
@@ -111,15 +117,16 @@ window.setShowPrize = function (value) {
 
 window.setPlayerSwitch = function (value) {
     playerSwitch = value;
+    if(started) {
+        changed = true;
+    }
 }
 
 window.openDoor = function (door) {
     if(prizeDoor == door) {
-        //document.getElementById("door" + (door + 1) + "img").src = "img/carDoor.png";
         window.livewire.emit('set-img-src', door + 1, "img/carDoor.png");
     }
     else {
-        //document.getElementById("door" + (door + 1) + "img").src = "img/goatDoor.png";
         window.livewire.emit('set-img-src', door + 1, "img/goatDoor.png");
     }
 }
@@ -127,34 +134,25 @@ window.openDoor = function (door) {
 window.openAllDoors = function () {
     for(var i = 0; i < 3; i++) {
         if(prizeDoor == i) {
-            //document.getElementById("door" + (i + 1) + "img").src = "img/carDoor.png";
             window.livewire.emit('set-img-src', i + 1, "img/carDoor.png");
         }
         else {
-            //document.getElementById("door" + (i + 1) + "img").src = "img/goatDoor.png";
             window.livewire.emit('set-img-src', i + 1, "img/goatDoor.png");
         }
     }
 }
 
 window.selectDoor = function (door, color) {
-    //document.getElementById("door" + (door + 1) + "btn").style.backgroundColor = color;
     window.livewire.emit('set-background-color', door + 1, color);
 }
 
 window.closeAllDoors = function () {
-    //document.getElementById("door1img").src = "img/closedDoor.png";
-    //document.getElementById("door2img").src = "img/closedDoor.png";
-    //document.getElementById("door3img").src = "img/closedDoor.png";
     window.livewire.emit('set-img-src', 1, "img/closedDoor.png");
     window.livewire.emit('set-img-src', 2, "img/closedDoor.png");
     window.livewire.emit('set-img-src', 3, "img/closedDoor.png");
 }
 
 window.deselectDoors = function () {
-    //document.getElementById("door1btn").style.backgroundColor = "white";
-    //document.getElementById("door2btn").style.backgroundColor = "white";
-    //document.getElementById("door3btn").style.backgroundColor = "white";
     window.livewire.emit('set-background-color', 1, "white");
     window.livewire.emit('set-background-color', 2, "white");
     window.livewire.emit('set-background-color', 3, "white");
@@ -305,7 +303,6 @@ window.gameTriggerEnd = function (win) {
     openAllDoors();
     simsRuns++;
     if(win) {
-        //setGameText(document.getElementById("gameText").innerHTML + " You won.");
         setGameText("+won");
         if (page) {
             totalWins++;
@@ -313,7 +310,6 @@ window.gameTriggerEnd = function (win) {
         }
     }
     else {
-        //setGameText(document.getElementById("gameText").innerHTML + " You lost.");
         setGameText("+lost");
         if (page) {
             totalLosses++;
@@ -336,10 +332,6 @@ window.gameTriggerEnd = function (win) {
     }
     else {
         document.getElementById("resetButton").style.visibility = "visible";
-        /*for(var i = 0; i < 3; i++) {
-            document.getElementById("door" + (i + 1) + "btn").disabled = true;
-        }*/
-        window.livewire.emit('disable-switch', "disabled");
     }
     var montyDict = {
         "Standard Monty": 1,
@@ -361,7 +353,6 @@ window.gameTriggerEnd = function (win) {
 }
 
 window.gameReset = function () {
-    // console.log("game resetting");
     gameState = 0;
     gameSetPrizeDoor();
     deselectDoors();
@@ -372,9 +363,6 @@ window.gameReset = function () {
         firstDoor = -1;
         montyOpenDoor = -1;
         secondDoor = -1;
-        /*for(var i = 0; i < 3; i++) {
-            document.getElementById("door" + (i + 1) + "btn").disabled = false;
-        }*/
         window.livewire.emit('disable-switch', "");
         console.log(montyVariant + " Prize Door: " + String(prizeDoor + 1));
     }
@@ -383,6 +371,8 @@ window.gameReset = function () {
 window.simReset = function () {
     console.log("totalSims =", totalSims);
     gameState = 0;
+    changed = false;
+    started = false;
     deselectDoors();
     closeAllDoors();
     setGameText("Pick a door.");
@@ -397,6 +387,11 @@ window.simReset = function () {
     montyOpenedPrize = 0;
     totalWinsSwitch = 0;
     totalLossesSwitch = 0;
+    lastWinsSwitched = 0;
+    lastTotalSwitches = 0;
+    lastTotalLosses = 0;
+    lastTotalWins = 0;
+    lastTotalSimulations = 0;
     document.getElementById("wins").innerHTML = "0";
     document.getElementById("losses").innerHTML = "0";
     document.getElementById("winPercent").innerHTML = "-";
@@ -412,8 +407,30 @@ window.updateCurrentSim = function () {
     if(simsRuns < totalSims) {
         document.getElementById("display_div_id").innerHTML = simsRuns + 1 + " / " + totalSims;
     }
-    else {
+    else if (!changed) {
         document.getElementById("display_div_id").innerHTML ="Finished simulations";
+        var montyDict = {
+            "Standard Monty": 1,
+            "Ignorant Monty": 2,
+            "Angelic Monty": 3,
+            "Evil Monty": 4,
+            "Monty from Hell": 5
+        }
+        window.livewire.emit('add-to-database', {monty_id: montyDict[montyVariant],
+        behavior: playerSwitch,
+        wins_switched: (playerSwitch ? totalWinsSwitch : 0) - lastWinsSwitched,
+        total_switches: (playerSwitch ? (totalWinsSwitch + totalLossesSwitch) : 0) - lastTotalSwitches,
+        total_losses: totalLosses - lastTotalLosses,
+        total_wins: totalWins - lastTotalWins,
+        total_simulations: totalSims - lastTotalSimulations});
+        
+        lastWinsSwitched = playerSwitch ? totalWinsSwitch : 0;
+        lastTotalSwitches = playerSwitch ? (totalWinsSwitch + totalLossesSwitch) : 0;
+        lastTotalLosses = totalLosses;
+        lastTotalWins = totalWins;
+        lastTotalSimulations = totalSims;
+        
+        console.log(totalLosses + " " + totalWins + " " + totalSims);
     }
 }
 
@@ -443,6 +460,7 @@ window.updateProgBar = function () {
 }
 
 window.gameStep = function () {
+    started = true;
     if(simsRuns >= totalSims) {
         // console.log("Cannot step: finished simulations");
         return;
