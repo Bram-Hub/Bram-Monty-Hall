@@ -17,6 +17,8 @@ var playerSwitch;// = document.getElementById("switchCheck").checked;
 var showPrize;// = document.getElementById("prizeCheck").checked;
 var page; //true for research, false for play
 var animSpeed = 0;
+var changed = false;
+var started = false;
 
 //determine whether on play page or research page
 window.addEventListener('load', () => {
@@ -48,7 +50,7 @@ window.addEventListener('load', () => {
     }
 })
 
-  window.playDoor = function(doorClicked) {
+window.playDoor = function(doorClicked) {
     if (gameState == 0) {
         window.livewire.emit('disable-switch', "disabled");
         firstDoor = doorClicked;
@@ -82,7 +84,9 @@ window.setGameText = function (text) {
 
 window.updateMontyVariant = function (variant) {
     montyVariant = variant;
-    // console.log('montyVariant', montyVariant);
+    if(started) {
+        changed = true;
+    }
 }
 
 window.updatePrizeBorder = function () {
@@ -101,8 +105,6 @@ window.gameSetPrizeDoor = function () {
     }
 }
 
-//gameSetPrizeDoor();
-
 window.setShowPrize = function (value) {
     showPrize = value;
     updatePrizeBorder();
@@ -110,6 +112,9 @@ window.setShowPrize = function (value) {
 
 window.setPlayerSwitch = function (value) {
     playerSwitch = value;
+    if(started) {
+        changed = true;
+    }
 }
 
 window.openDoor = function (door) {
@@ -362,6 +367,8 @@ window.gameReset = function () {
 window.simReset = function () {
     console.log("totalSims =", totalSims);
     gameState = 0;
+    changed = false;
+    started = false;
     deselectDoors();
     closeAllDoors();
     setGameText("Pick a door.");
@@ -391,7 +398,7 @@ window.updateCurrentSim = function () {
     if(simsRuns < totalSims) {
         document.getElementById("display_div_id").innerHTML = simsRuns + 1 + " / " + totalSims;
     }
-    else {
+    else if (!changed) {
         document.getElementById("display_div_id").innerHTML ="Finished simulations";
         var montyDict = {
             "Standard Monty": 1,
@@ -437,6 +444,7 @@ window.updateProgBar = function () {
 }
 
 window.gameStep = function () {
+    started = true;
     if(simsRuns >= totalSims) {
         // console.log("Cannot step: finished simulations");
         return;
