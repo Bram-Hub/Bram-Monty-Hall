@@ -19,6 +19,11 @@ var page; //true for research, false for play
 var animSpeed = 0;
 var changed = false;
 var started = false;
+var lastWinsSwitched = 0;
+var lastTotalSwitches = 0;
+var lastTotalLosses = 0;
+var lastTotalWins = 0;
+var lastTotalSimulations = 0;
 
 //determine whether on play page or research page
 window.addEventListener('load', () => {
@@ -409,11 +414,18 @@ window.updateCurrentSim = function () {
         }
         window.livewire.emit('add-to-database', {monty_id: montyDict[montyVariant],
         behavior: playerSwitch,
-        wins_switched: playerSwitch ? totalWinsSwitch : 0,
-        total_switches: playerSwitch ? (totalWinsSwitch + totalLossesSwitch) : 0,
-        total_losses: totalLosses,
-        total_wins: totalWins,
-        total_simulations: totalSims});
+        wins_switched: (playerSwitch ? totalWinsSwitch : 0) - lastWinsSwitched,
+        total_switches: (playerSwitch ? (totalWinsSwitch + totalLossesSwitch) : 0) - lastTotalSwitches,
+        total_losses: totalLosses - lastTotalLosses,
+        total_wins: totalWins - lastTotalWins,
+        total_simulations: totalSims - lastTotalSimulations});
+        
+        lastWinsSwitched = playerSwitch ? totalWinsSwitch : 0;
+        lastTotalSwitches = playerSwitch ? (totalWinsSwitch + totalLossesSwitch) : 0;
+        lastTotalLosses = totalLosses;
+        lastTotalWins = totalWins;
+        lastTotalSimulations = totalSims;
+        
         console.log(totalLosses + " " + totalWins + " " + totalSims);
     }
 }
