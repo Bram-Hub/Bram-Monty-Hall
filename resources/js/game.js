@@ -25,13 +25,23 @@ var lastTotalLosses = 0;
 var lastTotalWins = 0;
 var lastTotalSimulations = 0;
 
+window.setTotalSims = function () {
+    var scb = document.getElementById("simCountBox").value;
+    if(scb < simsRuns) {
+        document.getElementById("simCountBox").value = simsRuns;
+    }
+    else {
+        totalSims = scb;
+    }
+}
+
 //determine whether on play page or research page
 window.addEventListener('load', () => {
     if (window.document.documentURI.includes("research")) {
         console.log("Research Page")
         page = true;
         montyVariant = document.getElementById("montySelect").value;
-        totalSims = document.getElementById("simCountBox").value;
+        setTotalSims();
         document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
         playerSwitch = document.getElementById("switchCheck").checked;
         showPrize = document.getElementById("prizeCheck").checked;
@@ -302,6 +312,7 @@ window.gameTriggerEnd = function (win) {
     // console.log("The prize door was", prizeDoor);
     openAllDoors();
     simsRuns++;
+    document.getElementById("simCountBox").min = simsRuns;
     if(win) {
         setGameText("+won");
         if (page) {
@@ -377,6 +388,7 @@ window.simReset = function () {
     closeAllDoors();
     setGameText("Pick a door.");
     simsRuns = 0;
+    document.getElementById("simCountBox").min = 0;
     document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
     firstDoor = -1;
     montyOpenDoor = -1;
@@ -407,7 +419,7 @@ window.updateCurrentSim = function () {
     if(simsRuns < totalSims) {
         document.getElementById("display_div_id").innerHTML = simsRuns + 1 + " / " + totalSims;
     }
-    else if (!changed) {
+    else if (!changed && totalSims > lastTotalSimulations) {
         document.getElementById("display_div_id").innerHTML ="Finished simulations";
         var montyDict = {
             "Standard Monty": 1,
