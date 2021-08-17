@@ -1,5 +1,13 @@
-button {
-    background-color: inherit;
+.yellow {
+    background-color: #fffd6b;
+}
+
+.white {
+    background-color: white;
+}
+
+.blue {
+    background-color: #bffaff;
 }
 
 #container {

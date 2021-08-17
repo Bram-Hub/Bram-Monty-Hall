@@ -1,7 +1,7 @@
 <div class="w-full m-auto max-w-screen-xl">
     <h1 class="pageTitle">Results Database</h1>
     <p>Explore long term results of simulation data below:</p>
-    
+
     <div class="tabWrapper flex items-center">
         <button wire:click="switchTab('play')" class="{{ $tab == 'play' ? 'tabWrapperActive' : '' }}">Play Mode Data</button>
         <button wire:click="switchTab('sim')" class="{{ $tab == 'sim' ? 'tabWrapperActive' : '' }}">Simulation Data</button>
@@ -50,6 +50,5 @@
                 @endforeach
             @endif
         </tbody>
-    </table> 
+    </table>
 </div>
-
