@@ -37,7 +37,14 @@ The website is currently being hosted on Heroku with a Laravel backend implement
 ## Install MySQL
 
 ### Windows
-TBD
+1. Download the mysql-installer-community (https://dev.mysql.com/downloads/installer/) (you don't need to make an account, you can just click "No thanks, just start my download")
+2. Open the installer and choose Developer Default as the Setup Type (should be defaulted to that)
+3. Click next and execute to install all the products
+4. When it's finally done, keep clicking next, all default options should be okay
+5. You may make your own Root Account Password
+6. Keep clicking Next/Execute
+7. Enter your password for the root account and check to make sure connection is successful, then continue through the installer until it's all finished
+8. In order to use the command "php artisan migrate" on the project, we have to add a monty_hall database. Open the MySQL Command Line Client and type in your password. Use the command "CREATE DATABASE monty_hall;" in the client. You can use the "SHOW DATABASES;" command to ensure that there is a monty_hall database. Lastly, make sure to change your .env file to include your root account password under "DB_PASSWORD". The "php artisan migrate" command should now work.
 
 ### Debian/Ubuntu
 1. Open the terminal and issue the following command: `sudo apt install mysql-server`

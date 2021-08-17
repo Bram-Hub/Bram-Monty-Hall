@@ -210,6 +210,7 @@ window.gameIgnorantMonty = function () {
 // DONE
 window.gameAngelicMonty = function () {
     if(firstDoor == prizeDoor) {
+        montyOpenDoor = firstDoor;
         return false;
     }
     do {
@@ -233,6 +234,7 @@ window.gameEvilMonty = function () {
 // DONE
 window.gameMontyFromHell = function () {
     if(firstDoor != prizeDoor) {
+        montyOpenDoor = firstDoor;
         return false;
     }
     do {
@@ -330,10 +332,6 @@ window.gameTriggerEnd = function (win) {
     }
     else {
         document.getElementById("resetButton").style.visibility = "visible";
-        /*for(var i = 0; i < 3; i++) {
-            document.getElementById("door" + (i + 1) + "btn").disabled = true;
-        }*/
-        //window.livewire.emit('disable-switch', "disabled");
     }
     var montyDict = {
         "Standard Monty": 1,
@@ -343,14 +341,18 @@ window.gameTriggerEnd = function (win) {
         "Monty from Hell": 5
     }
     if (!page) {
-        var picked = (secondDoor == -1) ? (firstDoor + 1) : (secondDoor + 1);
-        window.livewire.emit('add-to-database', { monty_id: montyDict[montyVariant], door_picked: picked, door_opened: montyOpenDoor + 1, door_car: prizeDoor + 1 });
-        console.log("door_picked: " + (picked) + " door_opened: " + (montyOpenDoor + 1) + " door_car: " + (prizeDoor + 1));
+        // if a second door was picked
+        if(secondDoor != -1 && firstDoor != secondDoor) {
+            window.livewire.emit('add-to-database', { monty_id: montyDict[montyVariant], door_picked: firstDoor + 1, door_opened: montyOpenDoor + 1, door_car: prizeDoor + 1, door_switched: secondDoor + 1 });
+        }
+        // if a second door wasn't picked
+        else {
+            window.livewire.emit('add-to-database', { monty_id: montyDict[montyVariant], door_picked: firstDoor + 1, door_opened: montyOpenDoor + 1, door_car: prizeDoor + 1 });
+        }
     }
 }
 
 window.gameReset = function () {
-    // console.log("game resetting");
     gameState = 0;
     gameSetPrizeDoor();
     deselectDoors();
@@ -361,9 +363,6 @@ window.gameReset = function () {
         firstDoor = -1;
         montyOpenDoor = -1;
         secondDoor = -1;
-        /*for(var i = 0; i < 3; i++) {
-            document.getElementById("door" + (i + 1) + "btn").disabled = false;
-        }*/
         window.livewire.emit('disable-switch', "");
         console.log(montyVariant + " Prize Door: " + String(prizeDoor + 1));
     }
@@ -388,6 +387,11 @@ window.simReset = function () {
     montyOpenedPrize = 0;
     totalWinsSwitch = 0;
     totalLossesSwitch = 0;
+    lastWinsSwitched = 0;
+    lastTotalSwitches = 0;
+    lastTotalLosses = 0;
+    lastTotalWins = 0;
+    lastTotalSimulations = 0;
     document.getElementById("wins").innerHTML = "0";
     document.getElementById("losses").innerHTML = "0";
     document.getElementById("winPercent").innerHTML = "-";

@@ -12,7 +12,7 @@ class Database extends Component
     public $montys;
     public $simulations;
 
-    public function mount() 
+    public function mount()
     {
         $this->montys = Monty::all();
         $this->simulations = Simulation::all();
