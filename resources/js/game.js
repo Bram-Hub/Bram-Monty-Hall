@@ -212,6 +212,7 @@ window.gameIgnorantMonty = function () {
 // DONE
 window.gameAngelicMonty = function () {
     if(firstDoor == prizeDoor) {
+        montyOpenDoor = firstDoor;
         return false;
     }
     do {
@@ -235,6 +236,7 @@ window.gameEvilMonty = function () {
 // DONE
 window.gameMontyFromHell = function () {
     if(firstDoor != prizeDoor) {
+        montyOpenDoor = firstDoor;
         return false;
     }
     do {
