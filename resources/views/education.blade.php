@@ -4,7 +4,6 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ URL::asset('css/education.css') }}">
         <link rel="img" href="{{ asset('img') }}">
-        <script src="{{ URL::asset('js/education.js') }}" type="text/javascript" ></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
@@ -37,7 +36,7 @@
             <div class="variants">
                 <script src="{{ URL::asset('js/app.js') }}" type="text/javascript"></script>
                 <p class="space"></p>
-                <p class="title"> Variant Monty's </p>
+                <p class="title mainVariantTitle"> Variant Monty's </p>
                 <div class="tabs">
                     <ul class="tabNav">
                         <div class="slider" id="slider"></div>
@@ -155,47 +154,41 @@
                         When the contestant initially picks the prize door, the contestant always wins if he/she stays and always loses if he/she switches. This happens \(\frac{1}{3}\) of the time because he/she had a \(\frac{1}{3}\) chance of being right with the initial choice of doors.<br/>
                         <span class="bold">If the contestant's initial choice is not the prize door:</span>
                         <img class="variantImg" src="img/educationPhotos/crawlTable2.png" alt="image">
-                        Notice that the contestant always wins when he/he switches, which happens in \(frac{2}{3}\) of the cases. Therefore, if you employ the always switch strategy in Monty Crawl cases, you will win \(\frac{2}{3}\) of the time. If you employ the always stay method in Monty Crawl cases, you will win \(\frac{1}{3}\) of the time just as in the Monty Hall cases.
+                        Notice that the contestant always wins when he/he switches, which happens in \(\frac{2}{3}\) of the cases. Therefore, if you employ the always switch strategy in Monty Crawl cases, you will win \(\frac{2}{3}\) of the time. If you employ the always stay method in Monty Crawl cases, you will win \(\frac{1}{3}\) of the time just as in the Monty Hall cases.
                     </p>
                 </div>
             </div>
 
             <div class="resources">
                 <p class="title"> Resources </p>
-                <p class="text"> Vestibulum euismod lectus nunc, sit amet ornare augue suscipit sit amet. Integer pulvinar, quam vel ultricies blandit, mi enim luctus libero, vel porta augue augue id orci. Integer tellus nisl, luctus non vulputate eu, imperdiet et justo. Phasellus congue a nisl nec fringilla. Sed tempus leo nec nibh tincidunt, sed congue urna faucibus. Fusce scelerisque congue orci a vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed dignissim neque. Praesent eu hendrerit dui, et condimentum diam. Praesent gravida erat vitae mauris pharetra, at viverra tortor cursus. Mauris lobortis nisl ut nibh luctus luctus. Phasellus ultricies mauris enim, a eleifend mauris fermentum ac. Donec leo mauris, dapibus in rutrum eget, fringilla id eros. </p>
+                <!-- <p class="text"> -->
+                <div class="resourceLinks">
+                    <li>
+                        <a href="https://encyclopediaofmath.org/wiki/Monty_hall_problem#:~:text=arguments%20since%20then.-,The%20origins%20of%20the%20problem,the%20journal%20The%20American%20Statistician">Origins of the Problem</a>
+                    </li>
+                    <li>
+                        <a href="https://www.stayorswitch.com/history.html">History of Monty Hall</a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=TVq2ivVpZgQ">Monty Hall Problem Description by Vsauce</a>
+                    </li>
+                    <li>
+                        <a href="https://www.tandfonline.com/doi/abs/10.1080/00031305.1975.10479121">Letter of Steve Selvin to American Statistician, 1975</a>
+                    </li>
+                    <li>
+                        <a href="https://www.nytimes.com/1991/07/21/us/behind-monty-hall-s-doors-puzzle-debate-and-answer.html">Interview of Monty Hall with New York Times, 1991
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.somethingawful.com/news/monty-hall-problem/">Initial Reactions to Marilyn vos Savant's Solution</a>
+                    </li>
+                    <li>
+                        <a href="http://people.math.harvard.edu/~knill/oldtexas/Teaching/MA464/PUZZLES/marilyn.gameshow.html">Old Debate over Marilyn's Solution Discussing How Assumptions Changes the Solution</a>
+                    </li>
+                </div>
+                <!-- </p> -->
             </div>
         </div>
         <x-footer/>
     </body>
-<!-- <script type="text/javascript">
-    //Education Page Standard Monty Examples Slides
-var slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
-</script> -->
 </html>

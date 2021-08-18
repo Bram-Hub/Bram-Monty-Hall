@@ -3,14 +3,14 @@
     <link href="{{ URL::asset('css/education.css') }}" rel="stylesheet"/>
 </head>
 <div class="standardMontyExamples">
-    <div class="carousel" aria-label="Gallery">
+    <div class="carousel" aria-label="Gallery" onload="#carousel__slide1">
         <ol class="carousel__viewport">
             <li id="carousel__slide1"
                 tabindex="0"
                 class="carousel__slide">
                 <div class="carousel__snapper">
                     <img class="carouselImg" src="img/educationPhotos/standardMontyExample1.png" alt="image">
-                    <a href="#carousel__slide5"
+                    <a href="#carousel__slide7"
                     class="carousel__prev">Go to last slide</a>
                     <a href="#carousel__slide2"
                     class="carousel__next">Go to next slide</a>
@@ -56,6 +56,28 @@
                     <img class="carouselImg" src="img/educationPhotos/standardMontyExample5.png" alt="image">
                     <a href="#carousel__slide4"
                     class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide6"
+                    class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide6"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img class="carouselImg" src="img/educationPhotos/standardGraph.png" alt="image">
+                    <a href="#carousel__slide5"
+                    class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide7"
+                    class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide7"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img class="carouselImg" src="img/educationPhotos/standardMonteCarloSim.png" alt="image">
+                    <a href="#carousel__slide6"
+                    class="carousel__prev">Go to previous slide</a>
                     <a href="#carousel__slide1"
                     class="carousel__next">Go to first slide</a>
                 </div>
@@ -83,8 +105,15 @@
                     <a href="#carousel__slide5"
                     class="carousel__navigation-button">Go to slide 5</a>
                 </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide6"
+                    class="carousel__navigation-button">Go to slide 6</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide7"
+                    class="carousel__navigation-button">Go to slide 7</a>
+                </li>
             </ol>
         </aside>
     </div>
-    <img class="standardGraph" src="img/educationPhotos/standardGraph.png" alt="image">
 </div>

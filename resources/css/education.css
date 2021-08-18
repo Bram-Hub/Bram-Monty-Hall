@@ -395,6 +395,11 @@
     padding: 10px;
 }
 
+.mainVariantTitle {
+    align-items: normal;
+    margin-top: 20%
+}
+
 .variantTitle {
     font-size: 23px;
 }
@@ -432,4 +437,8 @@
     position: relative;
     padding: 0px;
     background-color:#fff;
+}
+
+.resourceLinks{
+  font-size: 18px;
 }
