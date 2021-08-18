@@ -27,3 +27,18 @@ window.openVariants = function (evt, cityName) {
 window.addEventListener('load', () => {
     document.getElementById("defaultOpen").click();
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+.tg {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+.tg td {
+	border-color:black;
+	border-style:solid;
+	border-width:1px;
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	overflow:hidden;
+	padding:10px 5px;
+	word-break:normal;
+}
+
+.tg th {
+	border-color:black;
+	border-style:solid;
+	border-width:1px;
+	font-family: OpenSans-Regular;
+	font-size:14px;
+	font-weight:normal;
+	overflow:hidden;
+	padding:10px 5px;
+	word-break:normal;
+}
+
+.tg .tg-b5mh {
+	background-color:#1180f1;
+	border-color:#1180f1;
+	color:#ffffff;
+	font-family:"OpenSans-Regular";
+	font-weight:bold;
+	text-align:left;
+	vertical-align:top
+}
+
+.tg .tg-xo31 {
+	border-color:#1180f1;
+	text-align:left;
+	vertical-align:top
+}
