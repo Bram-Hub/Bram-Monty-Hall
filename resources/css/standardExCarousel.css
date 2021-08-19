@@ -1,0 +1,81 @@
+.standardMontyExamples img{
+    vertical-align:middle;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+
+.slideCounterLabel {
+    position:absolute;
+    right:50px;
+    bottom:0;
+    padding:0.01em 16px;
+    padding-top:16px;
+    padding-bottom:16px;
+    color:#fff;
+    background-color:#000;
+}
+
+.prevSlideButton {
+    position:absolute;
+    top:50%;
+    left:0%;
+    transform:translate(0%,-50%);
+    -ms-transform:translate(-0%,-50%);
+}
+
+.nextSlideButton {
+    position:absolute;
+    top:50%;
+    right:0%;
+    transform:translate(0%,-50%);
+    -ms-transform:translate(0%,-50%);
+}
+
+.prevSlideButton, .nextSlideButton {
+    border:none;
+    display:inline-block;
+    padding:8px 16px;
+    vertical-align: middle;
+    overflow:hidden;
+    text-decoration:none;
+    color:inherit;
+    background-color:inherit;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    color:#fff;
+    background-color:#000;
+}
+
+.prevSlideButton:disabled, .nextSlideButton:disabled {
+    cursor:not-allowed;
+    opacity:0.3;
+}
+
+.prevSlideButton:hover, .nextSlideButton:hover {
+    color:#000;
+    background-color:#ccc;
+}
+
+.mySlides {
+    position: relative;
+    display: none;
+}
+
+.mySlides.default {
+    position: relative;
+    display: block;
+}
+
+.standardMontyExamples .standardMontyExContent{
+    width: 900px;
+    position: relative;
+}

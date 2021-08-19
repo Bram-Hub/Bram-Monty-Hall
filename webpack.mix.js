@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/game.js', 'public/js')
+    .js('resources/js/standardMontyEx.js', 'public/js')
     .postCss("resources/css/app.css", 'public/css', [
         require("tailwindcss"),
     ])
@@ -22,4 +23,5 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/footer.css', 'public/css')
     .postCss('resources/css/about.css', 'public/css')
     .postCss('resources/css/play.css', 'public/css')
-    .postCss('resources/css/research.css', 'public/css');
+    .postCss('resources/css/research.css', 'public/css')
+    .postCss('resources/css/standardExCarousel.css', 'public/css');
