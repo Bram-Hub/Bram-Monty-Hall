@@ -36,7 +36,7 @@
             <div class="variants">
                 <script src="{{ URL::asset('js/app.js') }}" type="text/javascript"></script>
                 <p class="space"></p>
-                <p class="title mainVariantTitle"> Variant Monty's </p>
+                <p class="title mainVariantTitle"> Variant Montys </p>
                 <div class="tabs">
                     <ul class="tabNav">
                         <div class="slider" id="slider"></div>

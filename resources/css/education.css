@@ -404,6 +404,8 @@
 
 .variantTitle {
     font-size: 23px;
+    margin-top: 8px;
+    margin-bottom: 6px;
 }
 
 .variantText {
