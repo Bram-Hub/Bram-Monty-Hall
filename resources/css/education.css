@@ -375,6 +375,7 @@
 .monty {
     font-family: OpenSans-SemiBold;
     visibility: hidden;
+    display: none;
     opacity: 0;
     grid-area: text;
     position: relative;
@@ -384,6 +385,7 @@
 
 .monty.active {
     visibility: visible;
+    display: initial;
     opacity: 1;
 }
 
@@ -441,4 +443,9 @@
 
 .resourceLinks{
   font-size: 18px;
+}
+
+.resourceLinks a{
+  color: #1180f1;
+  text-decoration: underline;
 }
