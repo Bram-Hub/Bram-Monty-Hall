@@ -28,6 +28,9 @@ var lastTotalSimulations = 0;
 var cmOpenProbs = [0.0, 0.0, 0.0];
 var cmAllowOpenSelected;
 var cmAllowOpenPrize;
+// Player Settings
+var pOpenProbs = [0.0, 0.0, 0.0];
+var pSwitchMatrix = [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]];
 
 window.setTotalSims = function () {
     var scb = document.getElementById("simCountBox").value;
@@ -51,10 +54,14 @@ window.addEventListener('load', () => {
         showPrize = document.getElementById("prizeCheck").checked;
         gameSetPrizeDoor();
         for(var i = 0; i < 3; i++) {
-            cmOpenProbs[i] = parseFloat(document.getElementById("cmTableText" + (i + 1)).value);
+            var num = parseFloat(document.getElementById("cmTableText" + (i + 1)).value);
+            if(num >= 0 && num <= 1) {
+                cmOpenProbs[i] = num;
+            }
         }
         cmAllowOpenSelected = document.getElementById("cmAllowOpenSelected").checked;
         cmAllowOpenPrize = document.getElementById("cmAllowOpenPrize").checked;
+        document.getElementById("cmTable").style.visibility = montyVariant == "Custom Monty" ? "visible" : "hidden";
         console.log(cmOpenProbs);
         
     }
@@ -146,11 +153,11 @@ window.setCMAllowOpenPrize = function (value) {
     cmAllowOpenPrize = value;
 }
 
-window.setValidCMInput = function (id) {
+window.setValidInput = function (id) {
     document.getElementById(id).style.backgroundColor = "white";
 }
 
-window.setInvalidCMInput = function (id) {
+window.setInvalidInput = function (id) {
     document.getElementById(id).style.backgroundColor = "#ffd4d1";
 }
 
@@ -166,11 +173,53 @@ window.updateCMProb = function (value, index) {
     
     // make sure the text is a number
     if(isNaN(value - parseFloat(value))) {
-        setInvalidCMInput("cmTableText" + (index + 1));
+        setInvalidInput("cmTableText" + (index + 1));
+        return;
+    }
+    // make sure the number is in the range 0-1
+    if(parseFloat(value) < 0 || parseFloat(value) > 1) {
+        setInvalidInput("cmTableText" + (index + 1));
         return;
     }
     
-    setValidCMInput("cmTableText" + (index + 1));
+    setValidInput("cmTableText" + (index + 1));
+    cmOpenProbs[index] = parseFloat(value);
+    
+    // make sure the checkboxes are disabled if at least one probability value is 0
+    var disableCMChecks = false;
+    for(var i = 0; i < 3; i++) {
+        if(cmOpenProbs[i] == 0.0) {
+            disableCMChecks = true;
+        }
+    }
+    if(disableCMChecks) {
+        document.getElementById("cmAllowOpenSelected").disabled = true;
+        document.getElementById("cmAllowOpenPrize").disabled = true;
+        document.getElementById("cmAllowOpenSelected").checked = true;
+        document.getElementById("cmAllowOpenPrize").checked = true;
+        cmAllowOpenSelected = true;
+        cmAllowOpenPrize = true;
+    }
+    else {
+        document.getElementById("cmAllowOpenSelected").disabled = false;
+        document.getElementById("cmAllowOpenPrize").disabled = false;
+    }
+}
+
+window.updatePProb = function (value, index) {
+    
+    // make sure the text is a number
+    if(isNaN(value - parseFloat(value))) {
+        setInvalidInput("pTableText" + (index + 1));
+        return;
+    }
+    // make sure the number is in the range 0-1
+    if(parseFloat(value) < 0 || parseFloat(value) > 1) {
+        setInvalidInput("pTableText" + (index + 1));
+        return;
+    }
+    
+    setValidInput("pTableText" + (index + 1));
     cmOpenProbs[index] = parseFloat(value);
     
     // make sure the checkboxes are disabled if at least one probability value is 0
@@ -569,7 +618,7 @@ window.updateProgBar = function () {
 window.gameStep = function () {
     // if Custom Monty is set and it's probabilities don't add up to 1.0
     if(montyVariant == "Custom Monty" && !cmValidProbs()) {
-        alert("Custom Monty door probabilities must add up to exactly 1.");
+        alert("Custom Monty door probabilities must be 0-1 and add up to exactly 1.");
         return;
     }
     

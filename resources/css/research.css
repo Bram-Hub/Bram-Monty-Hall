@@ -228,18 +228,17 @@
 }
 
 #cmTable {
-    width: 10vw;
-    float: right;
-    margin-top: 30px;
-    visibility: hidden;
+    margin-bottom: 30px;
 }
 
 .cmTableText {
-    width: 60px;
+    width: 5.5vw;
+    text-align: center;
 }
 
 td {
     padding: 4px;
+    text-align: center;
 }
 
 table, th, td {
@@ -248,5 +247,28 @@ table, th, td {
 
 label.cmLabel ~ div {
     float: right;
+}
+
+#pTable {
+    width: 18.15vw;
+}
+
+.pTableHeader {
+    width: 10vw;
+}
+
+.pTableText {
+    width: 3.3vw;
+    text-align: center;
+}
+
+.pTableMatrixText {
+    width: 2.5vw;
+    text-align: center;
+}
+
+#tableDiv {
+    float: right;
+    display: inline;
 }
 
