@@ -37,7 +37,7 @@
     border-radius: 10px;
 }
 
-.standardMonty {
+.misconceptions {
     font-family: OpenSans-SemiBold;
     padding: 15px;
     display: grid;
@@ -49,7 +49,12 @@
     grid-template-columns: 10% 50% 40%;
 }
 
-.misconceptions {
+.bold {
+    font-family: OpenSans-Bold;
+    display: contents;
+}
+
+.standardMonty {
     background-color: rgb(237, 240, 244);
     font-family: OpenSans-SemiBold;
     padding: 15px;
@@ -122,6 +127,7 @@
 .monty {
     font-family: OpenSans-SemiBold;
     visibility: hidden;
+    display: none;
     opacity: 0;
     grid-area: text;
     position: relative;
@@ -131,6 +137,7 @@
 
 .monty.active {
     visibility: visible;
+    display: initial;
     opacity: 1;
 }
 
@@ -142,12 +149,23 @@
     padding: 10px;
 }
 
+.mainVariantTitle {
+    align-items: normal;
+    margin-top: 20%
+}
+
 .variantTitle {
     font-size: 23px;
+    margin-top: 8px;
+    margin-bottom: 6px;
 }
 
 .variantText {
     font-size: 18px;
+}
+
+.variantImg {
+  margin: auto;
 }
 
 .tabNav {
@@ -175,4 +193,13 @@
     position: relative;
     padding: 0px;
     background-color:#fff;
+}
+
+.resourceLinks{
+  font-size: 18px;
+}
+
+.resourceLinks a{
+  color: #1180f1;
+  text-decoration: underline;
 }
