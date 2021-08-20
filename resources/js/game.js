@@ -24,6 +24,10 @@ var lastTotalSwitches = 0;
 var lastTotalLosses = 0;
 var lastTotalWins = 0;
 var lastTotalSimulations = 0;
+// Custom Monty settings
+var cmOpenProbs = [0.33333, 0.33333, 0.33334];
+var cmAllowOpenPrize = true;
+var cmAllowOpenSelected = true;
 
 window.setTotalSims = function () {
     var scb = document.getElementById("simCountBox").value;
@@ -57,7 +61,8 @@ window.addEventListener('load', () => {
             1: "Ignorant Monty",
             2: "Angelic Monty",
             3: "Evil Monty",
-            4: "Monty from Hell"
+            4: "Monty from Hell",
+            5: "Custom Monty"
         }
         montyVariant = montyDict[randomMonty];
         prizeDoor = Math.floor(Math.random() * 3);
@@ -118,6 +123,16 @@ window.gameSetPrizeDoor = function () {
     if(page) {
         updatePrizeBorder();
     }
+}
+
+window.setCMAllowOpenSelected = function (value) {
+    cmAllowOpenSelected = value;
+    console.log("cmAllowOpenSelected", cmAllowOpenSelected);
+}
+
+window.setCMAllowOpenPrize = function (value) {
+    cmAllowOpenPrize = value;
+    console.log("cmAllowOpenPrize", cmAllowOpenPrize);
 }
 
 window.setShowPrize = function (value) {
@@ -253,6 +268,24 @@ window.gameMontyFromHell = function () {
     return true;
 }
 
+// DONE
+window.gameCustomMonty = function () {
+    do {
+        var randDoor = Math.random();
+        if(randDoor < cmOpenProbs[0]) {
+            montyOpenDoor = 0;
+        }
+        else if(randDoor < cmOpenProbs[0] + cmOpenProbs[1]) {
+            montyOpenDoor = 1;
+        }
+        else {
+            montyOpenDoor = 2;
+        }
+        console.log("randDoor: ", randDoor, "  montyOpenDoor: ", montyOpenDoor, "  probs: ", cmOpenProbs);
+    } while ((montyOpenDoor == firstDoor && !cmAllowOpenSelected) || (montyOpenDoor == prizeDoor && !cmAllowOpenPrize));
+    return !(montyOpenDoor == firstDoor || montyOpenDoor == prizeDoor);
+}
+
 window.gameDetermineMontyMove = function () {
     if(montyVariant == "Standard Monty") {
         return gameStandardMonty();
@@ -266,8 +299,11 @@ window.gameDetermineMontyMove = function () {
     else if(montyVariant == "Evil Monty") {
         return gameEvilMonty();
     }
-    else {
+    else if(montyVariant == "Monty from Hell") {
         return gameMontyFromHell();
+    }
+    else {
+        return gameCustomMonty();
     }
 }
 
@@ -419,7 +455,7 @@ window.updateCurrentSim = function () {
     if(simsRuns < totalSims) {
         document.getElementById("display_div_id").innerHTML = simsRuns + 1 + " / " + totalSims;
     }
-    else if (!changed && totalSims > lastTotalSimulations) {
+    else if (!changed && totalSims > lastTotalSimulations && montyVariant != "Custom Monty") {
         document.getElementById("display_div_id").innerHTML ="Finished simulations";
         var montyDict = {
             "Standard Monty": 1,

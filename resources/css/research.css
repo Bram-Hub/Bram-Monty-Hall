@@ -26,6 +26,7 @@
 
 #settingsArea {
     margin: 10px;
+    max-width: 40vw;
 }
 
 .montySelection {
@@ -225,3 +226,26 @@
     color: white;
     font-size: 20px;
 }
+
+#cmTable {
+    width: 10vw;
+    float: right;
+    margin-top: 30px;
+}
+
+.cmTableText {
+    width: 60px;
+}
+
+td {
+    padding: 4px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+label.cmLabel ~ div {
+    float: right;
+}
+
