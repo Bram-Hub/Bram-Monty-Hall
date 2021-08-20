@@ -88,7 +88,7 @@
                                 <td><input type="text" id="pTableText32" class="pTableMatrixText" value="0.0" placeholder="0 - 1" onchange="updatePMat(this.value, 2, 1)"></td>
                                 <td>X</td>
                             </tr>
-                            
+
                         </table>
                     </div>
                     <div class="montySelection">
@@ -99,6 +99,7 @@
                             <option>Angelic Monty</option>
                             <option>Evil Monty</option>
                             <option>Monty from Hell</option>
+                            <option>Monty Crawl</option>
                             <option>Custom Monty</option>
                         </select>
                     </div>

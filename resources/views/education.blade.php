@@ -27,8 +27,8 @@
             </div>
 
             <div class="standardMonty">
-                <p class="title"> Standard Monty Examples </p>
-                <p class="standardMontyExContainer"> 
+                <p class="title"> Standard Monty Explanations </p>
+                <p class="standardMontyExContainer">
                     <x-standard-examples/>
                 </p>
             </div>
@@ -41,13 +41,16 @@
                     <ul class="tabNav">
                         <div class="slider" id="slider"></div>
                         <li class="tabItem">
-                            <button id="defaultOpen" class="variantsButton" onclick="openVariants(event, 'hell')">Hell</button>
-                        </li>
-                        <li class="tabItem">
-                            <button class="variantsButton" onclick="openVariants(event, 'ignorant')">Ignorant</button>
+                            <button id="defaultOpen" class="variantsButton" onclick="openVariants(event, 'ignorant')">Ignorant</button>
                         </li>
                         <li class="tabItem">
                             <button class="variantsButton" onclick="openVariants(event, 'angelic')">Angelic</button>
+                        </li>
+                        <li class="tabItem">
+                            <button class="variantsButton" onclick="openVariants(event, 'evil')">Evil</button>
+                        </li>
+                        <li class="tabItem">
+                            <button class="variantsButton" onclick="openVariants(event, 'hell')">Hell</button>
                         </li>
                         <li class="tabItem">
                             <button class="variantsButton" onclick="openVariants(event, 'crawl')">Crawl</button>
@@ -56,7 +59,7 @@
                 </div>
                 <div id="hell" class="monty">
                     <p class="variantTitle">Monty From Hell</p>
-                    <p class="variantText">The host offers the option to switch only when theplayer’s initial choice is the winning door.
+                    <p class="variantText">The host offers the option to switch only when the player’s initial choice is the winning door.
                     </p>
                     <p class="variantText">
                         <span class="bold">The Proportionality Principle:</span> If various alternatives are equally likely, and then some event is observed, the updated probabilities for the alternatives are proportional to the probabilities that the observed event would have occurred under those alternatives.<br/>
@@ -68,7 +71,7 @@
                 </div>
                 <div id="ignorant" class="monty">
                     <p class="variantTitle">Ignorant Monty</p>
-                    <p class="variantText">In this variant, once you have selected one of the three doors, the hostslips on a banana peel and accidentally pushes open another door, whichjust happens not to contain the car.  Now what are the probabilities thatyou will win the car if you stick with your original selection, versus if youswitch to the remaining door?</p>
+                    <p class="variantText">In this variant, once you have selected one of the three doors, the host slips on a banana peel and accidentally pushes open another door, which just happens not to contain the car.  Now what are the probabilities that you will win the car if you stick with your original selection, versus if you switch to the remaining door?</p>
                     <p class="variantText">
                         Now we assume that you selected door number one.  The host then revealed door number three, which did NOT contain the car.
                     </p>
@@ -89,7 +92,7 @@
                         &= \frac{\frac{1}{3} \cdot \frac{1}{2}}{\frac{1}{3} \cdot \frac{1}{2} + \frac{1}{3} \cdot \frac{1}{2} + \frac{1}{3} \cdot 0} = \frac{\frac{1}{6}}{\frac{1}{6} + \frac{1}{6}} \\
                         &= \boxed{\frac{1}{2}}.\\
                         \end{aligned}
-                    \end{equation*}\] 
+                    \end{equation*}\]
                     </p>
                     <p class="variantText">
                         In this case, it is still true that originally there was just a \(\frac{1}{3}\) chance that your original selection was correct. And yet, in the Monty Fall problem, the probabilities of winning if you stick or switch are both \(\frac{1}{2}\), not \(\frac{1}{3}\) and \(\frac{2}{3}\).<br/>
@@ -135,8 +138,8 @@
                             \end{aligned}
                         \end{equation*}\]
                         In the case that the car is not behind door # 1, meaning that the contestant has selected a goat-concealing door, the game will end if Monty opens a car concealing door. This happens \(\frac{1}{3}\) of the time.<br/>
-                        So putting everything together, we conclude that there is a probability of \(\frac{1}{3}\) that the contestant will loose by switching, a probability of \(\frac{1}{3}\) that the contestant will win by switching, and a probability of \(\frac{1}{3}\) that the game will end, in other words, the contestant loses.<br/>
-                        Still, even for this version of the Monty Hall Problem we see that the contestant will loose \(\frac{2}{3}\) of the time and will win only \(\frac{1}{3}\) of the time, which only happens if they switch.
+                        So putting everything together, we conclude that there is a probability of \(\frac{1}{3}\) that the contestant will lose by switching, a probability of \(\frac{1}{3}\) that the contestant will win by switching, and a probability of \(\frac{1}{3}\) that the game will end, in other words, the contestant loses.<br/>
+                        Still, even for this version of the Monty Hall Problem we see that the contestant will lose \(\frac{2}{3}\) of the time and will win only \(\frac{1}{3}\) of the time, which only happens if they switch.
                     </p>
                 </div>
                 <div id="crawl" class="monty">
@@ -154,8 +157,12 @@
                         When the contestant initially picks the prize door, the contestant always wins if he/she stays and always loses if he/she switches. This happens \(\frac{1}{3}\) of the time because he/she had a \(\frac{1}{3}\) chance of being right with the initial choice of doors.<br/>
                         <span class="bold">If the contestant's initial choice is not the prize door:</span>
                         <img class="variantImg" src="img/educationPhotos/crawlTable2.png" alt="image">
-                        Notice that the contestant always wins when he/he switches, which happens in \(\frac{2}{3}\) of the cases. Therefore, if you employ the always switch strategy in Monty Crawl cases, you will win \(\frac{2}{3}\) of the time. If you employ the always stay method in Monty Crawl cases, you will win \(\frac{1}{3}\) of the time just as in the Monty Hall cases.
+                        Notice that the contestant always wins when he/she switches, which happens in \(\frac{2}{3}\) of the cases. Therefore, if you employ the always switch strategy in Monty Crawl cases, you will win \(\frac{2}{3}\) of the time. If you employ the always stay method in Monty Crawl cases, you will win \(\frac{1}{3}\) of the time just as in the Monty Hall cases.
                     </p>
+                </div>
+                <div id="evil" class="monty">
+                    <p class="variantTitle">Evil Monty</p>
+                    <p class="variantText">Evil Monty Stuff : )</p>
                 </div>
             </div>
 
