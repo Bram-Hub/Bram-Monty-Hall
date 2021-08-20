@@ -303,26 +303,26 @@ window.deselectDoors = function () {
 window.switchDoors = function() {
     if(firstDoor == 0) {
         if(montyOpenDoor == 1) {
-            secondDoor = 2;
+            return 2;
         }
         else {
-            secondDoor = 1;
+            return 1;
         }
     }
     else if(firstDoor == 1) {
         if(montyOpenDoor == 0) {
-            secondDoor = 2;
+            return 2;
         }
         else {
-            secondDoor = 0;
+            return 0;
         }
     }
     else {
         if(montyOpenDoor == 1) {
-            secondDoor = 0;
+            return 0;
         }
         else {
-            secondDoor = 1;
+            return 1;
         }
     }
 }
@@ -462,10 +462,32 @@ window.gameMontyMove = function () {
     }
     return false;
 }
-
+/*
 window.gameSecondMove = function () {
     if(playerSwitch == true) {
-        switchDoors();
+        secondDoor = switchDoors();
+        setGameText(`You switched from door ${firstDoor + 1} to door ${secondDoor + 1}.`);
+    }
+    else {
+        secondDoor = firstDoor;
+        setGameText(`You chose to stick with door ${firstDoor + 1}.`);
+    }
+    selectDoor(firstDoor, "white");
+    selectDoor(secondDoor, "yellow"); //#fffd6b
+}
+*/
+
+window.gameDetermineSwitch = function () {
+    var rand = Math.random();
+    if(rand < pSwitchMatrix[firstDoor][switchDoors()]) {
+        return true;
+    }
+    return false;
+}
+
+window.gameSecondMove = function () {
+    if(gameDetermineSwitch() == true) {
+        secondDoor = switchDoors();
         setGameText(`You switched from door ${firstDoor + 1} to door ${secondDoor + 1}.`);
     }
     else {
