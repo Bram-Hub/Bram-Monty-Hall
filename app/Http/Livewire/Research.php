@@ -73,7 +73,7 @@ class Research extends Component
     {
         $data = [
             'monty_id' => $d['monty_id'],
-            'behavior_matrix' => $d['behavior'] ? '{"Always Switch": true}' : '{"Always Switch": false}',
+            'behavior_matrix' => $d['behavior'],
             'wins_switched' => $d['wins_switched'],
             'total_switches' => $d['total_switches'],
             'total_losses' => $d['total_losses'],

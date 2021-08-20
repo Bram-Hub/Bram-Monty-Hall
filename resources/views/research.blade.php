@@ -17,34 +17,80 @@
             <section class="left">
                 <div id="error"></div>
                 <div id="settingsArea">
-                    <table id="cmTable" width=20%>
-                        <tr>
-                            <th colspan="3">Custom Monty Settings</th>
-                        </tr>
-                        <tr>
-                            <th>Door 1</th>
-                            <th>Door 2</th>
-                            <th>Door 3</th>
-                        </tr>
-                        <tr>
-                            <td><input type="text" id="cmTableText1" class="cmTableText" value="0.33333" placeholder="0 - 1" onchange="updateCMProb(this.value, 0)"></td>
-                            <td><input type="text" id="cmTableText2" class="cmTableText" value="0.33333" placeholder="0 - 1" onchange="updateCMProb(this.value, 1)"></td>
-                            <td><input type="text" id="cmTableText3" class="cmTableText" value="0.33334" placeholder="0 - 1" onchange="updateCMProb(this.value, 2)"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <label class="cmLabel" for="cmAllowOpenSelected">Allow Open Selected:</label>
-                                <div><input type="checkbox" id="cmAllowOpenSelected" onchange="setCMAllowOpenSelected(this.checked)"></div>
-                            </td>
-                            <label></label>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <label class="cmLabel" for="cmAllowOpenPrize">Allow Open Prize:</label>
-                                <div><input type="checkbox" id="cmAllowOpenPrize" onchange="setCMAllowOpenPrize(this.checked)"></div>
-                            </td>
-                        </tr>
-                    </table>
+                    <div id="tableDiv">
+                        <table id="cmTable" width=20%>
+                            <tr>
+                                <th colspan="3">Custom Monty Settings</th>
+                            </tr>
+                            <tr>
+                                <th>Door 1</th>
+                                <th>Door 2</th>
+                                <th>Door 3</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="cmTableText1" class="cmTableText" value="0.3333" placeholder="0 - 1" onchange="updateCMProb(this.value, 0)"></td>
+                                <td><input type="text" id="cmTableText2" class="cmTableText" value="0.3333" placeholder="0 - 1" onchange="updateCMProb(this.value, 1)"></td>
+                                <td><input type="text" id="cmTableText3" class="cmTableText" value="0.3334" placeholder="0 - 1" onchange="updateCMProb(this.value, 2)"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <label class="cmLabel" for="cmAllowOpenSelected">Allow Open Selected:</label>
+                                    <div><input type="checkbox" id="cmAllowOpenSelected" onchange="setCMAllowOpenSelected(this.checked)"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <label class="cmLabel" for="cmAllowOpenPrize">Allow Open Prize:</label>
+                                    <div><input type="checkbox" id="cmAllowOpenPrize" onchange="setCMAllowOpenPrize(this.checked)"></div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table id="pTable">
+                            <tr>
+                                <th colspan="4">Player Behavior</th>
+                            </tr>
+                            <tr>
+                                <th class="pTableHeader"></th>
+                                <th class="pTableHeader">Door 1</th>
+                                <th class="pTableHeader">Door 2</th>
+                                <th class="pTableHeader">Door 3</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="text" id="pTableText1" class="pTableText" value="0.3333" placeholder="0 - 1" onchange="updatePProb(this.value, 0)"></td>
+                                <td><input type="text" id="pTableText2" class="pTableText" value="0.3333" placeholder="0 - 1" onchange="updatePProb(this.value, 1)"></td>
+                                <td><input type="text" id="pTableText3" class="pTableText" value="0.3334" placeholder="0 - 1" onchange="updatePProb(this.value, 2)"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Chance to switch from (row) to (column)</td>
+                            </tr>
+                            <tr>
+                                <th class="pTableHeader"></th>
+                                <th class="pTableHeader">Door 1</th>
+                                <th class="pTableHeader">Door 2</th>
+                                <th class="pTableHeader">Door 3</th>
+                            </tr>
+                            <tr>
+                                <th class="pTableMatrixText">Door 1</th>
+                                <td>X</td>
+                                <td><input type="text" id="pTableText12" class="pTableMatrixText" value="0.0" placeholder="0 - 1" onchange="updatePMat(this.value, 0, 1)"></td>
+                                <td><input type="text" id="pTableText13" class="pTableMatrixText" value="0.0" placeholder="0 - 1" onchange="updatePMat(this.value, 0, 2)"></td>
+                            </tr>
+                            <tr>
+                                <th class="pTableMatrixText">Door 2</th>
+                                <td><input type="text" id="pTableText21" class="pTableMatrixText" value="0.0" placeholder="0 - 1" onchange="updatePMat(this.value, 1, 0)"></td>
+                                <td>X</td>
+                                <td><input type="text" id="pTableText23" class="pTableMatrixText" value="0.0" placeholder="0 - 1" onchange="updatePMat(this.value, 1, 2)"></td>
+                            </tr>
+                            <tr>
+                                <th class="pTableMatrixText">Door 3</th>
+                                <td><input type="text" id="pTableText31" class="pTableMatrixText" value="0.0" placeholder="0 - 1" onchange="updatePMat(this.value, 2, 0)"></td>
+                                <td><input type="text" id="pTableText32" class="pTableMatrixText" value="0.0" placeholder="0 - 1" onchange="updatePMat(this.value, 2, 1)"></td>
+                                <td>X</td>
+                            </tr>
+                            
+                        </table>
+                    </div>
                     <div class="montySelection">
                         <label for="montySelect">Choose a variation of Monty to test: <br/> </label>
                         <select name="montySelect" id="montySelect" onchange="updateMontyVariant(this.value)">
@@ -55,10 +101,6 @@
                             <option>Monty from Hell</option>
                             <option>Custom Monty</option>
                         </select>
-                    </div>
-                    <div class="box">
-                        <label for="switchCheck">Player should switch:</label>
-                        <input type="checkbox" id="switchCheck" onchange="setPlayerSwitch(this.checked)">
                     </div>
                     <div class="box">
                         <label for="simCount"> Choose how many simulations to run: <br/> </label>
