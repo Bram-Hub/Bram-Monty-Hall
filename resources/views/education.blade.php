@@ -161,7 +161,6 @@
 
             <div class="resources">
                 <p class="title"> Resources </p>
-                <!-- <p class="text"> -->
                 <div class="resourceLinks">
                     <li>
                         <a href="https://encyclopediaofmath.org/wiki/Monty_hall_problem#:~:text=arguments%20since%20then.-,The%20origins%20of%20the%20problem,the%20journal%20The%20American%20Statistician">Origins of the Problem</a>
@@ -186,7 +185,6 @@
                         <a href="http://people.math.harvard.edu/~knill/oldtexas/Teaching/MA464/PUZZLES/marilyn.gameshow.html">Old Debate over Marilyn's Solution Discussing How Assumptions Changes the Solution</a>
                     </li>
                 </div>
-                <!-- </p> -->
             </div>
         </div>
         <x-footer/>
