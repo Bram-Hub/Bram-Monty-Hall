@@ -103,10 +103,6 @@
                         </select>
                     </div>
                     <div class="box">
-                        <label for="switchCheck">Player should switch:</label>
-                        <input type="checkbox" id="switchCheck" onchange="setPlayerSwitch(this.checked)">
-                    </div>
-                    <div class="box">
                         <label for="simCount"> Choose how many simulations to run: <br/> </label>
                         <input type="number" id="simCountBox" value="10" placeholder="#" min="0" max="10000"
                             onchange="updateTotalSims(this.value)">

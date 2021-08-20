@@ -1,9 +1,8 @@
 var gameState = 0;
 var states = ["firstMove", "montyMove", "secondMove", "end"];
-var montyVariant;// = document.getElementById("montySelect").value;
+var montyVariant;
 var simsRuns = 0;
-var totalSims;// = document.getElementById("simCountBox").value;
-//document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
+var totalSims;
 var firstDoor = -1;
 var montyOpenDoor = -1;
 var secondDoor = -1;
@@ -13,8 +12,8 @@ var totalLosses = 0;
 var montyOpenedPrize = 0;
 var totalWinsSwitch = 0;
 var totalLossesSwitch = 0;
-var playerSwitch;// = document.getElementById("switchCheck").checked;
-var showPrize;// = document.getElementById("prizeCheck").checked;
+var playerSwitch;
+var showPrize;
 var page; //true for research, false for play
 var animSpeed = 0;
 var changed = false;
@@ -50,7 +49,6 @@ window.addEventListener('load', () => {
         montyVariant = document.getElementById("montySelect").value;
         setTotalSims();
         document.getElementById("display_div_id").innerHTML = "1 / " + totalSims;
-        playerSwitch = document.getElementById("switchCheck").checked;
         showPrize = document.getElementById("prizeCheck").checked;
         gameSetPrizeDoor();
         for(var i = 0; i < 3; i++) {
@@ -257,13 +255,6 @@ window.setShowPrize = function (value) {
     updatePrizeBorder();
 }
 
-window.setPlayerSwitch = function (value) {
-    playerSwitch = value;
-    if(started) {
-        changed = true;
-    }
-}
-
 window.openDoor = function (door) {
     if(prizeDoor == door) {
         window.livewire.emit('set-img-src', door + 1, "img/carDoor.png");
@@ -462,20 +453,6 @@ window.gameMontyMove = function () {
     }
     return false;
 }
-/*
-window.gameSecondMove = function () {
-    if(playerSwitch == true) {
-        secondDoor = switchDoors();
-        setGameText(`You switched from door ${firstDoor + 1} to door ${secondDoor + 1}.`);
-    }
-    else {
-        secondDoor = firstDoor;
-        setGameText(`You chose to stick with door ${firstDoor + 1}.`);
-    }
-    selectDoor(firstDoor, "white");
-    selectDoor(secondDoor, "yellow"); //#fffd6b
-}
-*/
 
 window.gameDetermineSwitch = function () {
     var rand = Math.random();
@@ -619,15 +596,18 @@ window.updateCurrentSim = function () {
             "Monty from Hell": 5
         }
         window.livewire.emit('add-to-database', {monty_id: montyDict[montyVariant],
-        behavior: playerSwitch,
-        wins_switched: (playerSwitch ? totalWinsSwitch : 0) - lastWinsSwitched,
-        total_switches: (playerSwitch ? (totalWinsSwitch + totalLossesSwitch) : 0) - lastTotalSwitches,
+        behavior: JSON.stringify({
+            first: pOpenProbs,
+            matrix: pSwitchMatrix
+        }).split(",").join(", ").split(":").join(": "),
+        wins_switched: totalWinsSwitch - lastWinsSwitched,
+        total_switches: totalWinsSwitch + totalLossesSwitch - lastTotalSwitches,
         total_losses: totalLosses - lastTotalLosses,
         total_wins: totalWins - lastTotalWins,
         total_simulations: totalSims - lastTotalSimulations});
         
-        lastWinsSwitched = playerSwitch ? totalWinsSwitch : 0;
-        lastTotalSwitches = playerSwitch ? (totalWinsSwitch + totalLossesSwitch) : 0;
+        lastWinsSwitched = totalWinsSwitch;
+        lastTotalSwitches = totalWinsSwitch + totalLossesSwitch;
         lastTotalLosses = totalLosses;
         lastTotalWins = totalWins;
         lastTotalSimulations = totalSims;
