@@ -17,6 +17,34 @@
             <section class="left">
                 <div id="error"></div>
                 <div id="settingsArea">
+                    <table id="cmTable" width=20%>
+                        <tr>
+                            <th colspan="3">Custom Monty Settings</th>
+                        </tr>
+                        <tr>
+                            <th>Door 1</th>
+                            <th>Door 2</th>
+                            <th>Door 3</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" id="cmTableText1" class="cmTableText" value="0.33333" placeholder="0 - 1" onchange="updateCMProb(this.value, 0)"></td>
+                            <td><input type="text" id="cmTableText2" class="cmTableText" value="0.33333" placeholder="0 - 1" onchange="updateCMProb(this.value, 1)"></td>
+                            <td><input type="text" id="cmTableText3" class="cmTableText" value="0.33334" placeholder="0 - 1" onchange="updateCMProb(this.value, 2)"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <label class="cmLabel" for="cmAllowOpenSelected">Allow Open Selected:</label>
+                                <div><input type="checkbox" id="cmAllowOpenSelected" onchange="setCMAllowOpenSelected(this.checked)"></div>
+                            </td>
+                            <label></label>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <label class="cmLabel" for="cmAllowOpenPrize">Allow Open Prize:</label>
+                                <div><input type="checkbox" id="cmAllowOpenPrize" onchange="setCMAllowOpenPrize(this.checked)"></div>
+                            </td>
+                        </tr>
+                    </table>
                     <div class="montySelection">
                         <label for="montySelect">Choose a variation of Monty to test: <br/> </label>
                         <select name="montySelect" id="montySelect" onchange="updateMontyVariant(this.value)">
@@ -25,6 +53,7 @@
                             <option>Angelic Monty</option>
                             <option>Evil Monty</option>
                             <option>Monty from Hell</option>
+                            <option>Custom Monty</option>
                         </select>
                     </div>
                     <div class="box">
@@ -59,7 +88,6 @@
                                 <div class="container_inner" id="display_div_id"></div>
                             </div>
                         </div>
-                        <button id="graphBtn">Display graphs</button>
                         <div class="progBar">
                             <span id="progBarSpan" style="width: 0%"></span>
                         </div>
