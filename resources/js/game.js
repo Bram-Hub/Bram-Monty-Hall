@@ -25,9 +25,9 @@ var lastTotalLosses = 0;
 var lastTotalWins = 0;
 var lastTotalSimulations = 0;
 // Custom Monty settings
-var cmOpenProbs = [0.33333, 0.33333, 0.33334];
-var cmAllowOpenPrize = true;
-var cmAllowOpenSelected = true;
+var cmOpenProbs = [0.0, 0.0, 0.0];
+var cmAllowOpenSelected;
+var cmAllowOpenPrize;
 
 window.setTotalSims = function () {
     var scb = document.getElementById("simCountBox").value;
@@ -50,6 +50,13 @@ window.addEventListener('load', () => {
         playerSwitch = document.getElementById("switchCheck").checked;
         showPrize = document.getElementById("prizeCheck").checked;
         gameSetPrizeDoor();
+        for(var i = 0; i < 3; i++) {
+            cmOpenProbs[i] = parseFloat(document.getElementById("cmTableText" + (i + 1)).value);
+        }
+        cmAllowOpenSelected = document.getElementById("cmAllowOpenSelected").checked;
+        cmAllowOpenPrize = document.getElementById("cmAllowOpenPrize").checked;
+        console.log(cmOpenProbs);
+        
     }
     else {
         console.log("Play Page")
@@ -107,6 +114,12 @@ window.updateMontyVariant = function (variant) {
     if(started) {
         changed = true;
     }
+    if(variant == "Custom Monty") {
+        document.getElementById("cmTable").style.visibility = "visible";
+    }
+    else {
+        document.getElementById("cmTable").style.visibility = "hidden";
+    }
 }
 
 window.updatePrizeBorder = function () {
@@ -127,12 +140,58 @@ window.gameSetPrizeDoor = function () {
 
 window.setCMAllowOpenSelected = function (value) {
     cmAllowOpenSelected = value;
-    console.log("cmAllowOpenSelected", cmAllowOpenSelected);
 }
 
 window.setCMAllowOpenPrize = function (value) {
     cmAllowOpenPrize = value;
-    console.log("cmAllowOpenPrize", cmAllowOpenPrize);
+}
+
+window.setValidCMInput = function (id) {
+    document.getElementById(id).style.backgroundColor = "white";
+}
+
+window.setInvalidCMInput = function (id) {
+    document.getElementById(id).style.backgroundColor = "#ffd4d1";
+}
+
+window.cmValidProbs = function () {
+    var sum = 0.0;
+    for(var i = 0; i < 3; i++) {
+        sum += cmOpenProbs[i];
+    }
+    return sum == 1.0;
+}
+
+window.updateCMProb = function (value, index) {
+    
+    // make sure the text is a number
+    if(isNaN(value - parseFloat(value))) {
+        setInvalidCMInput("cmTableText" + (index + 1));
+        return;
+    }
+    
+    setValidCMInput("cmTableText" + (index + 1));
+    cmOpenProbs[index] = parseFloat(value);
+    
+    // make sure the checkboxes are disabled if at least one probability value is 0
+    var disableCMChecks = false;
+    for(var i = 0; i < 3; i++) {
+        if(cmOpenProbs[i] == 0.0) {
+            disableCMChecks = true;
+        }
+    }
+    if(disableCMChecks) {
+        document.getElementById("cmAllowOpenSelected").disabled = true;
+        document.getElementById("cmAllowOpenPrize").disabled = true;
+        document.getElementById("cmAllowOpenSelected").checked = true;
+        document.getElementById("cmAllowOpenPrize").checked = true;
+        cmAllowOpenSelected = true;
+        cmAllowOpenPrize = true;
+    }
+    else {
+        document.getElementById("cmAllowOpenSelected").disabled = false;
+        document.getElementById("cmAllowOpenPrize").disabled = false;
+    }
 }
 
 window.setShowPrize = function (value) {
@@ -271,6 +330,7 @@ window.gameMontyFromHell = function () {
 // DONE
 window.gameCustomMonty = function () {
     do {
+        console.log("custom looooooop");
         var randDoor = Math.random();
         if(randDoor < cmOpenProbs[0]) {
             montyOpenDoor = 0;
@@ -281,7 +341,6 @@ window.gameCustomMonty = function () {
         else {
             montyOpenDoor = 2;
         }
-        console.log("randDoor: ", randDoor, "  montyOpenDoor: ", montyOpenDoor, "  probs: ", cmOpenProbs);
     } while ((montyOpenDoor == firstDoor && !cmAllowOpenSelected) || (montyOpenDoor == prizeDoor && !cmAllowOpenPrize));
     return !(montyOpenDoor == firstDoor || montyOpenDoor == prizeDoor);
 }
@@ -508,6 +567,12 @@ window.updateProgBar = function () {
 }
 
 window.gameStep = function () {
+    // if Custom Monty is set and it's probabilities don't add up to 1.0
+    if(montyVariant == "Custom Monty" && !cmValidProbs()) {
+        alert("Custom Monty door probabilities must add up to exactly 1.");
+        return;
+    }
+    
     started = true;
     if(simsRuns >= totalSims) {
         // console.log("Cannot step: finished simulations");
@@ -543,6 +608,12 @@ window.gameStep = function () {
 }
 
 window.gameNext = function () {
+    // if Custom Monty is set and it's probabilities don't add up to 1.0
+    if(montyVariant == "Custom Monty" && !cmValidProbs()) {
+        alert("Custom Monty door probabilities must add up to exactly 1.");
+        return;
+    }
+    
     // console.log("just clicked next:")
     if(simsRuns >= totalSims) {
         // console.log("Cannot step: finished simulations");
@@ -558,6 +629,12 @@ window.sleep = function(ms) {
 }
 
 window.gameRunAll = async function () {
+    // if Custom Monty is set and it's probabilities don't add up to 1.0
+    if(montyVariant == "Custom Monty" && !cmValidProbs()) {
+        alert("Custom Monty door probabilities must add up to exactly 1.");
+        return;
+    }
+    
     if(simsRuns >= totalSims) {
         // console.log("Cannot step: finished simulations");
         return;

@@ -231,6 +231,7 @@
     width: 10vw;
     float: right;
     margin-top: 30px;
+    visibility: hidden;
 }
 
 .cmTableText {

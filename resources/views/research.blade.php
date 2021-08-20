@@ -19,25 +19,28 @@
                 <div id="settingsArea">
                     <table id="cmTable" width=20%>
                         <tr>
+                            <th colspan="3">Custom Monty Settings</th>
+                        </tr>
+                        <tr>
                             <th>Door 1</th>
                             <th>Door 2</th>
                             <th>Door 3</th>
                         </tr>
                         <tr>
-                            <td><input type="text" class="cmTableText" value="0.33" placeholder="0 - 1" onchange="updateCMProb(this.value, 0)"></td>
-                            <td><input type="text" class="cmTableText" value="0.33" placeholder="0 - 1" onchange="updateCMProb(this.value, 1)"></td>
-                            <td><input type="text" class="cmTableText" value="0.34" placeholder="0 - 1" onchange="updateCMProb(this.value, 2)"></td>
+                            <td><input type="text" id="cmTableText1" class="cmTableText" value="0.33333" placeholder="0 - 1" onchange="updateCMProb(this.value, 0)"></td>
+                            <td><input type="text" id="cmTableText2" class="cmTableText" value="0.33333" placeholder="0 - 1" onchange="updateCMProb(this.value, 1)"></td>
+                            <td><input type="text" id="cmTableText3" class="cmTableText" value="0.33334" placeholder="0 - 1" onchange="updateCMProb(this.value, 2)"></td>
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <label class="cmLabel" for="cmAllowOpenSelected">Allow Open Selected</label>
+                                <label class="cmLabel" for="cmAllowOpenSelected">Allow Open Selected:</label>
                                 <div><input type="checkbox" id="cmAllowOpenSelected" onchange="setCMAllowOpenSelected(this.checked)"></div>
                             </td>
                             <label></label>
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <label class="cmLabel" for="cmAllowOpenPrize">Allow Open Prize</label>
+                                <label class="cmLabel" for="cmAllowOpenPrize">Allow Open Prize:</label>
                                 <div><input type="checkbox" id="cmAllowOpenPrize" onchange="setCMAllowOpenPrize(this.checked)"></div>
                             </td>
                         </tr>
