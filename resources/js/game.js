@@ -58,12 +58,22 @@ window.addEventListener('load', () => {
             if(num >= 0 && num <= 1) {
                 cmOpenProbs[i] = num;
             }
+            num = parseFloat(document.getElementById("pTableText" + (i + 1)).value);
+            if(num >= 0 && num <= 1) {
+                pOpenProbs[i] = num;
+            }
+            for(var j = 0; j < 3; j++) {
+                if(i != j){
+                    num = parseFloat(document.getElementById("pTableText" + (i + 1) + (j + 1)).value);
+                    if(num >= 0 && num <= 1) {
+                        pSwitchMatrix[i][j] = num;
+                    }
+                }
+            }
         }
         cmAllowOpenSelected = document.getElementById("cmAllowOpenSelected").checked;
         cmAllowOpenPrize = document.getElementById("cmAllowOpenPrize").checked;
         document.getElementById("cmTable").style.visibility = montyVariant == "Custom Monty" ? "visible" : "hidden";
-        console.log(cmOpenProbs);
-        
     }
     else {
         console.log("Play Page")
@@ -220,27 +230,26 @@ window.updatePProb = function (value, index) {
     }
     
     setValidInput("pTableText" + (index + 1));
-    cmOpenProbs[index] = parseFloat(value);
+    pOpenProbs[index] = parseFloat(value);
+    console.log(pOpenProbs);
+}
+
+window.updatePMat = function (value, indexR, indexC) {
     
-    // make sure the checkboxes are disabled if at least one probability value is 0
-    var disableCMChecks = false;
-    for(var i = 0; i < 3; i++) {
-        if(cmOpenProbs[i] == 0.0) {
-            disableCMChecks = true;
-        }
+    // make sure the text is a number
+    if(isNaN(value - parseFloat(value))) {
+        setInvalidInput("pTableText" + (indexR + 1) + (indexC + 1));
+        return;
     }
-    if(disableCMChecks) {
-        document.getElementById("cmAllowOpenSelected").disabled = true;
-        document.getElementById("cmAllowOpenPrize").disabled = true;
-        document.getElementById("cmAllowOpenSelected").checked = true;
-        document.getElementById("cmAllowOpenPrize").checked = true;
-        cmAllowOpenSelected = true;
-        cmAllowOpenPrize = true;
+    // make sure the number is in the range 0-1
+    if(parseFloat(value) < 0 || parseFloat(value) > 1) {
+        setInvalidInput("pTableText" + (indexR + 1) + (indexC + 1));
+        return;
     }
-    else {
-        document.getElementById("cmAllowOpenSelected").disabled = false;
-        document.getElementById("cmAllowOpenPrize").disabled = false;
-    }
+    
+    setValidInput("pTableText" + (indexR + 1) + (indexC + 1));
+    pSwitchMatrix[indexR][indexC] = parseFloat(value);
+    console.log(pSwitchMatrix);
 }
 
 window.setShowPrize = function (value) {
