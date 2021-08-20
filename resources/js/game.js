@@ -171,10 +171,10 @@ window.setInvalidInput = function (id) {
     document.getElementById(id).style.backgroundColor = "#ffd4d1";
 }
 
-window.cmValidProbs = function () {
+window.validProbs = function (probs) {
     var sum = 0.0;
     for(var i = 0; i < 3; i++) {
-        sum += cmOpenProbs[i];
+        sum += probs[i];
     }
     return sum == 1.0;
 }
@@ -326,9 +326,25 @@ window.switchDoors = function() {
         }
     }
 }
-
+/*
 window.gameFirstMove = function () {
     firstDoor = Math.floor(Math.random() * 3);
+    selectDoor(firstDoor, "yellow"); //#fffd6b
+    setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
+}
+*/
+
+window.gameFirstMove = function () {
+    var randDoor = Math.random();
+    if(randDoor < pOpenProbs[0]) {
+        firstDoor = 0;
+    }
+    else if(randDoor < pOpenProbs[0] + pOpenProbs[1]) {
+        firstDoor = 1;
+    }
+    else {
+        firstDoor = 2;
+    }
     selectDoor(firstDoor, "yellow"); //#fffd6b
     setGameText(`You chose door ${firstDoor + 1}. Monty will open a door.`);
 }
@@ -388,7 +404,6 @@ window.gameMontyFromHell = function () {
 // DONE
 window.gameCustomMonty = function () {
     do {
-        console.log("custom looooooop");
         var randDoor = Math.random();
         if(randDoor < cmOpenProbs[0]) {
             montyOpenDoor = 0;
@@ -625,8 +640,13 @@ window.updateProgBar = function () {
 }
 
 window.gameStep = function () {
+    // if Player firstDoor probabilities don't add up to 1.0
+    if(!validProbs(pOpenProbs)) {
+        alert("Player first selection probabilities must be 0-1 and add up to exactly 1.");
+        return;
+    }
     // if Custom Monty is set and it's probabilities don't add up to 1.0
-    if(montyVariant == "Custom Monty" && !cmValidProbs()) {
+    if(montyVariant == "Custom Monty" && !validProbs(cmOpenProbs)) {
         alert("Custom Monty door probabilities must be 0-1 and add up to exactly 1.");
         return;
     }
@@ -666,8 +686,13 @@ window.gameStep = function () {
 }
 
 window.gameNext = function () {
+    // if Player firstDoor probabilities don't add up to 1.0
+    if(!validProbs(pOpenProbs)) {
+        alert("Player first selection probabilities must be 0-1 and add up to exactly 1.");
+        return;
+    }
     // if Custom Monty is set and it's probabilities don't add up to 1.0
-    if(montyVariant == "Custom Monty" && !cmValidProbs()) {
+    if(montyVariant == "Custom Monty" && !validProbs(cmOpenProbs)) {
         alert("Custom Monty door probabilities must add up to exactly 1.");
         return;
     }
@@ -687,8 +712,13 @@ window.sleep = function(ms) {
 }
 
 window.gameRunAll = async function () {
+    // if Player firstDoor probabilities don't add up to 1.0
+    if(!validProbs(pOpenProbs)) {
+        alert("Player first selection probabilities must be 0-1 and add up to exactly 1.");
+        return;
+    }
     // if Custom Monty is set and it's probabilities don't add up to 1.0
-    if(montyVariant == "Custom Monty" && !cmValidProbs()) {
+    if(montyVariant == "Custom Monty" && !validProbs(cmOpenProbs)) {
         alert("Custom Monty door probabilities must add up to exactly 1.");
         return;
     }
