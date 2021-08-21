@@ -2,8 +2,7 @@
 <html>
     <head>
         <title>Monty Hall - About Page</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ URL::asset('css/about.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/about.css') }}" rel="stylesheet"/>
     </head>
     <body>
         <x-navigation/>
@@ -23,12 +22,12 @@
                 With our Monty Hall Simulator, we consider several other versions of Monty Hall where the assumptions we make in the original version, such as Monty knowing where the goat is, Monty only able to open doors with goats behind them and Monty only able to open doors that the player hasn't chosen, might not hold.
             </p>
             <p>
-                You can find out more about the statistics behind the original version and all of the other versions we simulate on the <a href="/education">Education page </a>. Also checkout the <a href="/play">Play page</a> to try out random Montys and checkout the <a href="/simulation">Simulation page</a> to test specific Montys. As you test out these different Montys you can head to the <a href="/database">Database page</a> to checkout the data from several runs of the game.
+                You can find out more about the statistics behind the original version and all of the other versions we simulate on the <a href="/education">Education page</a>. Also checkout the <a href="/play">Play page</a> to try out random Montys and checkout the <a href="/research">Research page</a> to test specific Montys. As you test out these different Montys you can head to the <a href="/database">Database page</a> to checkout the data from several runs of the game.
             </p>
-            <h2>Meet our Team</h2>
-            <h3>Our Wonderful Advisor</h3>
+            <h2>Meet our Team:</h2>
             <div class="advisor">
-                <img class="teamPhoto" src="img/teamPhotos/bram.jpg" alt="Professor Bram">
+                <h3>Our Wonderful Advisor</h3>
+                <img id="advisorPhoto" class="teamPhoto" src="img/teamPhotos/bram.jpg" alt="Professor Bram">
                 <figcaption>Professor Bram van Heuveln</figcaption>
             </div>
             <h3>This Project was started in Summer 2021 with these wonderful people:</h3>

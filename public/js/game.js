@@ -17,7 +17,7 @@ var showPrize;
 var page; //true for research, false for play
 var animSpeed = 0;
 var changed = false;
-var started = false;
+var hasStarted = false;
 var lastWinsSwitched = 0;
 var lastTotalSwitches = 0;
 var lastTotalLosses = 0;
@@ -134,7 +134,7 @@ window.setGameText = function (text) {
 
 window.updateMontyVariant = function (variant) {
     montyVariant = variant;
-    if(started) {
+    if(hasStarted) {
         changed = true;
     }
     if(variant == "Custom Monty") {
@@ -163,10 +163,16 @@ window.gameSetPrizeDoor = function () {
 
 window.setCMAllowOpenSelected = function (value) {
     cmAllowOpenSelected = value;
+    if(hasStarted) {
+        changed = true;
+    }
 }
 
 window.setCMAllowOpenPrize = function (value) {
     cmAllowOpenPrize = value;
+    if(hasStarted) {
+        changed = true;
+    }
 }
 
 window.setValidInput = function (id) {
@@ -200,6 +206,9 @@ window.updateCMProb = function (value, index) {
 
     setValidInput("cmTableText" + (index + 1));
     cmOpenProbs[index] = parseFloat(value);
+    if(hasStarted) {
+        changed = true;
+    }
 
     // make sure the checkboxes are disabled if at least one probability value is 0
     var disableCMChecks = false;
@@ -237,6 +246,9 @@ window.updatePProb = function (value, index) {
 
     setValidInput("pTableText" + (index + 1));
     pOpenProbs[index] = parseFloat(value);
+    if(hasStarted) {
+        changed = true;
+    }
     console.log(pOpenProbs);
 }
 
@@ -255,6 +267,9 @@ window.updatePMat = function (value, indexR, indexC) {
 
     setValidInput("pTableText" + (indexR + 1) + (indexC + 1));
     pSwitchMatrix[indexR][indexC] = parseFloat(value);
+    if(hasStarted) {
+        changed = true;
+    }
     console.log(pSwitchMatrix);
 }
 
@@ -578,7 +593,7 @@ window.simReset = function () {
     console.log("totalSims =", totalSims);
     gameState = 0;
     changed = false;
-    started = false;
+    hasStarted = false;
     deselectDoors();
     closeAllDoors();
     setGameText("Pick a door.");
@@ -682,7 +697,7 @@ window.gameStep = function () {
         return;
     }
 
-    started = true;
+    hasStarted = true;
     if(simsRuns >= totalSims) {
         // console.log("Cannot step: finished simulations");
         return;
@@ -764,3 +779,4 @@ window.gameRunAll = async function () {
         await sleep(animSpeed !== 0 ? 200 / animSpeed : animSpeed);
     }
 }
+
