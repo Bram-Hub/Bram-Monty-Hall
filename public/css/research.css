@@ -42,7 +42,8 @@
     font-size: 20px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
     -webkit-appearance: button;
-    appearance: button;
+    -moz-appearance: button;
+         appearance: button;
     outline: none;
     border-radius: 5px;
 }
@@ -139,7 +140,8 @@
 #error {
     color: red;
     text-align: center;
-    text-decoration: bold;
+    -webkit-text-decoration: bold;
+            text-decoration: bold;
     font-family: Open Sans;
 }
 
@@ -271,4 +273,3 @@ label.cmLabel ~ div {
     float: right;
     display: inline;
 }
-

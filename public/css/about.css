@@ -19,6 +19,10 @@ p {
     text-align: left;
 }
 
+.pageBody a {
+    color: #1180f1 !important;
+}
+
 .teamPhoto {
     max-width: 100px;
 }
@@ -32,4 +36,8 @@ p {
 .advisor {
     padding: 10px;
     text-align: center;
+}
+
+#advisorPhoto {
+    margin: auto;
 }
