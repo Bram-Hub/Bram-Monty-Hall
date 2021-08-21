@@ -20,8 +20,8 @@
                     <th>Monty</th>
                     <th>Wins Switched</th>
                     <th>Total Switches</th>
-                    <th>Total Losses</th>
                     <th>Total Wins</th>
+                    <th>Total Losses</th>
                     <th>Total Simulations</th>
                 @endif
             </tr>
@@ -43,8 +43,8 @@
                         <td>{{ $simulation->monty->type }}</td>
                         <td>{{ $simulation->wins_switched }}</td>
                         <td>{{ $simulation->total_switches }}</td>
-                        <td>{{ $simulation->total_losses }}</td>
                         <td>{{ $simulation->total_wins }}</td>
+                        <td>{{ $simulation->total_losses }}</td>
                         <td>{{ $simulation->total_simulations }}</td>
                     </tr>
                 @endforeach

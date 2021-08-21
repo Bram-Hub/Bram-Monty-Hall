@@ -78,7 +78,7 @@ window.addEventListener('load', () => {
         page = false;
         //randomize the monty type and prize door
         var randomMonty = Math.floor(Math.random() * 6);
-        randomMonty = 5;
+        //randomMonty = 5;
         var montyDict = {
             0: "Standard Monty",
             1: "Ignorant Monty",
