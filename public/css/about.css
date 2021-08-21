@@ -1,0 +1,43 @@
+.pageBody {
+    padding: 10px 30px 10px 30px;
+}
+
+.pageTitle {
+    color: #3b4754;
+    font-family: "Arial, sans-serif";
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+p {
+    color: #798da3;
+    font-family: "Arial";
+    font-weight: 400;
+    font-size: 18px;
+    text-align: left;
+}
+
+.pageBody a {
+    color: #1180f1 !important;
+}
+
+.teamPhoto {
+    max-width: 100px;
+}
+
+.teamMember {
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+}
+
+.advisor {
+    padding: 10px;
+    text-align: center;
+}
+
+#advisorPhoto {
+    margin: auto;
+}
